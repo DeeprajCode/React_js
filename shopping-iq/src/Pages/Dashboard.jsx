@@ -9,6 +9,10 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const udata = localStorage.getItem('userData');
+  const userData = udata ? JSON.parse(udata) : null;
+
+
   useEffect(() => {
     getPosts()
       .then((posts) => {
@@ -26,7 +30,7 @@ const Dashboard = () => {
       <Sidebar />
       <div className="flex-1 bg-gray-100 min-h-screen">
         <Header />
-        <div className="p-6">
+        <div className="p-10">
           {/* 🛍️ Info About Online Shopping */}
 
            {loading && (
@@ -39,8 +43,9 @@ const Dashboard = () => {
                         </div>
                     )}
 
-          <div className="bg-white shadow-md rounded-xl p-6 mb-6 border-l-4 border-blue-500">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">🛍️ Welcome to Shopping-IQ!</h2>
+          <div className="bg-blue shadow-md rounded-xl p-6 mb-6 border-l-4 border-blue-500">
+            <h2 className=" flex items-center justify-center  text-2xl font-bold text-gray-800 mb-2">🛍️ Welcome {userData.firstName + " " + userData.lastName}</h2>
+            <h1 className="flex items-center justify-center  text-2xl font-bold text-gray-800 mb-3"> Shopping-IQ</h1>
             <p className="text-gray-600">
               Discover the best deals, explore new arrivals, and track your orders in real time.
               Our platform is designed to give you a seamless shopping experience—from browsing products to checking out safely.
@@ -67,9 +72,6 @@ const Dashboard = () => {
             )}
           </div> */}
 
-          <div className="h-20 w-20">
-            <img src={Dashboardimage} alt="" srcset="" />
-          </div>
           
         </div>
       </div>

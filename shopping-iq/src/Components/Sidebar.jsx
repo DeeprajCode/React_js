@@ -37,7 +37,7 @@ const Sidebar = () => {
         <ul className="space-y-4 px-2">
           {[
             { label: 'Home', route: '/' },
-            { label: 'About Us', route: null },
+            { label: 'About Us', route: '/Aboutus' },
             { label: 'Contact', route: null },
             { label: 'Products', route: '/Products' },
           ].map(({ label, route }) => (

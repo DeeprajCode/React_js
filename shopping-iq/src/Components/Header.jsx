@@ -36,7 +36,10 @@ const Header = () => {
   return (
     <header className="flex justify-between items-center bg-gradient-to-b from-[#fdfcfb] via-[#e2ebf0] to-[#dee2e6] dark:from-[#1e1e2f] dark:via-[#2d2d44] dark:to-[#1c1c2e] border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl px-6 py-8">
       {/* Search */}
+
+      
       <div className="relative w-1/2">
+      
         <input
           type="text"
           placeholder="Search products..."
@@ -59,6 +62,7 @@ const Header = () => {
                 {item.title}
               </div>
             ))}
+            
           </div>
         )}
       </div>
@@ -74,12 +78,20 @@ const Header = () => {
             Login
           </button>
         )}
-        <button className="h-10 w-10">
-          <img src={CartLogo} alt="Cart" className="h-10 w-10" />
-        </button>
+        <button class="relative p-2 rounded-full bg-transparent text-black  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+
+  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.186 1.705.707 1.705H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>
+
+
+  <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full transform translate-x-1/2 -translate-y-1/2">
+    3
+  </span>
+</button>
         {userData && (
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/User')}>
-            <img src={ProfileLogo} alt="Profile" className="h-10 w-10 rounded-full" />
+          <div className=" cursor-pointer" onClick={() => navigate('/User')}>
+            <img src={userData.image} alt="Profile" className=" h-10 w-10 rounded-full " />
             <p className="text-black dark:text-white font-medium">
               {userData.firstName + " " + userData.lastName}
             </p>
