@@ -12,6 +12,6 @@ export const categories =  async () => {
  
 //User login api
 export const fetchuser = async () => {
-    const response = await fetch('https://dummyjson.com/users', {method: 'GET'});
-    return await response.json();
-}
+  const response = await fetch('https://dummyjson.com/users');
+  return await response.json();
+};

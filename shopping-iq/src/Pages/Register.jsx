@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 const Register = () => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
@@ -216,3 +217,6 @@ const Register = () => {
 };
 
 export default Register;
+
+
+

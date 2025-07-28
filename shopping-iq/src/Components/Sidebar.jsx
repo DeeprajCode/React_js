@@ -32,8 +32,6 @@ const Sidebar = () => {
         </span>
       </div>
 
-      {loading && <p className="px-4 text-gray-500 italic mt-4">Loading...</p>}
-      {error && <p className="px-4 text-red-500 mt-4">{error}</p>}
 
       <nav className="mt-8">
         <ul className="space-y-4 px-2">
