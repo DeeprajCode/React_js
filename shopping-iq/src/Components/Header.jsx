@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import CartLogo from '../assets/images/shopping-cart.png';
-import ProfileLogo from '../assets/images/user.png';
 import { useNavigate } from 'react-router-dom';
+import { Menu } from 'lucide-react'; // Hamburger icon
 
-const Header = () => {
+const Header = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   const data = localStorage.getItem('userData');
   const userData = data ? JSON.parse(data) : null;
@@ -12,7 +11,6 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
-  // Load all products once for suggestion popup
   useEffect(() => {
     const fetchAllProducts = async () => {
       const res = await fetch("https://fakestoreapi.com/products");
@@ -34,18 +32,23 @@ const Header = () => {
   }, [searchText, allProducts]);
 
   return (
-    <header className="flex justify-between items-center bg-gradient-to-b from-[#fdfcfb] via-[#e2ebf0] to-[#dee2e6] dark:from-[#1e1e2f] dark:via-[#2d2d44] dark:to-[#1c1c2e] border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl px-6 py-8">
-      {/* Search */}
+    <header className="flex justify-between items-center bg-gradient-to-r from-white via-gray-100 to-white dark:from-gray-700 dark:via-gray-800 dark:to-gray-700
 
+ border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl px-4 py-6">
       
+      {/* Toggle Sidebar */}
+      <button onClick={toggleSidebar} className="text-gray-800 dark:text-white mr-4 hover:scale-105 transition duration-500">
+        <Menu className="w-8 h-8" />
+      </button>
+
+      {/* Search Box */}
       <div className="relative w-1/2">
-      
         <input
           type="text"
           placeholder="Search products..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="w-full px-4 py-2 border rounded-md text-sm"
+          className="w-full px-4 py-2 hover:shadow-lg hover:shadow-indigo-600/60 transition-shadow duration-500  hover:shadow-lg transition-shadow duration-300 hover:scale-105 transition duration-500 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow duration-600"
         />
         {suggestions.length > 0 && (
           <div className="absolute z-50 bg-white dark:bg-gray-800 shadow-md rounded-md mt-1 w-full max-h-64 overflow-y-auto">
@@ -62,12 +65,11 @@ const Header = () => {
                 {item.title}
               </div>
             ))}
-            
           </div>
         )}
       </div>
 
-      {/* Right Side */}
+      {/* Right Actions */}
       <div className="flex items-center space-x-4">
         {!userData && (
           <button
@@ -78,20 +80,22 @@ const Header = () => {
             Login
           </button>
         )}
-        <button class="relative p-2 rounded-full bg-transparent text-black  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+        
+        {/* Cart Icon */}
+        <button onClick={() => navigate('/Cart')} className="hover:scale-105  transition duration-500 relative p-2 rounded-full bg-transparent text-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.186 1.705.707 1.705H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold text-white bg-red-600 rounded-full transform translate-x-1/2 -translate-y-1/2">
+            3
+          </span>
+        </button>
 
-  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.186 1.705.707 1.705H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-  </svg>
-
-
-  <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full transform translate-x-1/2 -translate-y-1/2">
-    3
-  </span>
-</button>
+        {/* Profile */}
         {userData && (
-          <div className=" cursor-pointer" onClick={() => navigate('/User')}>
-            <img src={userData.image} alt="Profile" className=" h-10 w-10 rounded-full " />
+          <div className="grid place-items-center hover:scale-105 transition duration-500" onClick={() => navigate('/User')}>
+            <img src={userData.image} alt="Profile" className="h-10 w-10 rounded-full" />
             <p className="text-black dark:text-white font-medium">
               {userData.firstName + " " + userData.lastName}
             </p>

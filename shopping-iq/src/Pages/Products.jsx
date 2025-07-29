@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Sidebar from '../Components/Sidebar';
-import Header from '../Components/Header';
 import { getPosts } from '../Utils/api';
+import {
+  BadgeDollarSign
+} from 'lucide-react';
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -27,6 +28,8 @@ const Products = () => {
       .finally(() => setLoading(false));
   }, []);
 
+
+  
   useEffect(() => {
     let filtered = data;
 
@@ -48,12 +51,13 @@ const Products = () => {
 
     setFilteredData(filtered);
   }, [search, category, priceRange, data]);
+  
 
   return (
     <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900">
-      <Sidebar />
+      
       <div className="flex-1 flex flex-col">
-        <Header />
+
         <main className="p-6 sm:p-8 overflow-y-auto">
           {/* Filter Controls */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -111,11 +115,11 @@ const Products = () => {
               {error}
             </div>
           ) : (
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 ">
               {filteredData.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow duration-600 flex flex-col overflow-hidden"
+                  className="hover:shadow-lg hover:shadow-indigo-600/60 transition-shadow duration-500  hover:shadow-lg transition-shadow duration-300 hover:scale-105 transition duration-500 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow duration-600 flex flex-col overflow-hidden"
                 >
                   <Link to={`/products/${item.id}`}>
                     <div className="aspect-w-10 aspect-h-6">
@@ -134,10 +138,10 @@ const Products = () => {
                       Category: {item.category}
                     </p>
                     <div className="mt-auto flex justify-between items-center">
-                      <span className="text-base font-medium text-gray-900 dark:text-gray-100">
-                        ${item.price}
+                      <span className="text-base font-medium text-gray-900 dark:text-gray-100 flex items-center mt-2">
+                        <BadgeDollarSign/>{item.price}
                       </span>
-                      <div className="flex items-center gap-1 text-yellow-600 bg-yello-font-semibold text-sm">
+                      <div className="flex items-center gap-1 text-yellow-600 bg-yello-font-semibold text-sm mt-2">
                         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 25">
                           <path d="M12 .587l3.668 7.568 8.332 1.208-6.001 5.854 1.416 8.293L12 18.896l-7.415 3.894 1.416-8.293-6.001-5.854 8.332-1.208z" />
                         </svg>

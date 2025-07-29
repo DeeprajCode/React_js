@@ -17,7 +17,17 @@ export const fetchuser = async () => {
 };
 
 //UserCart api
-export const userCart = async () => {
-  const response = await fetch('https://fakestoreapi.com/carts/user/1');
+export const addToCartApi = async (productId, quantity) => {
+  const response = await fetch('https://fakestoreapi.com/carts', {
+    method: 'POST',
+    body: JSON.stringify({
+      userId: 1,
+      date: new Date().toISOString(),
+      products: [{ productId, quantity }]
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
   return await response.json();
-}
+};
