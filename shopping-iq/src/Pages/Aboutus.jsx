@@ -5,6 +5,7 @@ import { Navigate, useNavigate } from 'react-router'
 
 export const Aboutus = () => {
 const navigate = useNavigate();
+const [loading, setLoading] = useState(true);
 
     return (
         <div>

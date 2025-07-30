@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPosts } from '../Utils/api';
 import { addToCartApi } from '../Utils/api'
+import { CircleDollarSign } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const ProductView = () => {
   const { id } = useParams();
@@ -29,10 +31,19 @@ const ProductView = () => {
     if (!product) return;
     try {
       await addToCartApi(product.id, 1);
-      alert("Product added to cart successfully!");
+      toast.success("Product added to cart successfully!", {
+        position: "top-right",
+        theme: "colored",
+        closeOnClick : false,
+        autoClose: 1000,
+      } );
       navigate('/Cart');
     } catch {
-      alert("Error adding product to cart.");
+      toast.error("Error adding product to cart.", {
+        position : "top-right",
+        theme : "colored",
+        autoClose: 1000,
+      });
     }
   };
 
@@ -74,14 +85,14 @@ const ProductView = () => {
           <div>
             <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
             <p className="text-gray-700 dark:text-gray-300 mb-4">{product.description}</p>
-            <p className="text-xl font-semibold text-gray-800 dark:text-white line-through">
-              ₹{product.price}
+            <p className="text-xl font-semibold text-gray-800 dark:text-white line-through flex gap-1">
+              <CircleDollarSign/>{product.price}
             </p>
-            <p className="text-xl font-bold text-green-600">
-              Discount Price: ₹{finalPrice} (10% off)
+            <p className="text-xl font-bold text-green-600 flex gap-1">
+              Discount: <CircleDollarSign/>{finalPrice} (10% off)
             </p>
-            <p className="text-md font-medium text-yellow-500 mt-2">
-              Rating: ⭐ {product.rating?.rate ?? 'N/A'}
+            <p className="text-md bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 w-15 w-28 ">
+              Rating: ⭐ {product.rating?.rate}
             </p>
           </div>
           <div className="mt-6 flex gap-4">

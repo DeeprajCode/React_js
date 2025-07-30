@@ -51,7 +51,8 @@ const Login = () => {
           return userEmail === normalizedEmail && userPassword === normalizedPassword;
         });
 
-localStorage.setItem("userData", JSON.stringify(user))
+
+        localStorage.setItem("userData", JSON.stringify(user))
 
         if (!user) {
           toast.error('Invalid credentials!', {
