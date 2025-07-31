@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = ({ toggleSidebar }) => {
   const navigate = useNavigate();
-  const [searchText, setSearchText] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [userData, setUserData] = useState(() => {
     const data = localStorage.getItem('userData');
@@ -21,17 +19,6 @@ const Header = ({ toggleSidebar }) => {
     fetchAllProducts();
   }, []);
 
-  // Filter suggestions
-  useEffect(() => {
-    if (searchText.trim() === '') {
-      setSuggestions([]);
-      return;
-    }
-    const filtered = allProducts.filter((item) =>
-      item.title.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setSuggestions(filtered.slice(0, 5));
-  }, [searchText, allProducts]);
 
   const handleLogout = () => {
     localStorage.removeItem('userData');
@@ -55,45 +42,6 @@ const Header = ({ toggleSidebar }) => {
         <span className="mx-auto relative top-[12px] w-[30px] h-[6px] bg-black block transition-all duration-200 group-hover:w-[20px] after:absolute after:content-[''] after:mt-[12px] after:w-[30px] after:h-[6px] after:bg-black after:block after:left-0 after:transition-all after:duration-200 group-hover:after:mt-[6px] group-hover:after:-left-[5px] before:absolute before:content-[''] before:-mt-[12px] before:w-[30px] before:h-[6px] before:bg-black before:block before:left-0 before:transition-all before:duration-200 group-hover:before:-mt-[6px] group-hover:before:w-[10px] group-hover:before:left-[5px]" />
       </button>
 
-      {/* Search Box */}
-      <div className="relative w-1/3 mr-64">
-        <div className="relative w-1/3">
-          <div className="p-3 overflow-visible w-[40px] h-[40px] hover:w-[270px] 
-          bg-[#4070f4] shadow-[2px_2px_20px_rgba(0,0,0,0.08)] 
-          rounded-full flex group items-center duration-300">
-            <div className="flex items-center justify-center fill-white mr-5">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
-                <path d="M18.9,16.776A10.539,10.539,0,1,0,16.776,18.9l5.1,5.1L24,21.88ZM10.5,18A7.5,7.5,0,1,1,18,10.5,7.507,7.507,0,0,1,10.5,18Z" />
-              </svg>
-            </div>
-            <input
-              type="text"
-              className="outline-none text-[16px] bg-transparent w-full text-white font-normal px-2"
-              placeholder="Search products..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-          </div>
-        </div>
-
-        {suggestions.length > 0 && (
-          <div className="absolute z-50 bg-white dark:bg-gray-800 shadow-md rounded-md mt-1 w-full max-h-64 overflow-y-auto">
-            {suggestions.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => {
-                  navigate(`/products/${item.id}`);
-                  setSearchText('');
-                  setSuggestions([]);
-                }}
-                className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-              >
-                {item.title}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
 
       {/* Right Actions */}
       <div className="flex items-center space-x-4">
@@ -154,7 +102,7 @@ const Header = ({ toggleSidebar }) => {
                   <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </button>
-              <span className="absolute -bottom-6 left-[100%] -translate-x-[90%] z-10 origin-left scale-0 px-4 rounded-lg py-2 text-sm font-bold transition-all duration-400 ease-in-out group-hover:scale-100 whitespace-nowrap">
+              <span className="absolute -bottom-6 left-[220%] -translate-x-[90%] z-10 origin-left scale-0 px-4 rounded-lg py-2 text-sm font-bold transition-all duration-400 ease-in-out group-hover:scale-100 whitespace-nowrap">
                 <p>{userData.firstName} {userData.lastName}</p>
               </span>
             </div>
