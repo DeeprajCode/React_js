@@ -17,8 +17,6 @@ export const fetchuser = async () => {
 };
 
 
-// Utils/api.js
-
 // Add item to cart
 export const addToCartApi = async (productId, quantity = 1) => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];

@@ -18,6 +18,7 @@ import Cart from './Pages/Cart';
 import Aboutus from './Pages/Aboutus';
 import Billing from './Pages/Billing';
 import Contact from './Pages/Contact';
+import Payment from './Pages/Payment';
 
 const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -35,9 +36,9 @@ const App = () => {
 
           <main className="p-4">
             <Routes>
+              <Route path="/" element={<Dashboard />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />
-              <Route path="/" element={<Dashboard />} />
               <Route path="/User" element={<User />} />
               <Route path="/Products" element={<Products />} />
               <Route path="/Products/:id" element={<ProductView />} />
@@ -45,6 +46,7 @@ const App = () => {
               <Route path="/Aboutus" element={<Aboutus />} />
               <Route path='/Billing' element={<Billing/>}/>
               <Route path='/Contact' element={<Contact/>}/>
+              <Route path='/Payment' element={<Payment/>}/>
             </Routes>
           </main>
         </div>
