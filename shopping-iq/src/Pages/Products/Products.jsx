@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getPosts } from '../Utils/api'; // Import API call function to fetch product data
+import { getPosts } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js'; // Import API call function to fetch product data
 import { CircleDollarSign } from 'lucide-react'; // Icon for price display
 
 const Products = () => {
@@ -142,34 +142,34 @@ const Products = () => {
                           className="h-56 w-full object-contain bg-white"
                         />
                       </div>
-                    </Link>
 
-                    {/* Product Info */}
-                    <div className="p-5 flex flex-col flex-1">
-                      <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                        {item.title}
-                      </h2>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                        Category: {item.category}
-                      </p>
-
-                      <div className="mt-auto">
-                        {/* Original price (strikethrough) */}
-                        <p className="flex gap-1 text-lg font-semibold text-gray-800 dark:text-white line-through">
-                          <CircleDollarSign />{item.price}
+                      {/* Product Info */}
+                      <div className="p-5 flex flex-col flex-1">
+                        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
+                          {item.title}
+                        </h2>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                          Category: {item.category}
                         </p>
 
-                        {/* Discounted price */}
-                        <p className="text-sm font-semibold text-green-600 flex gap-1">
-                          Discount: <CircleDollarSign />{finalPrice} (10% off)
-                        </p>
+                        <div className="mt-auto">
+                          {/* Original price (strikethrough) */}
+                          <p className="flex gap-1 text-lg font-semibold text-gray-800 dark:text-white line-through">
+                            <CircleDollarSign />{item.price}
+                          </p>
 
-                        {/* Rating */}
-                        <p className="text-md bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 w-15 w-28">
-                          Rating: ⭐ {item.rating?.rate ?? 'N/A'}
-                        </p>
+                          {/* Discounted price */}
+                          <p className="text-sm font-semibold text-green-600 flex gap-1">
+                            Discount: <CircleDollarSign />{finalPrice} (10% off)
+                          </p>
+
+                          {/* Rating */}
+                          <p className="text-md bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 w-15 w-28">
+                            Rating: ⭐ {item.rating?.rate ?? 'N/A'}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 );
               })}

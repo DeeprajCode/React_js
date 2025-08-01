@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TbTruckDelivery } from "react-icons/tb";
+import { getCartItems, addToPayment } from '../../Utils/api';
+import { useNavigate } from 'react-router';
+import { useEffect } from "react";
+import { CircleDollarSign } from 'lucide-react';
 
 
 const Payment = () => {
+  const navigate = useNavigate();
+  const[loading, setLoading] = useState(true);
+  const [cartItems, setCartItems] = useState([]);
+  
+  useEffect(() => {
+    
+  })
+  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const discount = total * 0.1;
+  const finalAmount = total - discount;
+
   return (
-    <div className="w-[300px] p-2 aspect-square rounded-lg shadow flex flex-col items-center justify-center gap-2 bg-slate-50">
+    <div className="w-[300px] p-2 aspect-square rounded-lg shadow flex flex-col  items-center justify-center gap-2 bg-slate-50">
+      <button onClick={() => navigate('/Products')}
+        className="bg-white text-center w-48 rounded-2xl h-14 ml-5 relative text-black text-xl font-semibold group"
+        type="button"
+      >
+        <div className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px">
+            <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" fill="#000000"></path>
+            <path d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z" fill="#000000"></path>
+          </svg>
+        </div>
+        <p className="translate-x-2">Go Back</p>
+      </button>
       <p className="capitalize font-semibold self-start">Payment method</p>
       <p className="text-[10px] self-start text-wrap text-gray-500 pb-1">
         This component is made by using
@@ -51,11 +78,11 @@ const Payment = () => {
               <path d="M22.222 15.768l-.225-1.125h-2.514l-.4 1.117-2.015.004a4199.19 4199.19 0 0 1 2.884-6.918c.164-.391.455-.59.884-.588.328.003.863.003 1.606.001L24 15.765l-1.778.003zm-2.173-2.666h1.62l-.605-2.82-1.015 2.82zM7.06 8.257l2.026.002-3.132 7.51-2.051-.002a950.849 950.849 0 0 1-1.528-5.956c-.1-.396-.298-.673-.679-.804C1.357 8.89.792 8.71 0 8.465V8.26h3.237c.56 0 .887.271.992.827.106.557.372 1.975.8 4.254L7.06 8.257zm4.81.002l-1.602 7.508-1.928-.002L9.94 8.257l1.93.002zm3.91-.139c.577 0 1.304.18 1.722.345l-.338 1.557c-.378-.152-1-.357-1.523-.35-.76.013-1.23.332-1.23.638 0 .498.816.749 1.656 1.293.959.62 1.085 1.177 1.073 1.782-.013 1.256-1.073 2.495-3.309 2.495-1.02-.015-1.388-.101-2.22-.396l.352-1.625c.847.355 1.206.468 1.93.468.663 0 1.232-.268 1.237-.735.004-.332-.2-.497-.944-.907-.744-.411-1.788-.98-1.774-2.122.017-1.462 1.402-2.443 3.369-2.443z" />
             </g>
           </svg>
-          <p className="font-semibold absolute inset-0 w-full whitespace-nowrap translate-y-[110%] translate-x-full top-1 left-2 transition-all duration-700 opacity-0">
+          <p className="hover:font-semibold absolute inset-0 w-full whitespace-nowrap hover:translate-y-[110%] translate-x-full top-1 left-2 transition-all duration-700 opacity-0">
             Credit Card
           </p>
         </div>
-        <input className="checked:text-indigo-500 checked:ring-0 checked:ring-current focus:ring-0 focus:ring-current" defaultValue="visa" name="payment" type="radio" />
+        <input onClick={() => navigate('/Credit')} className="checked:text-indigo-500 checked:ring-0 checked:ring-current focus:ring-0 focus:ring-current" defaultValue="visa" name="payment" type="radio" />
       </label>
         <label className="inline-flex justify-between w-full items-center rounded-lg p-2 border border-transparent has-[:checked]:border-indigo-500 has-[:checked]:text-indigo-900 has-[:checked]:bg-indigo-50 has-[:checked]:font-bold hover:bg-slate-200 transition-all cursor-pointer has-[:checked]:transition-all has-[:checked]:duration-500 duration-500 relative [&_p]:has-[:checked]:translate-y-0 [&_p]:has-[:checked]:transition-transform [&_p]:has-[:checked]:duration-500 [&_p]:has-[:checked]:opacity-100 overflow-hidden">
         <div className="inline-flex items-center justify-center gap-2 relative flex">
@@ -72,7 +99,17 @@ const Payment = () => {
         </div>
         <input className="checked:text-indigo-500 checked:ring-0 checked:ring-current focus:ring-0 focus:ring-current" defaultValue="visa" name="payment" type="radio" />
       </label>
-
+      <div className="pt-4">
+            <p className="text-lg font-medium text-gray-700 dark:text-gray-200 flex gap-1">
+              Price: <CircleDollarSign /> {total.toFixed(2)}
+            </p>
+            <p className="text-lg font-medium text-yellow-700 flex gap-1">
+              Discount: <CircleDollarSign /> {discount.toFixed(2)}
+            </p>
+            <p className="text-2xl font-bold text-green-600 flex gap-1">
+              Total: <CircleDollarSign /> {finalAmount.toFixed(2)}
+            </p>
+          </div>'
     </div>
   );
 }

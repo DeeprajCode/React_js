@@ -14,33 +14,51 @@ const UserProfile = () => {
 
   return (
     <>
+      <button onClick={() => navigate('/')}
+        class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
+        type="button"
+      >
+        <div
+          class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1024 1024"
+            height="25px"
+            width="25px"
+          >
+            <path
+              d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+              fill="#000000"
+            ></path>
+            <path
+              d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+              fill="#000000"
+            ></path>
+          </svg>
+        </div>
+        <p class="translate-x-2">Go Back</p>
+      </button>
+
       <section className="min-h-50 flex items-center justify-center bg-white dark:bg-gray-900 px-6 py-10 transition-colors duration-300">
         <div className="max-w-8xl w-50 flex flex-col-reverse lg:flex-row items-center gap-10">
-
           <div className="flex-2 text-center lg:text-left animate-fade-in-up">
-
             <h1 className="text-5xl sm:text-6xl font-extrabold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
               {userData.firstName + " " + userData.lastName}
             </h1>
-
             <p className="flex items-center text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-5 my-5">
               <AtSign className="mr-3" />:
               <span className="text-indigo-600 dark:text-indigo-400 font-medium ml-3"> {userData.email}</span>
             </p>
-
             <p className="flex items-center text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-5 my-5">
               <Phone className="mr-3" />:
               <span className="text-indigo-600 dark:text-indigo-400 font-medium ml-3"> {userData.phone}</span>
             </p>
-
-
             <p className="flex items-center text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-5 my-5 ">
               <MapPinHouse className="mr-3" />:
               <span className="text-indigo-600 dark:text-indigo-400 font-medium ml-3">{userData.address['address'] + ', ' + userData.address['city'] + ', ' + userData.address['state']}</span>
             </p>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-
               <button onClick={() => navigate('/Login')}
                 class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1"
               >
@@ -59,48 +77,15 @@ const UserProfile = () => {
                   Logout
                 </div>
               </button>
-
-              
-              
-    
-
-              <button onClick={() => navigate('/Products')}
-              class="overflow-hidden relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
-            >
-
-              Back
-
-              <span
-                class="absolute w-40 h-32 -top-8 -left-2 bg-red-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"
-              ></span>
-
-              <span
-                class="absolute w-40 h-32 -top-8 -left-2 bg-red-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"
-              ></span>
-              <span
-                class="absolute w-40 h-32 -top-8 -left-2 bg-red-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"
-              ></span>
-              <span
-                class=" group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-10 z-10"
-              >Back</span>
-            </button>
-
             </div>
-
           </div>
-
           <div className="flex-1 flex justify-center animate-float">
             <img src={userData.image} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />
           </div>
         </div>
       </section>
-
     </>
   );
 };
 
 export default UserProfile;
-
-
-
-

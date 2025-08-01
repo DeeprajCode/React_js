@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../Pages/images/laptop.png';
+import Logo from '../Login/laptop.png';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { fetchuser } from '../Utils/api';
+import { fetchuser } from '../../Utils/api';
 
 const Login = () => {
   const navigate = useNavigate();

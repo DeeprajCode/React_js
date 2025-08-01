@@ -4,21 +4,22 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Components
-import Header from './Components/Header';
-import Sidebar from './Components/Sidebar';
+import Header from './Components/Header/Header';
+import Sidebar from './Components/Sidebar/Sidebar';
 
 // Pages
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Dashboard from './Pages/Dashboard';
-import User from './Pages/User';
-import Products from './Pages/Products';
-import ProductView from './Pages/ProductView';
-import Cart from './Pages/Cart';
-import Aboutus from './Pages/Aboutus';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import User from './Pages/User/User';
+import Products from './Pages/Products/Products';
+import ProductView from './Pages/Products/ProductView';
+import Cart from './Pages/Cart/Cart';
+import Aboutus from '../src/Pages/Aboutus/Aboutus'
 import Billing from './Pages/Billing';
-import Contact from './Pages/Contact';
-import Payment from './Pages/Payment';
+import Contact from './Pages/Contact/Contact';
+import Payment from './Pages/Payment/Payment';
+import Credit from './Pages/Payment/Credit';
 
 const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -47,6 +48,7 @@ const App = () => {
               <Route path='/Billing' element={<Billing/>}/>
               <Route path='/Contact' element={<Contact/>}/>
               <Route path='/Payment' element={<Payment/>}/>
+              <Route path='/Credit' element={<Credit/>}/>
             </Routes>
           </main>
         </div>

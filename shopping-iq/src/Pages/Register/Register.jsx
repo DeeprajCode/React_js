@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from '../Pages/images/laptop.png';
+import Logo from '../Register/laptop.png';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

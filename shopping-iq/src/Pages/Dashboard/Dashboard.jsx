@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getPosts } from "../Utils/api";
-import bgimage from "../assets/images/shoppingbg.png";
+import { getPosts } from "../../Utils/api";
+import bgimage from "../Dashboard/shoppingbg.png";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
