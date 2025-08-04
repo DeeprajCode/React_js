@@ -40,24 +40,6 @@ export const addToCartApi = async (productId, quantity = 1) => {
   localStorage.setItem('cart', JSON.stringify(cart));
 };
 
-//Add to payment 
-export const addToPayment = async(productId, quantity = 1) => {
-  let payment = JSON.parse(localStorage.getItem('payment')) || [];
-  const existingItem = payment.find(item => item.productId === productId);
-
-  if(existingItem) {
-    existingItem.quantity += quantity;
-  }else{
-    const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
-    const product = await res.json();
-
-    payment.push({
-      price: product.price,
-      quantity: quantity
-    })
-  }
-  localStorage.setItem('payment', JSON.stringify(payment));
-};
 
 // Remove item from cart
 export const removeFromCartApi = (productId) => {
@@ -80,3 +62,10 @@ export const updateCartQuantity = (productId, quantity) => {
 export const getCartItems = () => {
   return JSON.parse(localStorage.getItem('cart')) || [];
 };
+
+//Add payment order to localstorage
+export const addToPayment = (orderData) => {
+  let payments = JSON.parse(localStorage.getItem('payments')) || [];
+  payments.push(orderData);
+  localStorage.setItem('payments', JSON.stringify(payments));
+}

@@ -58,7 +58,7 @@ const UserProfile = () => {
               <MapPinHouse className="mr-3" />:
               <span className="text-indigo-600 dark:text-indigo-400 font-medium ml-3">{userData.address['address'] + ', ' + userData.address['city'] + ', ' + userData.address['state']}</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button onClick={() => navigate('/Login')}
                 class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1"
               >
@@ -77,7 +77,7 @@ const UserProfile = () => {
                   Logout
                 </div>
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="flex-1 flex justify-center animate-float">
             <img src={userData.image} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />

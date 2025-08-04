@@ -6,7 +6,7 @@ import {
 } from '../../Utils/api';
 
 import { CircleDollarSign } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const MAX_CART_ITEMS = 8;
 
@@ -40,7 +40,7 @@ const Cart = () => {
 
   // Handle quantity update with restrictions (0 to 8)
   const handleQuantityChange = (id, quantity) => {
-    if (quantity < 0 || quantity > 8)  return;
+    if (quantity < 0 || quantity > 8) return;
     updateCartQuantity(id, quantity);
     setCartItems(getCartItems()); // Refresh cart items
   };
@@ -51,12 +51,13 @@ const Cart = () => {
   const finalAmount = total - discount;
 
   return (
+    <>
     <div className="p-10 min-h-screen bg-gray-100 dark:bg-gray-900">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">Your Cart</h1>
 
       {/* Go Back Button */}
       <button onClick={() => navigate('/Products')}
-        className="bg-white text-center w-48 rounded-2xl h-14 ml-5 relative text-black text-xl font-semibold group"
+        className="bg-white text-center w-48 rounded-2xl h-14 ml-5 relative text-black text-xl font-semibold group mb-5"
         type="button"
       >
         <div className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
@@ -81,7 +82,8 @@ const Cart = () => {
         // Empty cart message
         <p className="text-center text-gray-600 dark:text-gray-300">Your cart is empty.</p>
       ) : (
-        // Render cart items
+        // Render cart 
+        <>
         <div className="max-w-4xl mx-auto space-y-6">
           {cartItems.map((item) => (
             <div key={item.productId} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex items-center">
@@ -99,8 +101,8 @@ const Cart = () => {
                   <button
                     onClick={() => handleQuantityChange(item.productId, item.quantity - 1)}
                     className={`px-2 py-1 rounded ${item.quantity <= 1
-                        ? 'bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-50'
-                        : 'bg-gray-300 dark:bg-gray-600'
+                      ? 'bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-50'
+                      : 'bg-gray-300 dark:bg-gray-600'
                       }`}
                     disabled={item.quantity <= 1}
                   >
@@ -114,8 +116,8 @@ const Cart = () => {
                   <button
                     onClick={() => handleQuantityChange(item.productId, item.quantity + 1)}
                     className={`px-2 py-1 rounded ${item.quantity >= 8
-                        ? 'bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-50'
-                        : 'bg-gray-300 dark:bg-gray-600'
+                      ? 'bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-50'
+                      : 'bg-gray-300 dark:bg-gray-600'
                       }`}
                     disabled={item.quantity >= 8}
                   >
@@ -203,7 +205,7 @@ const Cart = () => {
 
           {/* Buy Now Button */}
           {!userData ? (
-            <button 
+            <button
               onClick={() => navigate('/Login')}
               className="group flex items-center justify-start w-11 h-11 bg-green-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1"
             >
@@ -220,21 +222,23 @@ const Cart = () => {
           ) : (
             <>
               <button
-              onClick={() => navigate('/Payment')}
-              className="overflow-hidden relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
-              disabled={cartItems.length === 0}
-            >
-              Buy now
-              <span className="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"></span>
-              <span className="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"></span>
-              <span className="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"></span>
-              <span className="text-black text-xl group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10">Buy now</span>
-            </button>
+                onClick={() => navigate('/Payment')}
+                className="overflow-hidden relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
+                disabled={cartItems.length === 0}
+              >
+                Buy now
+                <span className="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"></span>
+                <span className="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"></span>
+                <span className="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"></span>
+                <span className="text-black text-xl group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10">Buy now</span>
+              </button>
             </>
           )}
         </div>
+        </>
       )}
     </div>
+    </>
   );
 };
 

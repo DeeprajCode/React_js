@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getPosts } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js'; // Import API call function to fetch product data
 import { CircleDollarSign } from 'lucide-react'; // Icon for price display
 
+
+
 const Products = () => {
+  const navigate = useNavigate();
+
   // State declarations for storing product data and filters
   const [data, setData] = useState([]); // Original product data from API
   const [filteredData, setFilteredData] = useState([]); // Data after applying filters
@@ -11,9 +16,9 @@ const Products = () => {
   const [error, setError] = useState(null); // Error state
 
   // Filter state
-  const [search, setSearch] = useState(''); // Search by name
-  const [category, setCategory] = useState(''); // Filter by category
-  const [priceRange, setPriceRange] = useState(''); // Filter by price range
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('');
+  const [priceRange, setPriceRange] = useState('');
 
   // Fetch product data when component mounts
   useEffect(() => {
@@ -55,129 +60,159 @@ const Products = () => {
   }, [search, category, priceRange, data]);
 
   return (
-    <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900">
-      <div className="flex-1 flex flex-col">
-        <main className="p-6 sm:p-8 overflow-y-auto">
-
-          {/* Filter Controls */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            {/* Search Input */}
-            <input
-              type="text"
-              placeholder="Search by name"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="px-4 py-2 border rounded-md text-sm"
-            />
-
-            {/* Category Dropdown */}
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="px-4 py-2 border rounded-md text-sm"
+    <>
+      <div className=''>
+        <button onClick={() => navigate('/')}
+          class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
+          type="button"
+        >
+          <div
+            class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1024 1024"
+              height="25px"
+              width="25px"
             >
-              <option value="">All Categories</option>
-              <option value="men's clothing">Men's Clothing</option>
-              <option value="women's clothing">Women's Clothing</option>
-              <option value="electronics">Electronics</option>
-              <option value="jewelery">Jewelery</option>
-            </select>
-
-            {/* Price Range Dropdown */}
-            <select
-              value={priceRange}
-              onChange={(e) => setPriceRange(e.target.value)}
-              className="px-4 py-2 border rounded-md text-sm"
-            >
-              <option value="">All Prices</option>
-              <option value="0-50">$0 - $50</option>
-              <option value="51-100">$51 - $100</option>
-              <option value="101-200">$101 - $200</option>
-            </select>
-
-            {/* Reset Filters Button */}
-            <button
-              onClick={() => {
-                setSearch('');
-                setCategory('');
-                setPriceRange('');
-              }}
-              className="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600"
-            >
-              Reset Filters
-            </button>
+              <path
+                d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+                fill="#000000"
+              ></path>
+              <path
+                d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+                fill="#000000"
+              ></path>
+            </svg>
           </div>
-
-          {/* Content Area: Show loading, error, or product list */}
-          {loading ? (
-            // Loading Spinner
-            <div className="flex-col gap-4 w-full flex items-center justify-center">
-              <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
-                <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
-              </div>
-            </div>
-          ) : error ? (
-            // Show error message if data fails to load
-            <div className="text-center text-red-600 dark:text-red-400">
-              {error}
-            </div>
-          ) : (
-            // Display product cards
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-              {filteredData.map((item) => {
-                const discount = (item.price * 0.1).toFixed(2); // Calculate 10% discount
-                const finalPrice = (item.price - discount).toFixed(2); // Final price after discount
-
-                return (
-                  <div
-                    key={item.id}
-                    className="hover:shadow-lg hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-white dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden"
-                  >
-                    {/* Clickable image linking to product detail page */}
-                    <Link to={`/products/${item.id}`}>
-                      <div className="aspect-w-10 aspect-h-6">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="h-56 w-full object-contain bg-white"
-                        />
-                      </div>
-
-                      {/* Product Info */}
-                      <div className="p-5 flex flex-col flex-1">
-                        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                          {item.title}
-                        </h2>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                          Category: {item.category}
-                        </p>
-
-                        <div className="mt-auto">
-                          {/* Original price (strikethrough) */}
-                          <p className="flex gap-1 text-lg font-semibold text-gray-800 dark:text-white line-through">
-                            <CircleDollarSign />{item.price}
-                          </p>
-
-                          {/* Discounted price */}
-                          <p className="text-sm font-semibold text-green-600 flex gap-1">
-                            Discount: <CircleDollarSign />{finalPrice} (10% off)
-                          </p>
-
-                          {/* Rating */}
-                          <p className="text-md bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 w-15 w-28">
-                            Rating: ⭐ {item.rating?.rate ?? 'N/A'}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </main>
+          <p class="translate-x-2">Go Back</p>
+        </button>
       </div>
-    </div>
+
+      <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900">
+        <div className="flex-1 flex flex-col mx-5">
+          <main className="p-6 sm:p-8 overflow-y-auto">
+
+            {/* Filter Controls */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 ">
+              {/* Search Input */}
+              <input
+                type="text"
+                placeholder="Search by name"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
+              />
+
+              {/* Category Dropdown */}
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
+              >
+                <option value="">All Categories</option>
+                <option value="men's clothing">Men's Clothing</option>
+                <option value="women's clothing">Women's Clothing</option>
+                <option value="electronics">Electronics</option>
+                <option value="jewelery">Jewelery</option>
+              </select>
+
+              {/* Price Range Dropdown */}
+              <select
+                value={priceRange}
+                onChange={(e) => setPriceRange(e.target.value)}
+                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
+              >
+                <option value="">All Prices</option>
+                <option value="0-50">$0 - $50</option>
+                <option value="51-100">$51 - $100</option>
+                <option value="101-200">$101 - $200</option>
+              </select>
+
+              {/* Reset Filters Button */}
+              <button
+                onClick={() => {
+                  setSearch('');
+                  setCategory('');
+                  setPriceRange('');
+                }}
+                className="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600"
+              >
+                Reset Products
+              </button>
+            </div>
+
+            {/* Content Area: Show loading, error, or product list */}
+            {loading ? (
+              // Loading Spinner
+              <div className="flex-col gap-4 w-full flex items-center justify-center">
+                <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+                  <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
+                </div>
+              </div>
+            ) : error ? (
+              // Show error message if data fails to load
+              <div className="text-center text-red-600 dark:text-red-400">
+                {error}
+              </div>
+            ) : (
+              // Display product cards
+              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+                {filteredData.map((item) => {
+                  const discount = (item.price * 0.1).toFixed(2); // Calculate 10% discount
+                  const finalPrice = (item.price - discount).toFixed(2); // Final price after discount
+
+                  return (
+                    <div
+                      key={item.id}
+                      className="hover:shadow-lg hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-white dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden"
+                    >
+                      {/* Clickable image linking to product detail page */}
+                      <Link to={`/products/${item.id}`}>
+                        <div className="aspect-w-10 aspect-h-6">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="h-56 w-full object-contain bg-white"
+                          />
+                        </div>
+
+                        {/* Product Info */}
+                        <div className="p-5 flex flex-col flex-1">
+                          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
+                            {item.title}
+                          </h2>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            Category: {item.category}
+                          </p>
+
+                          <div className="mt-auto">
+                            {/* Original price (strikethrough) */}
+                            <p className="flex gap-1 text-lg font-semibold text-gray-800 dark:text-white line-through">
+                              <CircleDollarSign />{item.price}
+                            </p>
+
+                            {/* Discounted price */}
+                            <p className="text-sm font-semibold text-green-600 flex gap-1">
+                              Discount: <CircleDollarSign />{finalPrice} (10% off)
+                            </p>
+
+                            {/* Rating */}
+                            <p className="text-md bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 w-15 w-28">
+                              Rating: ⭐ {item.rating?.rate ?? 'N/A'}
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </main>
+        </div>
+      </div>
+    </>
   );
 };
 
