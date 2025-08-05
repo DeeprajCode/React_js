@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getPosts } from '../../Utils/api';
-import { addToCartApi } from '../../Utils/api'
+import { products } from '../../Utils/api';
+import { addcartapi } from '../../Utils/api'
 import { CircleDollarSign } from 'lucide-react';
 import { toast } from 'react-toastify';
 
@@ -12,9 +12,9 @@ const ProductView = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchproduct = async () => {
       try {
-        const posts = await getPosts();
+        const posts = await products();
         const found = posts.find(p => p.id === parseInt(id));
         setProduct(found);
       } catch (error) {
@@ -24,13 +24,13 @@ const ProductView = () => {
       }
     };
 
-    fetchProduct();
+    fetchproduct();
   }, [id]);
 
-  const handleAddToCart = async () => {
+  const addcart = async () => {
     if (!product) return;
     try {
-      await addToCartApi(product.id, 1);
+      await addcartapi(product.id, 1);
       toast.success("Product added to cart successfully!", {
         position: "top-right",
         theme: "colored",
@@ -65,7 +65,7 @@ const ProductView = () => {
     return <div className="text-center p-10 text-red-500">Product not found.</div>;
   }
 
-  const discount = (product.price * 0.1).toFixed(2); //This method converts the calculated discount amount into a string with a fixed number of two decimal places, rounding if necessary.
+  const discount = (product.price * 0.1).toFixed(2);
   const finalPrice = (product.price - discount).toFixed(2);
 
   return (
@@ -124,7 +124,7 @@ const ProductView = () => {
               </p>
             </div>
             <div className="mt-6 flex gap-4">
-              <button onClick={handleAddToCart}
+              <button onClick={addcart}
                 class="overflow-hidden relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
               >
                 Add to cart

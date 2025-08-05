@@ -49,7 +49,7 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleContact = async (e) => {
+  const contect = async (e) => {
     e.preventDefault();
 
     if (!validate()) {
@@ -152,7 +152,7 @@ const Contact = () => {
                     <Instagram/>
                   </button>
                   <span
-                    class="absolute -bottom-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Instagram</span>
                 </div>
 
@@ -161,7 +161,7 @@ const Contact = () => {
                     <Twitter/>
                   </button>
                   <span
-                    class="absolute -bottom-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Twitter</span>
                 </div>
 
@@ -170,7 +170,7 @@ const Contact = () => {
                     <Facebook/>
                   </button>
                   <span
-                    class="absolute -bottom-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Facebook</span>
                 </div>
 
@@ -179,7 +179,7 @@ const Contact = () => {
                     <Linkedin/>
                   </button>
                   <span
-                    class="absolute -bottom-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Linkedin</span>
                 </div>
 
@@ -188,7 +188,7 @@ const Contact = () => {
                     <Chrome />
                   </button>
                   <span
-                    class="absolute -bottom-14 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Google</span>
                 </div>
 
@@ -197,7 +197,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <form onSubmit={handleContact}>
+              <form onSubmit={contect}>
                 <div className="mb-5">
                   <input
                     type="text"
@@ -253,9 +253,6 @@ const Contact = () => {
                   </svg>
                   Send Message
                 </button>
-
-
-
               </form>
             </div>
           </div>

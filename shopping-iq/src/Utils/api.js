@@ -1,5 +1,5 @@
  //Products api
- export const getPosts = async () => {
+ export const products = async () => {
     const response = await fetch('https://fakestoreapi.com/products', { method: 'GET' });
     return await response.json();
 }
@@ -18,7 +18,7 @@ export const fetchuser = async () => {
 
 
 // Add item to cart
-export const addToCartApi = async (productId, quantity = 1) => {
+export const addcartapi = async (productId, quantity = 1) => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   const existingItem = cart.find(item => item.productId === productId);
   
@@ -44,13 +44,13 @@ export const addToCartApi = async (productId, quantity = 1) => {
 // Remove item from cart
 export const removeFromCartApi = (productId) => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  cart = cart.filter(item => item.productId !== productId);
+  cart = cart.filter(item => item.productId !== productId); 
   localStorage.setItem('cart', JSON.stringify(cart));
 };
 
-// Update quantity
+// Update quantity the quantity of specific product
 export const updateCartQuantity = (productId, quantity) => {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];   
   const item = cart.find(item => item.productId === productId);
   if (item) {
     item.quantity = quantity;
@@ -64,8 +64,9 @@ export const getCartItems = () => {
 };
 
 //Add payment order to localstorage
-export const addToPayment = (orderData) => {
+export const addtopayment = (orderData) => {
   let payments = JSON.parse(localStorage.getItem('payments')) || [];
   payments.push(orderData);
   localStorage.setItem('payments', JSON.stringify(payments));
 }
+

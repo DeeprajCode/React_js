@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCartItems, addToPayment } from '../../Utils/api';
+import { getCartItems, addtopayment } from '../../Utils/api';
 import { useNavigate } from 'react-router-dom';
 import { CircleDollarSign, icons } from 'lucide-react';
 import { FaGooglePay, FaApplePay, FaCreditCard } from "react-icons/fa";
@@ -21,27 +21,21 @@ const Payment = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // State to hold cart items
   const [cartItems, setCartItems] = useState([]);
 
-  // State to store selected payment method
   const [selectedMethod, setSelectedMethod] = useState('');
 
-  // Fetch cart items when the component mounts
   useEffect(() => {
     const items = getCartItems();
     setCartItems(items);
   }, []);
 
-  // Calculate total price
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  // Calculate discount and final amount
   const discount = total * 0.1;
   const finalAmount = total - discount;
 
-  // Handle confirm payment (save selected method + order summary)
-  const handleConfirmPayment = () => {
+  const cconfirmpayment = () => {
     if (!selectedMethod) {
       toast.error("Please select a payment method!.", {
         position : 'top-right',
@@ -63,7 +57,7 @@ const Payment = () => {
     };
 
     // Save the order data (can be extended to backend API call)
-    addToPayment(orderData);
+    addtopayment(orderData);
 
     toast.success("Payment confirmed!", {
       position : "top-right",
@@ -90,7 +84,6 @@ const Payment = () => {
           <div className='grid grid-cols-2 content-start gap-4 ...  '>
             <div className="w-[320px] p-4 rounded-lg shadow flex flex-col items-center justify-center gap-3 bg-slate-50 ">
 
-              {/* Go Back Button */}
               <button onClick={() => navigate('/Cart')}
                 className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
                 type="button"
@@ -106,7 +99,6 @@ const Payment = () => {
 
               <p className="capitalize font-semibold self-start">Payment method</p>
 
-              {/* Payment Method Options */}
               {[
                 { label: 'Google Pay', value: 'google', icon: <FaGooglePay className='w-10 h-10 ' /> },
                 { label: 'Apple Pay', value: 'apple', icon: <FaApplePay className='w-10 h-10' /> },
@@ -136,7 +128,6 @@ const Payment = () => {
                 </label>
               ))}
 
-              {/* Order Summary */}
               <div className="pt-4 ml-50 ">
                 <p className="text-lg font-medium text-gray-700 flex gap-1">
                   Price: <CircleDollarSign /> {total.toFixed(2)}
@@ -149,10 +140,9 @@ const Payment = () => {
                 </p>
               </div>
 
-              {/* Confirm Payment */}
               <button
                 className="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl"
-                onClick={handleConfirmPayment}
+                onClick={cconfirmpayment}
               >
                 Confirm Order and Pay
               </button>

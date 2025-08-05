@@ -21,7 +21,7 @@ const App = () => {
         {showSidebar && <Sidebar />}
 
         <div className="flex-1">
-          <Header toggleSidebar={() => setShowSidebar(!showSidebar)} />
+          <Header sidebar={() => setShowSidebar(!showSidebar)} />
 
           <main className="p-4">
             <AppRoutes />

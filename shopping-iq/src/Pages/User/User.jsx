@@ -11,6 +11,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const data = localStorage.getItem('userData')
   const userData = JSON.parse(data);
+  console.log("🚀 ~ UserProfile ~ userData:", userData)
 
   return (
     <>

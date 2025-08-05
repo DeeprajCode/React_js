@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getPosts } from "../../Utils/api";
+import { products } from "../../Utils/api";
 import bgimage from "../Dashboard/shoppingbg.png";
 
 const Dashboard = () => {
@@ -14,7 +14,7 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    getPosts()
+    products()
       .then((posts) => {
         setData(posts);
         setLoading(false);

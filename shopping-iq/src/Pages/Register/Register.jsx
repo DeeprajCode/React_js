@@ -3,211 +3,229 @@ import Logo from '../Register/laptop.png';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+import { Phone } from 'lucide-react';
 
 const Register = () => {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [address, setAddress] = useState('');
-  const [number, setNumber] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
 
+  // Input validation
   const validate = () => {
     const newErrors = {};
-    const successErrors = {};
-    const fullNameRegex = /^[a-zA-Z\s]+$/;
+    const firstNameRegex = /^[a-zA-Z\s]+$/;
+    const lastNameRegex = /^[a-zA-Z\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const numberRegex = /^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+    const phoneRegex = /^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
+    if (!firstName) newErrors.firstName = 'Full name is required';
+    else if (!firstNameRegex.test(firstName)) newErrors.firstName = 'First name is not valid';
 
-    if (!fullName) {
-      newErrors.fullName = 'Full name is required';
-    } else if (!fullNameRegex.test(fullName)) {
-      newErrors.fullName = 'Full name is not valid';
-    }
+    if (!lastName) newErrors.lastName = 'Full name is required';
+    else if (!lastNameRegex.test(lastName)) newErrors.lastName = 'Last name is not valid';
 
-    if (!email) {
-      newErrors.email = 'Email is required';
-    } else if (!emailRegex.test(email)) {
-      newErrors.email = 'Email is not valid';
-    }
+    if (!email) newErrors.email = 'Email is required';
+    else if (!emailRegex.test(email)) newErrors.email = 'Email is not valid';
 
-    if (!password) {
-      newErrors.password = 'Password is required';
-    }
+    if (!password) newErrors.password = 'Password is required';
 
-    if(!address){
-      newErrors.address = 'Address is required';
-    }
+    if (!address) newErrors.address = 'Address is required';
 
-    if(!number){
-      newErrors.number = 'Number is required';
-    }else if(!numberRegex.test(number)){
-      newErrors.number = 'Enter a valid number formate';
-    }
+    if(!city) newErrors.city = 'City is required!';
+
+    if(!state) newErrors.state = 'State is Required!';
+
+    if (!phone) newErrors.phone = 'phone is required';
+    else if (!phoneRegex.test(phone)) newErrors.phone = 'Enter a valid phone format';
 
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const register = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Full Name:', fullName);
-      console.log('Email:', email);
-      console.log('Password:', password);
-      // Navigate only after successful validation
-      navigate('/ login');
+      const newUser = {
+        firstName,
+        lastName,
+        email: email.trim().toLowerCase(),
+        password: password.trim(),
+        address,
+        city,
+        state,
+        Phone,
+      };
 
-      toast.success('Successfully Registration', {
+      const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+
+      const userExists = existingUsers.some(user => user.email === newUser.email);
+      if (userExists) {
+        toast.error("User already registered!", {
+          position: "top-right",
+          theme: "colored",
+          autoClose: 1500,
+        });
+        return;
+      }
+
+      existingUsers.push(newUser);
+      localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
+
+      toast.success('Successfully Registered!', {
         position: "top-right",
         theme: "colored",
-        closeOnClick: false,
         autoClose: 1000,
-        onClose: () => navigate('/login'),
+        onClose: () => navigate('/login'), 
       });
     } else {
-      toast.error("Regisration failed. Please check your informations", {
-        postion: 'top-right',
+      toast.error("Registration failed. Please check your information", {
+        position: 'top-right',
         theme: 'colored',
         autoClose: 1500,
-      })
+      });
     }
   };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
-      <div className="w-full  max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
-        <div className="flex flex-col items-center p-1">
+      <ToastContainer />
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
+        <div className="flex flex-col items-center p-6">
           <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             <img className="w-18 h-20 mr-2" src={Logo} alt="Shopping logo" />
           </a>
-          <h1 className="text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-400 mb-6 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h1 className="text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-400 mb-6">
             Shopping-IQ
           </h1>
-          <h3 className=" mb-10  text-1xl font-bold text-gray-800 mb-2 leading-tight tracking-tight text-gray-900  dark:text-white">
-            Shop the world from your home <span>🛍️</span>
+          <h3 className="mb-10 text-1xl font-bold text-gray-800 dark:text-white">
+            Shop the world from your home 🛍️
           </h3>
-          <form className="w-full space-y-2 md:space-y" onSubmit={handleSubmit}>
+
+          <form className="w-full space-y-4" onSubmit={register}>
+            {/* Full Name */}
             <div>
-              <label htmlFor="fullname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Your Full name
-              </label>
+              <label htmlFor="fullname" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
               <input
                 type="text"
-                id="fullname"
-                name="fullname"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Enter your full name"
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white 
-                  ${errors.fullName
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                  } text-gray-900`}
+                id="firstname"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Enter your first name"
+                className={`input ${errors.firstname && 'border-red-500'}`}
               />
-              {errors.fullName && <p className="mt-1 text-red-600 text-sm">{errors.fullName}</p>}
+              {errors.firstName && <p className="text-sm text-red-600">{errors.firstName}</p>}
             </div>
 
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Your email
-              </label>
+              <label htmlFor="fullname" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+              <input
+                type="text"
+                id="lastname"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Enter your full name"
+                className={`input ${errors.fullName && 'border-red-500'}`}
+              />
+              {errors.lastName && <p className="text-sm text-red-600">{errors.lastName}</p>}
+            </div>
+
+            {/* Email */}
+            <div>
+              <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email</label>
               <input
                 type="email"
                 id="email"
-                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@company.com"
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white 
-                  ${errors.email
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                  } text-gray-900`}
+                className={`input ${errors.email && 'border-red-500'}`}
               />
-              {errors.email && <p className="mt-1 text-red-600 text-sm">{errors.email}</p>}
+              {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
             </div>
 
+            {/* Password */}
             <div>
-              <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Password
-              </label>
+              <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Password</label>
               <input
                 type="password"
                 id="password"
-                name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white 
-                  ${errors.password
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                  } text-gray-900`}
+                className={`input ${errors.password && 'border-red-500'}`}
               />
-              {errors.password && <p className="mt-1 text-red-600 text-sm">{errors.password}</p>}
+              {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
             </div>
 
+            {/* Address */}
             <div>
-              <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Address
-              </label>
+              <label htmlFor="address" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Address</label>
               <input
                 type="text"
                 id="address"
-                name="address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Enter your address"
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white 
-                  ${errors.address
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                  } text-gray-900`}
+                className={`input ${errors.address && 'border-red-500'}`}
               />
-              {errors.address && <p className="mt-1 text-red-600 text-sm">{errors.address}</p>}
+              {errors.address && <p className="text-sm text-red-600">{errors.address}</p>}
             </div>
 
             <div>
-              <label htmlFor="number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Mobile :
-              </label>
+              <label htmlFor="city" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">City</label>
               <input
-                type="tel"
-                id="number"
-                name="number"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                placeholder="Enter your address"
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white 
-                  ${errors.address
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                  } text-gray-900`}
+                type="text"
+                id="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="Enter your city"
+                className={`input ${errors.city && 'border-red-500'}`}
               />
-              {errors.number && <p className="mt-1 text-red-600 text-sm">{errors.number}</p>}
+              {errors.city && <p className="text-sm text-red-600">{errors.city}</p>}
             </div>
 
-            <button
-              type="submit"
-              className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
+            <div>
+              <label htmlFor="state" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">State</label>
+              <input
+                type="text"
+                id="state"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                placeholder="Enter your state"
+                className={`input ${errors.state && 'border-red-500'}`}
+              />
+              {errors.state && <p className="text-sm text-red-600">{errors.state}</p>}
+            </div>
+
+            {/* Mobile phone */}
+            <div>
+              <label htmlFor="phone" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Mobile</label>
+              <input
+                type="tel"
+                id="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Enter your mobile phone"
+                className={`input ${errors.phone && 'border-red-500'}`}
+              />
+              {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
+            </div>
+
+            {/* Submit Button */}
+            <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
               Register
             </button>
 
-            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Already have an account?{' '}
-              <span
-                onClick={() => navigate("/login")}
-                className="font-medium text-blue-600 hover:underline dark:text-blue-500 cursor-pointer"
-              >
-                Login
-              </span>
+              <span onClick={() => navigate("/login")} className="text-blue-600 cursor-pointer underline">Login</span>
             </p>
           </form>
         </div>
@@ -217,6 +235,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-

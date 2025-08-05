@@ -1,67 +1,63 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { getPosts } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js'; // Import API call function to fetch product data
-import { CircleDollarSign } from 'lucide-react'; // Icon for price display
+import { products } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js';
+import { CircleDollarSign } from 'lucide-react';
+import { TbZoomReset } from "react-icons/tb";
 
 
 
 const Products = () => {
   const navigate = useNavigate();
 
-  // State declarations for storing product data and filters
-  const [data, setData] = useState([]); // Original product data from API
-  const [filteredData, setFilteredData] = useState([]); // Data after applying filters
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
 
-  // Filter state
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
   const [priceRange, setPriceRange] = useState('');
 
-  // Fetch product data when component mounts
+
   useEffect(() => {
-    getPosts()
+    products()
       .then(posts => {
-        setData(posts); // Store original data
-        setFilteredData(posts); // Initially, filteredData is the same as full data
+        setData(posts);
+        setFilteredData(posts);
       })
       .catch(err => {
         console.error('Error fetching posts:', err);
-        setError('Failed to load products.'); // Set error message if fetch fails
+        setError('Failed to load products.');
       })
-      .finally(() => setLoading(false)); // Always stop loading state regardless of success or failure
+      .finally(() => setLoading(false));
   }, []);
 
-  // Apply filters when search/category/priceRange/data changes
+
   useEffect(() => {
     let filtered = data;
 
-    // Filter by search text
     if (search) {
       filtered = filtered.filter(item =>
         ((item.name ?? item.title) || '').toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    // Filter by selected category
     if (category) {
       filtered = filtered.filter(item => item.category === category);
     }
 
-    // Filter by selected price range
     if (priceRange) {
       const [min, max] = priceRange.split('-').map(Number);
       filtered = filtered.filter(item => item.price >= min && item.price <= max);
     }
 
-    setFilteredData(filtered); // Update filtered product list
+    setFilteredData(filtered);
   }, [search, category, priceRange, data]);
 
   return (
     <>
-      <div className=''>
+      <div className='h-10'>
         <button onClick={() => navigate('/')}
           class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
           type="button"
@@ -93,18 +89,16 @@ const Products = () => {
         <div className="flex-1 flex flex-col mx-5">
           <main className="p-6 sm:p-8 overflow-y-auto">
 
-            {/* Filter Controls */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 ">
-              {/* Search Input */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5 ">
+              
               <input
                 type="text"
-                placeholder="Search by name"
+                placeholder="Search Products..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
+                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-9 00 text-white rounded-md shadow text-sm"
               />
 
-              {/* Category Dropdown */}
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -117,7 +111,6 @@ const Products = () => {
                 <option value="jewelery">Jewelery</option>
               </select>
 
-              {/* Price Range Dropdown */}
               <select
                 value={priceRange}
                 onChange={(e) => setPriceRange(e.target.value)}
@@ -129,43 +122,39 @@ const Products = () => {
                 <option value="101-200">$101 - $200</option>
               </select>
 
-              {/* Reset Filters Button */}
               <button
                 onClick={() => {
                   setSearch('');
                   setCategory('');
                   setPriceRange('');
                 }}
-                className="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600"
-              >
+                className="bg-red-500 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600"
+              > <TbZoomReset className="mt-1" />
+
                 Reset Products
               </button>
             </div>
 
-            {/* Content Area: Show loading, error, or product list */}
             {loading ? (
-              // Loading Spinner
               <div className="flex-col gap-4 w-full flex items-center justify-center">
                 <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
                   <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
                 </div>
               </div>
             ) : error ? (
-              // Show error message if data fails to load
               <div className="text-center text-red-600 dark:text-red-400">
                 {error}
               </div>
             ) : (
-              // Display product cards
               <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 {filteredData.map((item) => {
-                  const discount = (item.price * 0.1).toFixed(2); // Calculate 10% discount
-                  const finalPrice = (item.price - discount).toFixed(2); // Final price after discount
+                  const discount = (item.price * 0.1).toFixed(2); 
+                  const finalPrice = (item.price - discount).toFixed(2); 
 
                   return (
                     <div
                       key={item.id}
-                      className="hover:shadow-lg hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-white dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden"
+                      className="hover:shadow-lg my-5 hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-gray-50 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden"
                     >
                       {/* Clickable image linking to product detail page */}
                       <Link to={`/products/${item.id}`}>

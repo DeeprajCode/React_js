@@ -32,14 +32,14 @@ const Cart = () => {
   }, []);
 
   // Remove an item from cart
-  const handleRemove = (id) => {
+  const remove = (id) => {
     removeFromCartApi(id);
     setCartItems(getCartItems()); // Refresh cart items
     navigate('/Cart'); // Redirect to same page (refresh logic)
   };
 
   // Handle quantity update with restrictions (0 to 8)
-  const handleQuantityChange = (id, quantity) => {
+  const QuantityChange = (id, quantity) => {
     if (quantity < 0 || quantity > 8) return;
     updateCartQuantity(id, quantity);
     setCartItems(getCartItems()); // Refresh cart items
@@ -99,7 +99,7 @@ const Cart = () => {
                 <div className="flex items-center mt-2">
                   {/* Minus Button - Disabled if quantity is 1 */}
                   <button
-                    onClick={() => handleQuantityChange(item.productId, item.quantity - 1)}
+                    onClick={() => QuantityChange(item.productId, item.quantity - 1)}
                     className={`px-2 py-1 rounded ${item.quantity <= 1
                       ? 'bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-50'
                       : 'bg-gray-300 dark:bg-gray-600'
@@ -114,7 +114,7 @@ const Cart = () => {
 
                   {/* Plus Button - Disabled if quantity is 8 */}
                   <button
-                    onClick={() => handleQuantityChange(item.productId, item.quantity + 1)}
+                    onClick={() => QuantityChange(item.productId, item.quantity + 1)}
                     className={`px-2 py-1 rounded ${item.quantity >= 8
                       ? 'bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-50'
                       : 'bg-gray-300 dark:bg-gray-600'
@@ -128,7 +128,7 @@ const Cart = () => {
 
               {/* Remove Button */}
               <div className="ml-4 text-right">
-                <button onClick={() => handleRemove(item.productId)}
+                <button onClick={() => remove(item.productId)}
                   className="group relative flex h-14 w-14 flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-red-800 bg-red-400 hover:bg-red-600"
                 >
                   {/* Animated trash icon */}
@@ -193,30 +193,32 @@ const Cart = () => {
           {/* Cart Summary */}
           <div className="pt-4">
             <p className="text-lg font-medium text-gray-700 dark:text-gray-200 flex gap-1">
-              Price: <CircleDollarSign /> {total.toFixed(2)}
+              Price: <p className='flex gap-1 line-through'> <CircleDollarSign /> {total.toFixed(2)} </p>
             </p>
             <p className="text-lg font-medium text-yellow-700 flex gap-1">
-              Discount: <CircleDollarSign /> {discount.toFixed(2)}
+              Discount price: <CircleDollarSign /> {discount.toFixed(2)}
             </p>
             <p className="text-2xl font-bold text-green-600 flex gap-1">
-              Total: <CircleDollarSign /> {finalAmount.toFixed(2)}
+              Total price: <CircleDollarSign /> {finalAmount.toFixed(2)}
             </p>
           </div>
 
           {/* Buy Now Button */}
           {!userData ? (
-            <button
-              onClick={() => navigate('/Login')}
-              className="group flex items-center justify-start w-11 h-11 bg-green-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1"
+            <button onClick={() => navigate('/Login')}
+              class="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
             >
-              <div className="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
-                <svg className="w-4 h-4" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M15 12H3m12 0l-4-4m4 4l-4 4" />
-                  <path d="M21 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
-                </svg>
-              </div>
-              <div className="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                Login
+              <div class="relative overflow-hidden">
+                <p
+                  class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
+                >
+                  Login
+                </p>
+                <p
+                  class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
+                >
+                  Login
+                </p>
               </div>
             </button>
           ) : (
