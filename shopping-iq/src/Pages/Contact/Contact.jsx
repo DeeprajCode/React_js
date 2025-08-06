@@ -59,14 +59,14 @@ const Contact = () => {
         autoClose: 1500,
       });
       return;
+    } else {
+      toast.success('Successfully sent message', {
+        position : 'top-right',
+        theme: 'colored',
+        closeOnClick: false,
+        autoClose:1000,
+      });
     }
-
-    toast.success('Successfully sent message', {
-      position: 'top-right',
-      theme: 'colored',
-      closeOnClick: false,
-      autoClose: 1000,
-    });
 
     setFullName('');
     setEmail('');

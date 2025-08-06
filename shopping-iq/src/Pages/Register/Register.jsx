@@ -25,25 +25,45 @@ const Register = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
-    if (!firstName) newErrors.firstName = 'Full name is required';
-    else if (!firstNameRegex.test(firstName)) newErrors.firstName = 'First name is not valid';
+    if (!firstName) {
+      newErrors.firstName = 'First Name is required';
+    } else if (!firstNameRegex.test(firstName)) {
+      newErrors.firstName = 'First name is not valid';
+    }
 
-    if (!lastName) newErrors.lastName = 'Full name is required';
-    else if (!lastNameRegex.test(lastName)) newErrors.lastName = 'Last name is not valid';
+    if (!lastName) {
+      newErrors.lastName = 'Last name is required';
+    } else if (!lastNameRegex.test(lastName)) {
+      newErrors.lastName = 'Last name is not valid';
+    }
 
-    if (!email) newErrors.email = 'Email is required';
-    else if (!emailRegex.test(email)) newErrors.email = 'Email is not valid';
+    if (!email) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(email)) {
+      newErrors.email = 'Email is not valid';
+    }
 
-    if (!password) newErrors.password = 'Password is required';
+    if (!password) {
+      newErrors.password = 'Password is required';
+    }
 
-    if (!address) newErrors.address = 'Address is required';
+    if (!address) {
+      newErrors.address = 'Address is required'
+    }
 
-    if(!city) newErrors.city = 'City is required!';
+    if(!city) {
+      newErrors.city = 'City is required';
+    }
 
-    if(!state) newErrors.state = 'State is Required!';
+    if(!state) {
+      newErrors.state = 'State is required';
+    }
 
-    if (!phone) newErrors.phone = 'phone is required';
-    else if (!phoneRegex.test(phone)) newErrors.phone = 'Enter a valid phone format';
+    if (!phone) {
+      newErrors.phone = 'Phone is required';
+    } else if (!phoneRegex.test(phone)) {
+      newErrors.phone = 'Enter a valid phone number'
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -57,12 +77,14 @@ const Register = () => {
         lastName,
         email: email.trim().toLowerCase(),
         password: password.trim(),
-        address,
-        city,
-        state,
-        Phone,
+        phone: phone.trim(),
+        address : {
+          address,
+          city,
+          state
+        }
       };
-
+      console.log("🚀 ~ register ~ newUser:", newUser)
       const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
 
       const userExists = existingUsers.some(user => user.email === newUser.email);
@@ -77,13 +99,24 @@ const Register = () => {
 
       existingUsers.push(newUser);
       localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
+      localStorage.setItem('userData', JSON.stringify(newUser));
 
       toast.success('Successfully Registered!', {
         position: "top-right",
         theme: "colored",
         autoClose: 1000,
         onClose: () => navigate('/login'), 
+
       });
+
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setPhone('');
+      setAddress('');
+      setCity('');
+      setState('');
     } else {
       toast.error("Registration failed. Please check your information", {
         position: 'top-right',

@@ -23,7 +23,6 @@ const Cart = () => {
     setUserData(data ? JSON.parse(data) : null);
   }, [])
 
-  // Load cart items when component mounts
   useEffect(() => {
     setLoading(true);
     const items = getCartItems();
@@ -31,18 +30,18 @@ const Cart = () => {
     setLoading(false);
   }, []);
 
-  // Remove an item from cart
+
   const remove = (id) => {
     removeFromCartApi(id);
-    setCartItems(getCartItems()); // Refresh cart items
-    navigate('/Cart'); // Redirect to same page (refresh logic)
+    setCartItems(getCartItems());
+    navigate('/Cart');
   };
 
-  // Handle quantity update with restrictions (0 to 8)
+
   const QuantityChange = (id, quantity) => {
     if (quantity < 0 || quantity > 8) return;
     updateCartQuantity(id, quantity);
-    setCartItems(getCartItems()); // Refresh cart items
+    setCartItems(getCartItems());
   };
 
   // Calculate totals

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { products } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js';
 import { CircleDollarSign } from 'lucide-react';
 import { TbZoomReset } from "react-icons/tb";
+import save from '../Products/bookmark.png';
 
 
 
@@ -146,7 +147,7 @@ const Products = () => {
                 {error}
               </div>
             ) : (
-              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-1  xl:grid-cols-3">
                 {filteredData.map((item) => {
                   const discount = (item.price * 0.1).toFixed(2); 
                   const finalPrice = (item.price - discount).toFixed(2); 
@@ -165,7 +166,7 @@ const Products = () => {
                             className="h-56 w-full object-contain bg-white"
                           />
                         </div>
-
+                        </Link>
                         {/* Product Info */}
                         <div className="p-5 flex flex-col flex-1">
                           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
@@ -182,8 +183,8 @@ const Products = () => {
                             </p>
 
                             {/* Discounted price */}
-                            <p className="text-sm font-semibold text-green-600 flex gap-1">
-                              Discount: <CircleDollarSign />{finalPrice} (10% off)
+                            <p className="text-sm font-semibold text-green-600 flex  gap-1">
+                              Discount price: <CircleDollarSign />{finalPrice} (10% off)
                             </p>
 
                             {/* Rating */}
@@ -192,7 +193,6 @@ const Products = () => {
                             </p>
                           </div>
                         </div>
-                      </Link>
                     </div>
                   );
                 })}

@@ -3,7 +3,7 @@ import Logo from '../Login/laptop.png';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { fetchuser } from '../../Utils/api';
+import { loginuser } from '../../Utils/api';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,15 +29,14 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submit
-  const handleSubmit = async (e) => {
+  const Login = async (e) => {
     e.preventDefault();
 
     if (validate()) {
       try {
-        // Get API users
-        const apiResponse = await fetchuser();
-        const apiUsers = apiResponse?.users || [];
+        
+        const apiuser = await loginuser();
+        const apiUsers = apiuser?.users || [];
 
         const localUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
 
@@ -65,6 +64,9 @@ const Login = () => {
             autoClose: 1000,
             onClose: () => navigate('/'),
           });
+
+          setEmail('');
+          setPassword('');
         }
 
       } catch (error) {
@@ -98,7 +100,7 @@ const Login = () => {
               Shop the world from your home 🛍️
             </h3>
 
-            <form className="w-full space-y-4" onSubmit={handleSubmit}>
+            <form className="w-full space-y-4" onSubmit={Login}>
               {/* Email */}
               <div>
                 <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email</label>

@@ -11,7 +11,7 @@ export const categories =  async () => {
 }
  
 //User login api
-export const fetchuser = async () => {
+export const loginuser = async () => {
   const response = await fetch('https://dummyjson.com/users');
   return await response.json();
 };
@@ -69,4 +69,3 @@ export const addtopayment = (orderData) => {
   payments.push(orderData);
   localStorage.setItem('payments', JSON.stringify(payments));
 }
-

@@ -9,7 +9,7 @@ import Products from '../Pages/Products/Products';
 import ProductView from '../Pages/Products/ProductView';
 import Cart from '../Pages/Cart/Cart';
 import Aboutus from '../Pages/Aboutus/Aboutus';
-import Billing from '../Pages/Billing';
+import Billing from '../Pages/Payment/Bill';
 import Contact from '../Pages/Contact/Contact';
 import Payment from '../Pages/Payment/Payment';
 import Credit from '../Pages/Payment/Credit';
@@ -27,10 +27,11 @@ const AppRoutes = () => {
       <Route path="/Cart" element={<Cart />} />
 
       <Route path="/Aboutus" element={<Aboutus />} />
-      <Route path="/Billing" element={<Billing />} />
+      <Route path="/Bill" element={<Billing />} />
       <Route path="/Contact" element={<Contact />} />
       <Route path="/Payment" element={<Payment />} />
       <Route path="/Credit" element={<Credit />} />
+
     </Routes>
   );
 };

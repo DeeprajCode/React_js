@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { label: 'Home', route: '/', icon: <Home className="w-5 h-5" /> },
-    { label: 'About Us', route: '/Aboutus', icon: <Info className="w-5 h-5" /> },
+    { label: 'About us', route: '/Aboutus', icon: <Info className="w-5 h-5" /> },
     { label: 'Contact', route: '/Contact', icon: <Phone className="w-5 h-5" /> },
     { label: 'Products', route: '/Products', icon: <ShoppingBag className="w-5 h-5" /> },
   ];
