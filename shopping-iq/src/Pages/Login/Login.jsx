@@ -116,27 +116,31 @@ const Login = () => {
 
               <form className="w-full space-y-4" onSubmit={Login}>
                 <div>
-                  <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                   <input
                     type="email"
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@company.com"
-                    className={`input ${errors.email && 'border-red-500'}`}
+                    placeholder="Email..."
+                    className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
+                      ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                      : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                      } text-gray-900`}
                   />
                   {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                   <input
                     type="password"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className={`input ${errors.password && 'border-red-500'}`}
+                    placeholder="Password..."
+                    className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
+                      ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                      : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                    } text-gray-900`}
                   />
                   {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
                 </div>

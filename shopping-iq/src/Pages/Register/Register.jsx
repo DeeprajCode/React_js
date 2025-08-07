@@ -172,120 +172,122 @@ const Register = () => {
                 {errors.firstName && <p className="text-sm text-red-600">{errors.firstName}</p>}
               </div>
 
-            <div>
-              <input
-                type="text"
-                id="lastname"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                placeholder="Last name..."
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.lastName 
-                  ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                } text-gray-900`}
-              />
-              {errors.lastName && <p className="text-sm text-red-600">{errors.lastName}</p>}
-            </div>
+              <div>
+                <input
+                  type="text"
+                  id="lastname"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Last name..."
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.lastName 
+                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  } text-gray-900`}
+                />
+                {errors.lastName && <p className="text-sm text-red-600">{errors.lastName}</p>}
+              </div>
 
-            <div>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email..."
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email 
-                  ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                } text-gray-900`}
-              />
-              {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
-            </div>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email..."
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email 
+                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  } text-gray-900`}
+                />
+                {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
+              </div>
 
-            <div>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password..."
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
-                  ? 'border-gray-300 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                } text-gray-900`}
-              />
-              {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
-            </div>
+              <div>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password..."
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
+                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  } text-gray-900`}
+                />
+                {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
+              </div>
 
-            <div>
-              <input
-                type="text"
-                id="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Address..."
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.address
-                  ? 'border-gray-300 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                }`}
-              />
-              {errors.address && <p className="text-sm text-red-600">{errors.address}</p>}
-            </div>
+              <div>
+                <input
+                  type="text"
+                  id="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Address..."
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.address
+                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  }`}
+                />
+                {errors.address && <p className="text-sm text-red-600">{errors.address}</p>}
+              </div>
 
-            <div>
-              <input
-                type="text"
-                id="city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="Enter your city"
-                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.city
-                  ? 'border-gray-300 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                }`}
-              />
-              {errors.city && <p className="text-sm text-red-600">{errors.city}</p>}
-            </div>
+              <div>
+                <input
+                  type="text"
+                  id="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  placeholder="City..."
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.city
+                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  }`}
+                />
+                {errors.city && <p className="text-sm text-red-600">{errors.city}</p>}
+              </div>
 
-            <div>
-              <label htmlFor="state" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">State</label>
-              <input
-                type="text"
-                id="state"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                placeholder="Enter your state"
-                className={`input ${errors.state && 'border-red-500'}`}
-              />
-              {errors.state && <p className="text-sm text-red-600">{errors.state}</p>}
-            </div>
+              <div>
+                <input
+                  type="text"
+                  id="state"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  placeholder="State..."
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.state
+                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  }`}
+                />
+                {errors.state && <p className="text-sm text-red-600">{errors.state}</p>}
+              </div>
 
-            {/* Mobile phone */}
-            <div>
-              <label htmlFor="phone" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Mobile</label>
-              <input
-                type="tel"
-                id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Enter your mobile phone"
-                className={`input ${errors.phone && 'border-red-500'}`}
-              />
-              {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
-            </div>
+              <div>
+                <input
+                  type="tel"
+                  id="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="Enter your mobile phone"
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.phone
+                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  }`}
+                />
+                {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
+              </div>
 
-            {/* Submit Button */}
-            <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-              Register
-            </button>
+              <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                Register
+              </button>
 
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Already have an account?{' '}
-              <span onClick={() => navigate("/login")} className="text-blue-600 cursor-pointer underline">Login</span>
-            </p>
-          </form>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Already have an account?{' '}
+                <span onClick={() => navigate("/login")} className="text-blue-600 cursor-pointer underline">Login</span>
+              </p>
+            </form>
+          </div>
         </div>
-      </div>
         </>
       )}
     </section>
