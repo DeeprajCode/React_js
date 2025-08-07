@@ -17,28 +17,17 @@ import { useNavigate } from 'react-router-dom';
 
     return (
         <>
-            {
-                loading ? (
-                    <div class="flex-col gap-4 w-full flex items-center justify-center" >
-                        <div
-                            class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full"
-                        >
-                            <div
-                                class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"
-                            ></div>
+            { loading ? (
+                <div class="flex-col gap-4 w-full flex items-center justify-center" >
+                    <div class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+                            <div class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
                         </div>
                     </div >
                 ) : (
                     <>
                         <div className='my-2'>
-                            <button 
-                            onClick={() => navigate('/')}
-                                class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
-                                type="button"
-                            >
-                                <div
-                                    class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
-                                >
+                            <button onClick={() => navigate('/')} class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button">
+                                <div class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 1024 1024"
@@ -58,9 +47,9 @@ import { useNavigate } from 'react-router-dom';
                                 <p class="translate-x-2">Go Back</p>
                             </button>
                         </div>
+                        
                         <div>
                             <div className="grid grid-cols-2 content-start gap-4 ...  ">
-                                {/* 🛍️ Info About Online Shopping */}
                                 <img className='h-26 w-26' src={techLOGO} alt="" srcset="" />
                                 <div className="bg-white shadow-md rounded-xl p-1 mb- border-l-4 border-blue-500">
                                     <h2 className="text-2xl font-bold text-gray-800 mb-2 mx-2">🛍️ About to Shopping-IQ!</h2>

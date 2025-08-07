@@ -3,42 +3,52 @@ import { Phone, AtSign, MapPinHouse, Instagram, Twitter, Facebook, Linkedin, Chr
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-
+import { FiSend } from "react-icons/fi";
+import { FcBusinessContact } from "react-icons/fc";
 
 
 const Contact = () => {
   const navigate = useNavigate();
 
-  const [initialLoading, setInitialLoading] = useState(true);
+  const [loading, setloading] = useState(true);
   const [fullname, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
 
   const fullNameRegex = /^[a-zA-Z\s]+$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setInitialLoading(false);
+      setloading(false);
     }, 1000);
-
     return () => clearTimeout(timer);
   }, []);
 
   const validate = () => {
+
     const newErrors = {};
 
     if (!fullname.trim()) {
-      newErrors.fullname = 'Full name is required';
+      newErrors.fullname = 'Full name is required!';
     } else if (!fullNameRegex.test(fullname)) {
-      newErrors.fullname = 'Full name is not valid';
+      newErrors.fullname = 'Please enter a valid full name!';
     }
 
     if (!email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'Email is required!';
     } else if (!emailRegex.test(email)) {
-      newErrors.email = 'Email is not valid';
+      newErrors.email = 'please enter a valid email address!';
+    }
+
+    if(!phone.trim()){
+      newErrors.phone = 'Phone number is required!';
+    } else if(!phoneRegex.test(phone)){
+      newErrors.phone = 'Please enter a valid phone number!';
     }
 
     if (!message.trim()) {
@@ -53,14 +63,14 @@ const Contact = () => {
     e.preventDefault();
 
     if (!validate()) {
-      toast.error('Please check your form information!', {
+      toast.error('Please check and enter your form information!', {
         position: 'top-right',
         theme: 'colored',
-        autoClose: 1500,
+        autoClose: 1000,
       });
       return;
     } else {
-      toast.success('Successfully sent message', {
+      toast.success('Thank you for give us your message', {
         position : 'top-right',
         theme: 'colored',
         closeOnClick: false,
@@ -70,35 +80,25 @@ const Contact = () => {
 
     setFullName('');
     setEmail('');
+    setPhone('');
     setMessage('');
     setErrors({});
   };
 
   return (
-
-    <div className="bg-gray-50 dark:bg-gray-900" id="contact">
-      {initialLoading ? (
-
-        <div class="flex-col gap-4 w-full flex items-center justify-center">
-          <div
-            class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full"
-          >
-            <div
-              class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"
-            ></div>
+    <>
+      <div className="bg-gray-50 dark:bg-gray-900" id="contact">
+        { loading ? (
+          <div class="flex-col gap-4 w-full flex items-center justify-center">
+            <div class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+              <div class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
+            </div>
           </div>
-        </div>
-
       ) : (
         <>
           <div className='my-2'>
-            <button onClick={() => navigate('/')}
-              class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
-              type="button"
-            >
-              <div
-                class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
-              >
+            <button onClick={() => navigate('/')} class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button" >
+              <div class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 1024 1024"
@@ -118,8 +118,9 @@ const Contact = () => {
               <p class="translate-x-2">Go Back</p>
             </button>
           </div>
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-center">
-            <h2 className="text-4xl font-bold dark:text-gray-100">Contact</h2>
+            <h2 className="text-4xl font-bold dark:text-gray-100 flex justify-center gap-1">Contact <FcBusinessContact className='mt-1' /> </h2>
             <p className="pt-6 pb-6 text-base max-w-2xl text-center m-auto dark:text-gray-400">
               Your happiness is our success. We're here to help you, every step of the way. Our service sets us apart from the rest.
             </p>
@@ -191,8 +192,6 @@ const Contact = () => {
                     class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Google</span>
                 </div>
-
-                
               </div>
             </div>
 
@@ -201,7 +200,7 @@ const Contact = () => {
                 <div className="mb-5">
                   <input
                     type="text"
-                    placeholder="Full Name"
+                    placeholder="Full name..."
                     id="fullname"
                     name="fullname"
                     value={fullname}
@@ -217,7 +216,7 @@ const Contact = () => {
                 <div className="mb-5">
                   <input
                     type="email"
-                    placeholder="Email Address"
+                    placeholder="Email..."
                     id="email"
                     name="email"
                     value={email}
@@ -230,9 +229,25 @@ const Contact = () => {
                   {errors.email && <p className="mt-1 text-red-600 text-sm">{errors.email}</p>}
                 </div>
 
+                <div className='mb-5'>
+                  <input 
+                    type="tel"
+                    placeholder='Phone number...'
+                    id='phone'
+                    name='phone'
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.phone 
+                      ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500' 
+                      : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500' 
+                      } text-gary-900 `}
+                    />
+                  {errors.phone && <p className='mt-1 text-red-600 text-sm'>{errors.phone}</p>}
+                </div>
+
                 <div className="mb-3">
                   <textarea
-                    placeholder="Your Message"
+                    placeholder="Give your message..."
                     id="message"
                     name="message"
                     value={message}
@@ -245,13 +260,15 @@ const Contact = () => {
                   {errors.message && <p className="mt-1 text-red-600 text-sm">{errors.message}</p>}
                 </div>
 
-                <button type='submit'
-                  class="w-full relative px-8 py-2 rounded-md bg-white isolation-auto z-10 border-2 border-blue-700 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[blue] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold text-black bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                  </svg>
-                  Send Message
+                <button type='submit' class="w-full cursor-pointer bg-gradient-to-b from-blue-700 to-blue-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                  <div class="relative overflow-hidden flex justify-center">
+                    <p class="group-hover:-translate-y-7 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                      <FiSend className='mt-1' />  Send message
+                    </p>
+                    <p class="absolute top-7 group-hover:top-0 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]" >
+                      <FiSend className='mt-1' /> Send message
+                    </p>
+                  </div>
                 </button>
               </form>
             </div>
@@ -259,6 +276,7 @@ const Contact = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 

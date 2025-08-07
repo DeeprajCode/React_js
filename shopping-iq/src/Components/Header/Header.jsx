@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FcLike } from "react-icons/fc";
-
 
 const Header = ({ sidebar }) => {
   const navigate = useNavigate();
@@ -28,8 +26,6 @@ const Header = ({ sidebar }) => {
 
   return (
     <header className="w-full h-20 flex justify-between items-center bg-gradient-to-r from-white via-gray-100 to-white dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl px-4 py-1">
-
-      {/* Sidebar Toggle Button */}
       <button onClick={sidebar} className="group relative w-10 h-10 m-6 mt-2 p-1">
         <span className="block mx-auto relative top-3 w-7 h-1.5 bg-black transition-all duration-200 
           group-hover:w-5
@@ -39,24 +35,15 @@ const Header = ({ sidebar }) => {
           after:transition-all after:duration-200 group-hover:after:mt-1.5 group-hover:after:-left-1.5" />
       </button>
 
-      {/* Right-side actions */}
       <div className="flex items-center space-x-4">
-        {/* Not logged in */}
         {!userData ? (
           <>
-
-            <button onClick={() => navigate('/Login')}
-              class="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
-            >
+            <button onClick={() => navigate('/Login')} class="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
               <div class="relative overflow-hidden">
-                <p
-                  class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
-                >
+                <p class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                   Login
                 </p>
-                <p
-                  class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
-                >
+                <p class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                   Login
                 </p>
               </div>
@@ -67,19 +54,15 @@ const Header = ({ sidebar }) => {
                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.186 1.705.707 1.705H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </IconButton>
-            
           </>
         ) : (
           <>
-            {/* Cart */}
             <IconButton onClick={() => navigate('/Cart')}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.186 1.705.707 1.705H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </IconButton>
 
-            
-            {/* User Profile */}
             <div className="group relative">
               <IconButton onClick={() => navigate('/User')}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -91,19 +74,12 @@ const Header = ({ sidebar }) => {
               </span>
             </div>
 
-            {/* Logout */}
-            <button onClick={logout}
-              class="cursor-pointer bg-gradient-to-b from-red-500 to-red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
-            >
+            <button onClick={logout} class="cursor-pointer bg-gradient-to-b from-red-500 to-red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
               <div class="relative overflow-hidden">
-                <p
-                  class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
-                >
+                <p class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                   Logout
                 </p>
-                <p
-                  class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]"
-                >
+                <p class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                   Logout
                 </p>
               </div>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { products } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js';
 import { CircleDollarSign } from 'lucide-react';
 import { TbZoomReset } from "react-icons/tb";
-import save from '../Products/bookmark.png';
+import { FaStar } from "react-icons/fa";
 
 
 
@@ -36,24 +36,24 @@ const Products = () => {
 
 
   useEffect(() => {
-    let filtered = data;
+    let productFiltered = data;
 
     if (search) {
-      filtered = filtered.filter(item =>
+      productFiltered = productFiltered.filter(item =>
         ((item.name ?? item.title) || '').toLowerCase().includes(search.toLowerCase())
       );
     }
 
     if (category) {
-      filtered = filtered.filter(item => item.category === category);
+      productFiltered = productFiltered.filter(item => item.category === category);
     }
 
     if (priceRange) {
       const [min, max] = priceRange.split('-').map(Number);
-      filtered = filtered.filter(item => item.price >= min && item.price <= max);
+      productFiltered = productFiltered.filter(item => item.price >= min && item.price <= max);
     }
 
-    setFilteredData(filtered);
+    setFilteredData(productFiltered);
   }, [search, category, priceRange, data]);
 
   return (
@@ -106,7 +106,7 @@ const Products = () => {
                 className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
               >
                 <option value="">All Categories</option>
-                <option value="men's clothing">Men's Clothing</option>
+                <option value="men's clothing"> Men's Clothing</option>
                 <option value="women's clothing">Women's Clothing</option>
                 <option value="electronics">Electronics</option>
                 <option value="jewelery">Jewelery</option>
@@ -131,7 +131,6 @@ const Products = () => {
                 }}
                 className="bg-red-500 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600"
               > <TbZoomReset className="mt-1" />
-
                 Reset Products
               </button>
             </div>
@@ -149,15 +148,11 @@ const Products = () => {
             ) : (
               <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-1  xl:grid-cols-3">
                 {filteredData.map((item) => {
-                  const discount = (item.price * 0.1).toFixed(2); 
-                  const finalPrice = (item.price - discount).toFixed(2); 
+                  const discount = (item.price * 0.1).toFixed(1); 
+                  const finalPrice = (item.price - discount).toFixed(1); 
 
                   return (
-                    <div
-                      key={item.id}
-                      className="hover:shadow-lg my-5 hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-gray-50 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden"
-                    >
-                      {/* Clickable image linking to product detail page */}
+                    <div key={item.id} className="hover:shadow-lg my-5 hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-gray-50 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
                       <Link to={`/products/${item.id}`}>
                         <div className="aspect-w-10 aspect-h-6">
                           <img
@@ -166,33 +161,28 @@ const Products = () => {
                             className="h-56 w-full object-contain bg-white"
                           />
                         </div>
-                        </Link>
-                        {/* Product Info */}
                         <div className="p-5 flex flex-col flex-1">
                           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
                             {item.title}
                           </h2>
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                            Category: {item.category}
-                          </p>
+                          <div className="flex text-sm gap-1 text-gray-600 dark:text-gray-400 mb-2">
+                            Category :<p>{item.category}</p>
+                          </div>
 
-                          <div className="mt-auto">
-                            {/* Original price (strikethrough) */}
-                            <p className="flex gap-1 text-lg font-semibold text-gray-800 dark:text-white line-through">
-                              <CircleDollarSign />{item.price}
-                            </p>
+                          <div className="grid grid-flow">
+                            <div className="flex gap-1 text-lg font-semibold text-gray-800 dark:text-white">
+                              Price : <p className='line-through flex gap-1'><CircleDollarSign/>{item.price}</p>
+                            </div>
 
-                            {/* Discounted price */}
-                            <p className="text-sm font-semibold text-green-600 flex  gap-1">
-                              Discount price: <CircleDollarSign />{finalPrice} (10% off)
-                            </p>
-
-                            {/* Rating */}
-                            <p className="text-md bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 w-15 w-28">
-                              Rating: ⭐ {item.rating?.rate ?? 'N/A'}
-                            </p>
+                            <div className="text-sm font-semibold text-green-600 my-1 flex  gap-1">
+                              Discount : <p className='flex gap-1'> <CircleDollarSign/> {finalPrice} (10% off) </p>
+                            </div>
+                            <div className="flex text-md gap-1 bg-yellow-150  mr-2 font-medium text-yellow-500 text-yellow-600 w-15 w-28">
+                             Rating : <p className='flex gap-2'><FaStar className='mt-1'/>{item.rating?.rate ?? 'N/A'}</p>
+                            </div>
                           </div>
                         </div>
+                        </Link>
                     </div>
                   );
                 })}

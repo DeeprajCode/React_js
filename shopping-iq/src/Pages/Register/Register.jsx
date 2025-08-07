@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../Register/laptop.png';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Phone } from 'lucide-react';
+import { FaShoppingBag } from "react-icons/fa";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -17,7 +17,15 @@ const Register = () => {
   const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
 
-  // Input validation
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const validate = () => {
     const newErrors = {};
     const firstNameRegex = /^[a-zA-Z\s]+$/;
@@ -127,99 +135,114 @@ const Register = () => {
   };
 
   return (
+    <>
+    <ToastContainer/>
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
-      <ToastContainer />
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
-        <div className="flex flex-col items-center p-6">
-          <a href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-            <img className="w-18 h-20 mr-2" src={Logo} alt="Shopping logo" />
-          </a>
-          <h1 className="text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-400 mb-6">
-            Shopping-IQ
-          </h1>
-          <h3 className="mb-10 text-1xl font-bold text-gray-800 dark:text-white">
-            Shop the world from your home 🛍️
-          </h3>
-
-          <form className="w-full space-y-4" onSubmit={register}>
-            {/* Full Name */}
-            <div>
-              <label htmlFor="fullname" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-              <input
-                type="text"
-                id="firstname"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="Enter your first name"
-                className={`input ${errors.firstname && 'border-red-500'}`}
-              />
-              {errors.firstName && <p className="text-sm text-red-600">{errors.firstName}</p>}
+      {loading ? (
+        <div class="flex-col gap-4 w-full flex items-center justify-center">
+            <div class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+              <div class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
             </div>
+          </div>
+      ) : (
+        <>
+          <div className="w-full max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
+            <div className="flex flex-col items-center p-6">
+              <img className="w-18 h-20 mr-2" src={Logo} alt="Shopping logo" />
+              <h1 className="text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-400 mb-6">
+                Shopping-IQ
+              </h1>
+              <h3 className="mb-10 text-1xl flex font-bold text-gray-800 dark:text-white">
+                Shop the world from your home. <FaShoppingBag className="ml-2 mt-1" />
+              </h3>
+
+            <form className="w-full space-y-4" onSubmit={register}>
+              <div>
+                <input
+                  type="text"
+                  id="firstname"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First name..."
+                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.firstName
+                      ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                      : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                      } text-gray-900`}
+                />
+                {errors.firstName && <p className="text-sm text-red-600">{errors.firstName}</p>}
+              </div>
 
             <div>
-              <label htmlFor="fullname" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
               <input
                 type="text"
                 id="lastname"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                placeholder="Enter your full name"
-                className={`input ${errors.fullName && 'border-red-500'}`}
+                placeholder="Last name..."
+                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.lastName 
+                  ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                } text-gray-900`}
               />
               {errors.lastName && <p className="text-sm text-red-600">{errors.lastName}</p>}
             </div>
 
-            {/* Email */}
             <div>
-              <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email</label>
               <input
                 type="email"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@company.com"
-                className={`input ${errors.email && 'border-red-500'}`}
+                placeholder="Email..."
+                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email 
+                  ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                } text-gray-900`}
               />
               {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
             </div>
 
-            {/* Password */}
             <div>
-              <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Password</label>
               <input
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className={`input ${errors.password && 'border-red-500'}`}
+                placeholder="Password..."
+                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
+                  ? 'border-gray-300 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                } text-gray-900`}
               />
               {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
             </div>
 
-            {/* Address */}
             <div>
-              <label htmlFor="address" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Address</label>
               <input
                 type="text"
                 id="address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="Enter your address"
-                className={`input ${errors.address && 'border-red-500'}`}
+                placeholder="Address..."
+                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.address
+                  ? 'border-gray-300 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                }`}
               />
               {errors.address && <p className="text-sm text-red-600">{errors.address}</p>}
             </div>
 
             <div>
-              <label htmlFor="city" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">City</label>
               <input
                 type="text"
                 id="city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="Enter your city"
-                className={`input ${errors.city && 'border-red-500'}`}
+                className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.city
+                  ? 'border-gray-300 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                }`}
               />
               {errors.city && <p className="text-sm text-red-600">{errors.city}</p>}
             </div>
@@ -263,7 +286,10 @@ const Register = () => {
           </form>
         </div>
       </div>
+        </>
+      )}
     </section>
+    </>
   );
 };
 
