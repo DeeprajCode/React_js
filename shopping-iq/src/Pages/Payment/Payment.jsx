@@ -14,8 +14,6 @@ const Payment = () => {
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
   const [selectedMethod, setSelectedMethod] = useState('');
-  
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,13 +41,15 @@ const Payment = () => {
       });
       return;
     } else {
-      toast.success('Your Order is confirmed', {
+      toast.success('successfully selected a payment method', {
         position: 'top-right',
         theme:'colored',
         autoClose: 1000,
       });
+      localStorage.setItem('method',JSON.stringify(selectedMethod));
+      console.log("🚀 ~ cconfirmpayment ~ selectedMethod:", selectedMethod)
       navigate('/bill');
-    }
+    } 
 
     const orderData = {
       cartItems,
@@ -73,8 +73,8 @@ const Payment = () => {
           </div>
         </div>
       ) : (
-        <div className='grid grid-cols-2 content-start gap-4'>
-          <div className="w-[320px] p-4 rounded-lg shadow flex flex-col items-center justify-center gap-3 bg-slate-50 ">
+        <div className='grid w-full sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3'>
+          <div className="w-[320px p-4 rounded-lg shadow flex flex-col items-center justify-center gap-3 bg-slate-50 ">
             <button
               onClick={() => navigate('/Cart')}
               className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
@@ -88,13 +88,37 @@ const Payment = () => {
               <p className="translate-x-2">Go Back</p>
             </button>
 
-            <p className="capitalize font-semibold self-start">Payment method</p>
+            <div className="pt-4 ml-[700px] mb-10">
+              <p className="text-lg font-medium text-gray-700 flex gap-1">
+                Price: <CircleDollarSign /> {total.toFixed(2)}
+              </p>
+              <p className="text-lg font-medium text-yellow-700 flex gap-1">
+                Discount: <CircleDollarSign /> {discount.toFixed(2)}
+              </p>
+              <p className="text-2xl font-bold text-green-600 flex gap-1">
+                Total: <CircleDollarSign /> {finalAmount.toFixed(2)}
+              </p>
 
-            {[
-              { label: 'Google Pay', value: 'google', icon: <FaGooglePay className='w-10 h-10 ' /> },
-              { label: 'Apple Pay', value: 'apple', icon: <FaApplePay className='w-10 h-10' /> },
-              { label: 'Credit Card', value: 'credit', icon: <FaCreditCard className='w-8 h-5' /> },
-              { label: 'Cash on Delivery', value: 'cod', icon: <GiMoneyStack className='w-8 h-8' /> },
+              <button onClick={cconfirmpayment}
+              class="cursor-pointer bg-gradient-to-b from-green-500 to-green-600 px-6 py-3 rounded-xl border-[1px] border-none text-black  font-medium group">
+              <div class="relative overflow-hidden">
+                <p class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                  Confirm order
+                </p>
+                <p class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                  Confirm order
+                </p>
+              </div>
+            </button>
+            </div>
+            <p className="capitalize font-semibold self-start px-50 py-50">Payment method</p>
+
+            <div className=''>
+              {[
+              { label: 'Google Pay', value: 'Google pay', icon: <FaGooglePay className='w-10 h-10 ' /> },
+              { label: 'Apple Pay', value: 'Apple pay', icon: <FaApplePay className='w-10 h-10' /> },
+              { label: 'Credit Card', value: 'Credit card', icon: <FaCreditCard className='w-8 h-5' /> },
+              { label: 'Cash on Delivery', value: 'Cash on delivery', icon: <GiMoneyStack className='w-8 h-8' /> },
             ].map((method, idx) => (
               <label key={idx} className="inline-flex justify-between w-full items-center rounded-lg p-2 border border-transparent has-[:checked]:border-indigo-500 has-[:checked]:text-indigo-900 has-[:checked]:bg-indigo-50 has-[:checked]:font-bold hover:bg-slate-200 transition-all cursor-pointer duration-500 relative overflow-hidden">
                 <div className="inline-flex items-center gap-5 relative">
@@ -109,26 +133,9 @@ const Payment = () => {
                   className="checked:text-indigo-500 focus:ring-0"
                 />
               </label>
+              
             ))}
-
-            <div className="pt-4 ml-50 ">
-              <p className="text-lg font-medium text-gray-700 flex gap-1">
-                Price: <CircleDollarSign /> {total.toFixed(2)}
-              </p>
-              <p className="text-lg font-medium text-yellow-700 flex gap-1">
-                Discount: <CircleDollarSign /> {discount.toFixed(2)}
-              </p>
-              <p className="text-2xl font-bold text-green-600 flex gap-1">
-                Total: <CircleDollarSign /> {finalAmount.toFixed(2)}
-              </p>
             </div>
-
-            <button
-              className="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl"
-              onClick={cconfirmpayment}
-            >
-              Confirm Order and Pay
-            </button>
           </div>
         </div>
       )}

@@ -6,8 +6,6 @@ import { CircleDollarSign } from 'lucide-react';
 import { TbZoomReset } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
 
-
-
 const Products = () => {
   const navigate = useNavigate();
 
@@ -33,7 +31,6 @@ const Products = () => {
       })
       .finally(() => setLoading(false));
   }, []);
-
 
   useEffect(() => {
     let productFiltered = data;
@@ -146,13 +143,13 @@ const Products = () => {
                 {error}
               </div>
             ) : (
-              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-1  xl:grid-cols-3">
+              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-1 border-3 border-gray-500 xl:grid-cols-3">
                 {filteredData.map((item) => {
                   const discount = (item.price * 0.1).toFixed(1); 
                   const finalPrice = (item.price - discount).toFixed(1); 
 
                   return (
-                    <div key={item.id} className="hover:shadow-lg my-5 hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-gray-50 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
+                    <div key={item.id} className="hover:shadow-lg my-5 hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
                       <Link to={`/products/${item.id}`}>
                         <div className="aspect-w-10 aspect-h-6">
                           <img
