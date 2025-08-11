@@ -3,11 +3,7 @@ import { CircleDollarSign } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { CgMathMinus } from "react-icons/cg";
 import { CgMathPlus } from "react-icons/cg";
-import {
-  getCartItems,
-  removeFromCartApi,
-  updateCartQuantity
-} from '../../Utils/api';
+import {getCartItems,removeFromCartApi,updateCartQuantity} from '../../Utils/api';
 
 const Cart = () => {
 

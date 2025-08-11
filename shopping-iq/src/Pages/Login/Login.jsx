@@ -103,7 +103,7 @@ const Login = () => {
             </div>
           </div>
         ) : (
-          <>
+          <>task
             <div className="w-full max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
               <div className="flex flex-col items-center p-6 justify-items-center">
                 <img className="w-20 h-20 mb-4" src={Logo} alt="Logo" />
@@ -159,7 +159,7 @@ const Login = () => {
 
                 <p className="text-sm text-red-700 dark:text-red-700">
                   Don’t have an account? 
-                  <span onClick={() => navigate('/Register')} className="text-blue-700 underline cursor-pointer ml-1">
+                  <span onClick={() => navigate('/Register')} className="text-blue-500 underline cursor-pointer ml-1">
                     Register
                   </span>
                 </p>
