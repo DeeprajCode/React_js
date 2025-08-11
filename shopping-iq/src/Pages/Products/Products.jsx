@@ -126,9 +126,18 @@ const Products = () => {
                   setCategory('');
                   setPriceRange('');
                 }}
-                className="bg-red-500 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600"
-              > <TbZoomReset className="mt-1" />
-                Reset Products
+                className="bg-red-500 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 cursor-pointer bg-gradient-to-b from-red-500 to red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
+              > 
+              <div className="relative overflow-hidden">
+                <p className="flex gap-1 group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                  <TbZoomReset className="mt-1"/>
+                  Reset Products
+                </p>
+                <p className="absolute flex gap-1 top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                  <TbZoomReset className="mt-1"/>
+                  Reset Products
+                </p>
+              </div>
               </button>
             </div>
 
@@ -149,7 +158,7 @@ const Products = () => {
                   const finalPrice = (item.price - discount).toFixed(1); 
 
                   return (
-                    <div key={item.id} className="hover:shadow-lg my-5 hover:shadow-indigo-600/60 transition-shadow duration-500 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
+                    <div key={item.id} className=" hover:shadow-lg my-5 hover:shadow-indigo-600 transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
                       <Link to={`/products/${item.id}`}>
                         <div className="aspect-w-10 aspect-h-6">
                           <img

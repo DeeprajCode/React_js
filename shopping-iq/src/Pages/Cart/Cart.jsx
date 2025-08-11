@@ -116,7 +116,7 @@ const Cart = () => {
                 <button onClick={() => remove(item.productId)} className="group relative flex h-14 w-14 flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-red-800 bg-red-400 hover:bg-red-600">
                   <svg
                     viewBox="0 0 1.625 1.625"
-                    class="absolute -top-7 fill-white delay-100 group-hover:top-6 group-hover:animate-[spin_1.4s] group-hover:duration-1000"
+                    className="absolute -top-7 fill-white delay-100 group-hover:top-6 group-hover:animate-[spin_1.4s] group-hover:duration-1000"
                     height="15"
                     width="15"
                   >
@@ -129,7 +129,7 @@ const Cart = () => {
                     width="16"
                     fill="none"
                     viewBox="0 0 39 7"
-                    class="origin-right duration-500 group-hover:rotate-90"
+                    className="origin-right duration-500 group-hover:rotate-90"
                   >
                     <line stroke-width="4" stroke="white" y2="5" x2="39" y1="5"></line>
                     <line
@@ -141,7 +141,7 @@ const Cart = () => {
                       x1="12"
                     ></line>
                   </svg>
-                  <svg width="16" fill="none" viewBox="0 0 33 39" class="">
+                  <svg width="16" fill="none" viewBox="0 0 33 39" className="">
                     <mask fill="white" id="path-1-inside-1_8_19">
                       <path d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"></path>
                     </mask>
@@ -168,12 +168,15 @@ const Cart = () => {
 
           {!userData ? ( 
             <>
-              <button onClick={() => navigate('/Login')} class="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
-                <div class="relative overflow-hidden">
-                  <p class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+            <div className='text-red-800'>
+              <span>You must be login or create an account to add cart products for payment process...</span>
+            </div>
+              <button onClick={() => navigate('/Login')} className="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                <div className="relative overflow-hidden">
+                  <p className="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                     Login
                   </p>
-                  <p class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                  <p className="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                     Login
                   </p>
                 </div>

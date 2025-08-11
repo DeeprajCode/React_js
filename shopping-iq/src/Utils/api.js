@@ -44,7 +44,7 @@ export const addcartapi = async (productId, quantity = 1) => {
 // Remove item from cart
 export const removeFromCartApi = (productId) => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  cart = cart.filter(item => item.productId !== productId); 
+  cart = cart.filter(item => item.productId !== productId);
   localStorage.setItem('cart', JSON.stringify(cart));
 };
 

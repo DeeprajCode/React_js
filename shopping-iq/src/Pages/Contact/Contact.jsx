@@ -89,16 +89,16 @@ const Contact = () => {
     <>
       <div className="bg-gray-50 dark:bg-gray-900" id="contact">
         { loading ? (
-          <div class="flex-col gap-4 w-full flex items-center justify-center">
-            <div class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
-              <div class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
+          <div className="flex-col gap-4 w-full flex items-center justify-center">
+            <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+              <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
             </div>
           </div>
       ) : (
         <>
           <div className='my-2'>
-            <button onClick={() => navigate('/')} class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button" >
-              <div class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
+            <button onClick={() => navigate('/')} className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button" >
+              <div className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 1024 1024"
@@ -115,7 +115,7 @@ const Contact = () => {
                   ></path>
                 </svg>
               </div>
-              <p class="translate-x-2">Go Back</p>
+              <p className="translate-x-2">Go Back</p>
             </button>
           </div>
 
@@ -148,48 +148,48 @@ const Contact = () => {
               </div>
 
               <div className='flex item-center  gap-6' >
-                <div class="group relative inline-block mb-8">
-                  <button class="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
+                <div className="group relative inline-block mb-8">
+                  <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
                     <Instagram/>
                   </button>
                   <span
-                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Instagram</span>
                 </div>
 
-                <div class="group relative inline-block ">
-                  <button class="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
+                <div className="group relative inline-block ">
+                  <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
                     <Twitter/>
                   </button>
                   <span
-                    class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Twitter</span>
                 </div>
 
-                <div class="group relative inline-block mb-8">
-                  <button class="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
+                <div className="group relative inline-block mb-8">
+                  <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
                     <Facebook/>
                   </button>
                   <span
-                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Facebook</span>
                 </div>
 
-                <div class="group relative inline-block mb-8">
-                  <button class="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
+                <div className="group relative inline-block mb-8">
+                  <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
                     <Linkedin/>
                   </button>
                   <span
-                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Linkedin</span>
                 </div>
 
-                <div class="group relative inline-block mb-8 h-10 w-10">
-                  <button class="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
+                <div className="group relative inline-block mb-8 h-10 w-10">
+                  <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
                     <Chrome />
                   </button>
                   <span
-                    class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-white bg-gray-900 rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
+                    className="absolute -bottom-10 left-1/3 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100"
                   >Google</span>
                 </div>
               </div>
@@ -260,12 +260,12 @@ const Contact = () => {
                   {errors.message && <p className="mt-1 text-red-600 text-sm">{errors.message}</p>}
                 </div>
 
-                <button type='submit' class="w-full cursor-pointer bg-gradient-to-b from-blue-700 to-blue-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
-                  <div class="relative overflow-hidden flex justify-center">
-                    <p class="group-hover:-translate-y-7 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                <button type='submit' className="w-full cursor-pointer bg-gradient-to-b from-blue-700 to-blue-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                  <div className="relative overflow-hidden flex justify-center">
+                    <p className="group-hover:-translate-y-7 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                       <FiSend className='mt-1' />  Send message
                     </p>
-                    <p class="absolute top-7 group-hover:top-0 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]" >
+                    <p className="absolute top-7 group-hover:top-0 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]" >
                       <FiSend className='mt-1' /> Send message
                     </p>
                   </div>

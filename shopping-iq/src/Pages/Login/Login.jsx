@@ -145,13 +145,21 @@ const Login = () => {
                   {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
                 </div>
 
-                <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-                  Login
+
+                <button type='submit' class="w-full cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                  <div class="relative overflow-hidden">
+                    <p class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                      Login
+                    </p>
+                    <p class="absolute top-7 left-[44%] group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                      Login
+                    </p>
+                  </div>
                 </button>
 
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-red-700 dark:text-red-700">
                   Don’t have an account? 
-                  <span onClick={() => navigate('/Register')} className="text-blue-600 underline cursor-pointer ml-1">
+                  <span onClick={() => navigate('/Register')} className="text-blue-700 underline cursor-pointer ml-1">
                     Register
                   </span>
                 </p>

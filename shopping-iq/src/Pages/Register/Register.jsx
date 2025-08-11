@@ -268,7 +268,7 @@ const Register = () => {
                   id="phone"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Enter your mobile phone"
+                  placeholder="Mobile number..."
                   className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.phone
                     ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
@@ -277,13 +277,20 @@ const Register = () => {
                 {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
               </div>
 
-              <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-                Register
+              <button type='submit' className='w-full cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group'>
+                <div className='relative overflow-hidden'>
+                  <p className='group-hover:-translate-y-7 duration-[1.125s] ease-[cubin-bezier(0.19,1,0.22,1)]'>
+                    Register
+                  </p>
+                  <p className='absolute top-7 left-[41%] group-hover:top-0 duration-[1.25s] ease-[cubic-bezier(0.19,1,0.22,1)]'>
+                    Register
+                  </p>
+                </div>
               </button>
 
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Already have an account?{' '}
-                <span onClick={() => navigate("/login")} className="text-blue-600 cursor-pointer underline">Login</span>
+              <p className="text-sm text-red-500 dark:text-gray-400">
+                Already have an account?{'  '}
+                <span onClick={() => navigate("/login")} className="text-blue-700 cursor-pointer underline">Login</span>
               </p>
             </form>
           </div>
