@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { products } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js';
-import { CircleDollarSign } from 'lucide-react';
+import { CircleDollarSign, UserStar } from 'lucide-react';
 import { TbZoomReset } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
+
 
 const Products = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Products = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
 
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
@@ -88,7 +89,7 @@ const Products = () => {
           <main className="p-6 sm:p-8 overflow-y-auto">
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5 ">
-              
+
               <input
                 type="text"
                 placeholder="Search Products..."
@@ -127,17 +128,17 @@ const Products = () => {
                   setPriceRange('');
                 }}
                 className="bg-red-500 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 cursor-pointer bg-gradient-to-b from-red-500 to red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
-              > 
-              <div className="relative overflow-hidden">
-                <p className="flex gap-1 group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
-                  <TbZoomReset className="mt-1"/>
-                  Reset Products
-                </p>
-                <p className="absolute flex gap-1 top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
-                  <TbZoomReset className="mt-1"/>
-                  Reset Products
-                </p>
-              </div>
+              >
+                <div className="relative overflow-hidden">
+                  <p className="flex gap-1 group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                    <TbZoomReset className="mt-1" />
+                    Reset Products
+                  </p>
+                  <p className="absolute flex gap-1 top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                    <TbZoomReset className="mt-1" />
+                    Reset Products
+                  </p>
+                </div>
               </button>
             </div>
 
@@ -152,19 +153,19 @@ const Products = () => {
                 {error}
               </div>
             ) : (
-              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-1 border-3 border-gray-500 xl:grid-cols-3">
+              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 border-3 border-gray-500 xl:grid-cols-2">
                 {filteredData.map((item) => {
-                  const discount = (item.price * 0.1).toFixed(1); 
-                  const finalPrice = (item.price - discount).toFixed(1); 
+                  const discount = (item.price * 0.1).toFixed(1);
+                  const finalPrice = (item.price - discount).toFixed(1);
 
                   return (
-                    <div key={item.id} className=" hover:shadow-lg my-5 hover:shadow-indigo-600 transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
+                    <div key={item.id} className=" hover:shadow-lg my-5 border-l-4 border-blue-600 hover:shadow-indigo-600 transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
                       <Link to={`/products/${item.id}`}>
                         <div className="aspect-w-10 aspect-h-6">
                           <img
                             src={item.image}
                             alt={item.title}
-                            className="h-56 w-full object-contain bg-white"
+                            className="h-56 px-3 w-full object-contain bg-white"
                           />
                         </div>
                         <div className="p-5 flex flex-col flex-1">
@@ -176,15 +177,18 @@ const Products = () => {
                           </div>
 
                           <div className="grid grid-flow">
-                            <div className="flex gap-1 text-lg font-semibold text-gray-800 dark:text-white">
-                              Price : <p className='line-through flex gap-1'><CircleDollarSign/>{item.price}</p>
+                            <div className="flex gap-1 font-semibold text-red-700 dark:text-white">
+                              Price : <p className='line-through flex gap-1'><CircleDollarSign className="line-through" />{item.price}</p>
                             </div>
 
-                            <div className="text-sm font-semibold text-green-600 my-1 flex  gap-1">
-                              Discount : <p className='flex gap-1'> <CircleDollarSign/> {finalPrice} (10% off) </p>
+                            <div className="text-lg font-semibold text-green-600 my-1 flex  gap-1">
+                              Discount : <p className='flex gap-1'> <CircleDollarSign /> {finalPrice} (10% off) </p>
                             </div>
-                            <div className="flex text-md gap-1 bg-yellow-150  mr-2 font-medium text-yellow-500 text-yellow-600 w-15 w-28">
-                             Rating : <p className='flex gap-2'><FaStar className='mt-1'/>{item.rating?.rate ?? 'N/A'}</p>
+                            <div className="flex text-md mb-2 gap-1 bg-yellow-150  mr-2 font-medium text-yellow-600/100">
+                              Rating : <p className='flex gap-2'><FaStar className='mt-1' />{item.rating?.rate ?? 'N/A'}</p>
+                            </div>
+                            <div className="flex text-md gap-1 mr-2 font-medium text-red-700 w-15 ">
+                              Reviews : <p className="flex gap-1"><UserStar className="mb-1" />{item.rating?.count}</p>
                             </div>
                           </div>
                         </div>

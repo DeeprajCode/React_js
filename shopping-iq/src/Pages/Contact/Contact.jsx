@@ -194,10 +194,10 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-
-            <div>
+            
+            <div className='border-l-4 border-blue-600 rounded-xl'>
               <form onSubmit={contect}>
-                <div className="mb-5">
+                <div className="mb-5 ml-5">
                   <input
                     type="text"
                     placeholder="Full name..."
@@ -213,7 +213,7 @@ const Contact = () => {
                   {errors.fullname && <p className="mt-1 text-red-600 text-sm">{errors.fullname}</p>}
                 </div>
 
-                <div className="mb-5">
+                <div className="mb-5 ml-5">
                   <input
                     type="email"
                     placeholder="Email..."
@@ -229,7 +229,7 @@ const Contact = () => {
                   {errors.email && <p className="mt-1 text-red-600 text-sm">{errors.email}</p>}
                 </div>
 
-                <div className='mb-5'>
+                <div className='mb-5 ml-5'>
                   <input 
                     type="tel"
                     placeholder='Phone number...'
@@ -245,7 +245,7 @@ const Contact = () => {
                   {errors.phone && <p className='mt-1 text-red-600 text-sm'>{errors.phone}</p>}
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-3 ml-5">
                   <textarea
                     placeholder="Give your message..."
                     id="message"
@@ -260,7 +260,7 @@ const Contact = () => {
                   {errors.message && <p className="mt-1 text-red-600 text-sm">{errors.message}</p>}
                 </div>
 
-                <button type='submit' className="w-full cursor-pointer bg-gradient-to-b from-blue-700 to-blue-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                <button type='submit' className="w-[96%] ml-5 cursor-pointer bg-gradient-to-b from-blue-700 to-blue-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
                   <div className="relative overflow-hidden flex justify-center">
                     <p className="group-hover:-translate-y-7 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                       <FiSend className='mt-1' />  Send message

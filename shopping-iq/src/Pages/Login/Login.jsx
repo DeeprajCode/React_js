@@ -103,7 +103,7 @@ const Login = () => {
             </div>
           </div>
         ) : (
-          <>task
+          <>
             <div className="w-full max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
               <div className="flex flex-col items-center p-6 justify-items-center">
                 <img className="w-20 h-20 mb-4" src={Logo} alt="Logo" />

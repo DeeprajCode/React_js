@@ -81,7 +81,7 @@ const Header = ({ sidebar }) => {
                   <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </IconButton>
-              <span className="text-red-700 absolute -bottom-7 left-[210%] -translate-x-[90%] z-10 origin-left scale-0 px-4 rounded-lg py-2 text-sm font-bold transition-all duration-400 ease-in-out group-hover:scale-100 whitespace-nowrap">
+              <span className="text-red-700 absolute -bottom-7 left-[200%] -translate-x-[90%] z-10 origin-left scale-0 px-4 rounded-lg py-2 text-sm font-bold transition-all duration-400 ease-in-out group-hover:scale-100 whitespace-nowrap">
                 {userData.firstName} {userData.lastName}
               </span>
             </div>

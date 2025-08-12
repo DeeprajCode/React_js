@@ -120,18 +120,18 @@ const Payment = () => {
           </div>
         </div>
 
-        <div className="flex-1 p-4 rounded-lg shadow bg-slate-50">
-          <p className="text-lg font-medium text-gray-700 flex gap-1 mb-2">
-            Price: <CircleDollarSign /> {total.toFixed(2)}
+        <div className="flex-1 p-4 rounded-lg shadow bg-slate-50 border-l-4 border-blue-700">
+          <p className="text-lg font-medium text-gray-700 flex gap-1 mb-2 text-red-700">
+            Price: <span className='flex gap-0.5 line-through'><CircleDollarSign className='mt-0.5'/> {total.toFixed(2)}</span>
           </p>
           <p className="text-lg font-medium text-yellow-700 flex gap-1 mb-2">
-            Discount: <CircleDollarSign /> {discount.toFixed(2)}
+            Discount: <span className='flex gap-0.5'><CircleDollarSign className='mt-0.5'/> {discount.toFixed(2)}</span>
           </p>
-          <p className="text-2xl font-bold text-green-600 flex gap-1 mb-4">
-            Total: <CircleDollarSign /> {finalAmount.toFixed(2)}
+          <p className="text-2xl font-bold text-green-700 flex gap-1 mb-4">
+            Total: <span className='flex gap-0.5'><CircleDollarSign className='mt-1'/>{finalAmount.toFixed(2)}</span>
           </p>
 
-          <button onClick={cconfirmpayment} type='submit' className='cursor-pointer bg-gradient-to-b from-green-500 to-green-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group'>
+          <button onClick={cconfirmpayment} type='submit' className='cursor-pointer bg-gradient-to-b from-green-600 to-green-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group'>
             <div className='relative overflow-hidden'>
               <p className='group-hover:-translate-y-7 duration-[1.125s] ease-[cubin-bezier(0.19,1,0.22,1)]'>
                   Confirm Payment

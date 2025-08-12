@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { CircleDollarSign } from 'lucide-react';
+import { CircleDollarSign, CircleUser, Phone, AtSign, Wallet, MapPinHouse } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getCartItems } from '../../Utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { RiBillLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 
@@ -78,6 +77,7 @@ const Bill = () => {
             navigate('/');
         }, 1500);
     };
+    console.log("🚀 ~ cartItems:", cartItems)
 
     const placeOrder = () => {        
         toast.success('Thank you for your first purchase! We are so glad you found what you were looking for. We appreciate you choosing us and hope you love your new products.', {
@@ -141,42 +141,40 @@ const Bill = () => {
                                         <th className=" border-2 px-2 py-1">Product</th>
                                         <th className="border px-2 py-1">Quantity</th>
                                         <th className="border px-2 py-1">Price</th>
-                                        <th className="border px-2 py-1">Total</th>
+                                        <th className='border px-2 py-1'>Total</th>
                                     </tr>
                                 </thead>
-                                <tbody className="w-full border-gray-900">
+                                <tbody className="w-full">
                                     {cartItems.map((item, idx) => (
                                         <tr key={idx}>
-                                            <td className="flex border px-2 py-1 gap-1">
-                                                <img src={item.image} alt={item.title} className="w-20 h-20 mt-5 object-contain" />
-                                                <p className="mt-9 mr-2 ml-2">{item.title}</p>
+                                            <td className="flex border px-2 py-1 gap-0.5">
+                                                <img src={item.image} alt={item.title} className="w-20 h-20 mt-10 object-contain" />
+                                                <p className="text-sm mt-9 mr-2 ml-2">{item.title}</p>
                                             </td>
                                             <td className="border px-5 py-3 text-center">{item.quantity}</td>
-                                            <td className=" border px-5 py-10 "> {item.price.toFixed(2)}</td>
-                                            <td className="border px-2 py-1  text-green-700"> {(item.price * item.quantity).toFixed(2)}</td>
+                                            <td className="font-bold border px-3  py-10 text-red-600 line-through "> {item.price.toFixed(2)}</td>
+                                            <td className='font-bold border px-5 py-10 text-green-700'>{((item.price - item.price * 0.1) * item.quantity ).toFixed(2)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </div>
                         </div>
 
-                        <div className="ml-35">
-                            <h2 className="flex text-2xl font-bold mb-6"><RiBillLine className='mt-1 gap-2' /> Order Bill</h2>
-
-                            <div className="mb-6">
-                                <h3 className=" mb-2 border-gray-900 text-xl font-semibold">Shipping Details</h3>
-                                <p><strong>Name:</strong> {userData.firstName + " " + userData.lastName}</p>
-                                <p><strong>Phone:</strong> {userData.phone}</p>
-                                <p><strong>Email:</strong> {userData.email}</p>
-                                <p><strong>Payment : </strong>{method}</p>
-                                <p><strong>Address:</strong> {userData.address['address'] + ", " + userData.address['city'] + ", " + userData.address["state"]}</p>
+                        <div className="ml-35 border-l-4 border-blue-600 px-10 py-2 rounded-xl">
+                            <h2 className='flex gap-1 text-2xl font-semibold'> Shipping Details</h2>
+                            <div className="mb-5 mt-5">
+                                <p className='flex gap-1 mb-3'><strong className='flex gap-1'><CircleUser/> :</strong> <span>{userData.firstName + " " + userData.lastName}</span></p>
+                                <p className='flex gap-1 mb-3'><strong className='flex gap-1'><Phone/> : </strong> <span>{userData.phone}</span></p>
+                                <p className='flex gap-1 mb-3'><strong className='flex gap-1'><AtSign/> :</strong> <span>{userData.email}</span></p>
+                                <p className='flex gap-1 mb-3'><strong className='flex gap-1'><Wallet/> : </strong> <span>{method}</span></p>
+                                <p className='flex gap-1'><strong className='flex gap-1'><MapPinHouse/> :</strong> <span>{userData.address['address'] + ", " + userData.address['city'] + ", " + userData.address['state']}</span></p>
                             </div>
 
                             <div className="mt-6 bg-gray-50 border p-4 rounded-lg shadow-md">
-                                <p className="text-gray-800 flex gap-1">Price: <span className="font-medium flex"><CircleDollarSign /> {total.toFixed(2)}</span></p>
+                                <p className="text-red-600 flex gap-1">Price: <span className="font-medium flex line-through"><CircleDollarSign /> {total.toFixed(2)}</span></p>
                                 <p className="text-yellow-700 gap-1 flex">Discount price : <span className="font-medium flex"><CircleDollarSign /> {discount.toFixed(2)} (10%) </span></p>
                                 <p className="text-green-700 flex gap-1 text-lg font-bold">
-                                    Total price : <CircleDollarSign className='mt-1' />  {finalAmount.toFixed(2)}
+                                    Total price : <span className='flex gap-1'><CircleDollarSign className='mt-1'/>{finalAmount.toFixed(2)}</span>
                                 </p>
                             </div>
 
@@ -191,7 +189,7 @@ const Bill = () => {
                                 </div>
                             </button>
 
-                            <button type='button' onClick={placeOrder } className="cursor-pointer ml-5 bg-gradient-to-b from-green-500 to-green-600 px-6 py-3 rounded-xl border-none text-white font-medium group">
+                            <button type='button' onClick={placeOrder } className="cursor-pointer ml-5 bg-gradient-to-b from-green-600 to-green-700 px-6 py-3 rounded-xl border-none text-white font-medium group">
                                 <div className="relative overflow-hidden">
                                     <p className="group-hover:-translate-y-7 flex gap-1 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                                         <TbTruckDelivery className='mt-1 gap-2' />Place order

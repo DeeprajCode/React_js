@@ -12,6 +12,7 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
 
+
   useEffect(() => {
     const data = localStorage.getItem('userData');
     console.log("🚀 ~ Cart ~ data:", data)
@@ -37,10 +38,13 @@ const Cart = () => {
     updateCartQuantity(id, quantity);
     setCartItems(getCartItems());
   };
-
+  console.log("🚀 ~ QuantityChange ~ QuantityChange:", QuantityChange)
+  
+ 
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const discount = total * 0.1;
-  const finalAmount = total - discount;
+  const totaldiscount = total * 0.1;
+  const finalAmount = total - totaldiscount.toFixed(2);
+  console.log("🚀 ~ Cart ~ finalAmount:", finalAmount)
 
   return (  
     <>
@@ -61,9 +65,9 @@ const Cart = () => {
 
         <div className="flex flex-col items-center justify-center w-full py-20">
           <div className="relative">
-            <div className="w-20 h-20 border-4 border-transparent border-t-blue-500 rounded-full animate-spin"></div>
             <div className="absolute top-2 left-2 w-16 h-16 border-4 border-transparent border-t-red-500 rounded-full animate-spin"></div>
           </div>
+            <div className="w-20 h-20 border-4 border-transparent border-t-blue-500 rounded-full animate-spin"></div>
         </div>
 
       ) : cartItems.length === 0 ? (
@@ -75,13 +79,14 @@ const Cart = () => {
         <>
           <div className="max-w-4xl mx-auto space-y-6">
             {cartItems.map((item) => (
-              <div key={item.productId} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex items-center">
+              <div key={item.productId} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex items-center border-l-4 border-blue-600">
                 <img src={item.image} alt={item.title} className="w-24 h-24 object-contain" />
 
                   <div className="ml-4 flex-1">
                     <h2 className="text-lg font-semibold">{item.title}</h2>
-                    <p className='flex gap-1 '> Price:  <CircleDollarSign /> {item.price}</p>
-
+                    <p className='flex gap-0.5 font-bold text-red-700'> Price: <span className='flex line-through'><CircleDollarSign/> {item.price.toFixed(2)}</span></p>
+                    <p className='flex gap-0.5 font-bold text-green-800'>Discount price : <CircleDollarSign/> {((item.price - item.price * 0.1) * item.quantity).toFixed(2)} (10% off) </p>
+                    
                     <div className="flex items-center mt-2">
                       <button onClick={() => QuantityChange(item.productId, item.quantity - 1)}
                         className={`px-2 py-1 rounded ${item.quantity <= 1
@@ -151,14 +156,14 @@ const Cart = () => {
           ))}
 
           <div className="pt-4">
-            <p className="text-lg font-medium text-gray-700 dark:text-gray-200 flex gap-1">
-              Price: <p className='flex gap-1 line-through'> <CircleDollarSign /> {total.toFixed(2)} </p>
+            <p className="text-lg font-medium text-red-700 dark:text-red-800 flex gap-1">
+              Price: <p className='flex gap-1 line-through'> <CircleDollarSign className='mt-0.5'/> {total.toFixed(2)} </p>
             </p>
             <p className="text-lg font-medium text-yellow-700 flex gap-1">
-              Discount price: <CircleDollarSign /> {discount.toFixed(2)}
+              Discount price: <CircleDollarSign className='mt-0.5'/> {totaldiscount.toFixed(2)}
             </p>
             <p className="text-2xl font-bold text-green-600 flex gap-1">
-              Total price: <CircleDollarSign /> {finalAmount.toFixed(2)}
+              Total price: <CircleDollarSign className='mt-1' /> {finalAmount.toFixed(2)}
             </p>
           </div>
 
