@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCartItems, addtopayment } from '../../Utils/api';
 import { useNavigate } from 'react-router-dom';
-import { CircleDollarSign, icons } from 'lucide-react';
+import { TbCurrencyDollar } from "react-icons/tb";
 import { FaGooglePay, FaApplePay, FaCreditCard } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
 import { toast } from 'react-toastify';
@@ -122,13 +122,13 @@ const Payment = () => {
 
         <div className="flex-1 p-4 rounded-lg shadow bg-slate-50 border-l-4 border-blue-700">
           <p className="text-lg font-medium text-gray-700 flex gap-1 mb-2 text-red-700">
-            Price: <span className='flex gap-0.5 line-through'><CircleDollarSign className='mt-0.5'/> {total.toFixed(2)}</span>
+            Price: <span className='flex gap-0.5 line-through'><TbCurrencyDollar className='mt-1.5'/> {total.toFixed(2)}</span>
           </p>
           <p className="text-lg font-medium text-yellow-700 flex gap-1 mb-2">
-            Discount: <span className='flex gap-0.5'><CircleDollarSign className='mt-0.5'/> {discount.toFixed(2)}</span>
+            Discount price: <span className='flex gap-0.5'><TbCurrencyDollar className='mt-1.5'/> {discount.toFixed(2)}</span>
           </p>
           <p className="text-2xl font-bold text-green-700 flex gap-1 mb-4">
-            Total: <span className='flex gap-0.5'><CircleDollarSign className='mt-1'/>{finalAmount.toFixed(2)}</span>
+            Total price: <span className='flex gap-0.5'><TbCurrencyDollar className='mt-1'/>{finalAmount.toFixed(2)}</span>
           </p>
 
           <button onClick={cconfirmpayment} type='submit' className='cursor-pointer bg-gradient-to-b from-green-600 to-green-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group'>

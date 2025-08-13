@@ -104,7 +104,7 @@ const Login = () => {
           </div>
         ) : (
           <>
-            <div className="w-full max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
+            <div className="w-full max-w-md bg-white border-l-4 border-blue-500 rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
               <div className="flex flex-col items-center p-6 justify-items-center">
                 <img className="w-20 h-20 mb-4" src={Logo} alt="Logo" />
                   <h1 className="text-3xl font-extrabold bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-500 bg-clip-text text-transparent mb-6">
@@ -122,9 +122,9 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email..."
-                    className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
-                      ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
-                      : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                    className={`focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
+                      ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                      : 'border-gray-300 placeholder-gray-500 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                       } text-gray-900`}
                   />
                   {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
@@ -137,8 +137,8 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password..."
-                    className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
-                      ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                    className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
+                      ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                       : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                     } text-gray-900`}
                   />

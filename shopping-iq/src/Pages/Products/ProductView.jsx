@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../../Utils/api';
 import { addcartapi } from '../../Utils/api'
-import { CircleDollarSign, UserStar } from 'lucide-react';
+import { UserStar } from 'lucide-react';
+import { TbCurrencyDollar } from "react-icons/tb";
 import { toast } from 'react-toastify';
 import { FaStar } from "react-icons/fa";
 
@@ -111,10 +112,10 @@ const ProductView = () => {
                     <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
                     <p className="text-gray-700 dark:text-gray-300 mb-4">{product.description}</p>
                     <p className=" mb-1 font-semibold text-red-700 dark:text-white flex gap-1">
-                      Price :<span className='flex gap-1 line-through'><CircleDollarSign/>{product.price}</span>
+                      Price :<span className='flex gap-1 line-through'><TbCurrencyDollar className='mt-1'/>{product.price}</span>
                     </p>
-                    <p className="text-xl font-bold text-green-600 flex gap-1">
-                      Discount Price: <CircleDollarSign className='mt-0.5'/>{finalPrice} (10% off)
+                    <p className="text-xl font-bold text-green-700 flex gap-1">
+                      Discount Price: <TbCurrencyDollar className='mt-1'/>{finalPrice} (10%   off)
                     </p>
                     <p className="flex text-md gap-1 bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 h-15 w-28 ">
                       Rating: <FaStar className='mt-1' /> {product.rating?.rate}

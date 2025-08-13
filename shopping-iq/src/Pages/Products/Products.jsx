@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { products } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js';
-import { CircleDollarSign, UserStar } from 'lucide-react';
+import { UserStar } from 'lucide-react';
+import { TbCurrencyDollar } from "react-icons/tb";
 import { TbZoomReset } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
 
@@ -159,13 +160,13 @@ const Products = () => {
                   const finalPrice = (item.price - discount).toFixed(1);
 
                   return (
-                    <div key={item.id} className=" hover:shadow-lg my-5 border-l-4 border-blue-600 hover:shadow-indigo-600 transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
+                    <div key={item.id} className=" hover:shadow-lg my-5 border-l-4 border-blue-600 hover:shadow-indigo-600  transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
                       <Link to={`/products/${item.id}`}>
-                        <div className="aspect-w-10 aspect-h-6">
+                        <div className="aspect-w-10 aspect-h-10">
                           <img
                             src={item.image}
                             alt={item.title}
-                            className="h-56 px-3 w-full object-contain bg-white"
+                            className="h-56 px-3 w-full mt-5 object-scale-down"
                           />
                         </div>
                         <div className="p-5 flex flex-col flex-1">
@@ -178,13 +179,13 @@ const Products = () => {
 
                           <div className="grid grid-flow">
                             <div className="flex gap-1 font-semibold text-red-700 dark:text-white">
-                              Price : <p className='line-through flex gap-1'><CircleDollarSign className="line-through" />{item.price}</p>
+                              Price : <p className='line-through flex gap-1'><TbCurrencyDollar className="line-through mt-1" />{item.price}</p>
                             </div>
 
-                            <div className="text-lg font-semibold text-green-600 my-1 flex  gap-1">
-                              Discount : <p className='flex gap-1'> <CircleDollarSign /> {finalPrice} (10% off) </p>
+                            <div className="text-lg font-semibold text-green-700 my-1 flex  gap-1">
+                              Discount : <p className='flex gap-1'> <TbCurrencyDollar className="mt-1.5"/> {finalPrice} (10% off) </p>
                             </div>
-                            <div className="flex text-md mb-2 gap-1 bg-yellow-150  mr-2 font-medium text-yellow-600/100">
+                            <div className="flex text-md mb-2 gap-1 bg-yellow-150  mr-2 font-medium text-yellow-700/100">
                               Rating : <p className='flex gap-2'><FaStar className='mt-1' />{item.rating?.rate ?? 'N/A'}</p>
                             </div>
                             <div className="flex text-md gap-1 mr-2 font-medium text-red-700 w-15 ">

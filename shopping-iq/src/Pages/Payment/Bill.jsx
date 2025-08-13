@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { CircleDollarSign, CircleUser, Phone, AtSign, Wallet, MapPinHouse } from 'lucide-react';
+import { CircleUser, Phone, AtSign, Wallet, MapPinHouse } from 'lucide-react';
+import { TbCurrencyDollar } from "react-icons/tb";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getCartItems } from '../../Utils/api';
 import { toast } from 'react-toastify';
@@ -135,32 +136,34 @@ const Bill = () => {
                         <>
                             <div className="grid mt-6 w-full gap-10 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                         <div>
-                            <div className="w-full ml-30">
-                                <thead className="bg-gray-400">
-                                    <tr className='border-gray-600 border-solid'>
-                                        <th className=" border-2 px-2 py-1">Product</th>
-                                        <th className="border px-2 py-1">Quantity</th>
-                                        <th className="border px-2 py-1">Price</th>
-                                        <th className='border px-2 py-1'>Total</th>
+                            <div className="w-full">
+                                <thead>
+                                    <tr>
+                                        <th className="px-2 py-1">Product</th>
+                                        <th className="px-2 py-1">Quantity</th>
+                                        <th className="px-2 py-1">Price</th>
+                                        <th className='px-2 py-1'>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody className="w-full">
                                     {cartItems.map((item, idx) => (
                                         <tr key={idx}>
-                                            <td className="flex border px-2 py-1 gap-0.5">
-                                                <img src={item.image} alt={item.title} className="w-20 h-20 mt-10 object-contain" />
-                                                <p className="text-sm mt-9 mr-2 ml-2">{item.title}</p>
+                                            <td className="flex px-4 py-3">
+                                                <span className='flex px-4 py-2 w-22 h-[150px] border-l-4 border-blue-500 rounded-xl'>
+                                                    <img src={item.image} alt={item.title} className="w-15 h-[100px]  mt-2  object-contain" />
+                                                    <p className="text-xs mt-3 ml-2 grid ">{item.title}</p>
+                                                </span>
                                             </td>
-                                            <td className="border px-5 py-3 text-center">{item.quantity}</td>
-                                            <td className="font-bold border px-3  py-10 text-red-600 line-through "> {item.price.toFixed(2)}</td>
-                                            <td className='font-bold border px-5 py-10 text-green-700'>{((item.price - item.price * 0.1) * item.quantity ).toFixed(2)}</td>
+                                            <td className="px-5 py-3 text-center">{item.quantity}</td>
+                                            <td className="font-bold px-3  py-10 text-red-600 line-through "> <span className='flex'><TbCurrencyDollar className='mt-1'/> {item.price.toFixed(2)}</span></td>
+                                            <td className='font-bold px-5 py-10 text-green-700'><span className='flex'><TbCurrencyDollar className='mt-1'/>{((item.price - item.price * 0.1) * item.quantity).toFixed(2)}</span></td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </div>
                         </div>
 
-                        <div className="ml-35 border-l-4 border-blue-600 px-10 py-2 rounded-xl">
+                        <div className="ml-35 border-l-4 border-blue-500 px-10 py-2 rounded-xl">
                             <h2 className='flex gap-1 text-2xl font-semibold'> Shipping Details</h2>
                             <div className="mb-5 mt-5">
                                 <p className='flex gap-1 mb-3'><strong className='flex gap-1'><CircleUser/> :</strong> <span>{userData.firstName + " " + userData.lastName}</span></p>
@@ -171,10 +174,10 @@ const Bill = () => {
                             </div>
 
                             <div className="mt-6 bg-gray-50 border p-4 rounded-lg shadow-md">
-                                <p className="text-red-600 flex gap-1">Price: <span className="font-medium flex line-through"><CircleDollarSign /> {total.toFixed(2)}</span></p>
-                                <p className="text-yellow-700 gap-1 flex">Discount price : <span className="font-medium flex"><CircleDollarSign /> {discount.toFixed(2)} (10%) </span></p>
+                                <p className="text-red-600 flex gap-1">Price: <span className="font-medium flex line-through gap-0.5"><TbCurrencyDollar  className='mt-1'/> {total.toFixed(2)}</span></p>
+                                <p className="text-yellow-600/100 gap-1 flex">Discount price : <span className="font-medium flex"><TbCurrencyDollar className='mt-1'/> {discount.toFixed(2)} (10%) </span></p>
                                 <p className="text-green-700 flex gap-1 text-lg font-bold">
-                                    Total price : <span className='flex gap-1'><CircleDollarSign className='mt-1'/>{finalAmount.toFixed(2)}</span>
+                                    Total price : <span className='flex gap-1'><TbCurrencyDollar className='mt-1.5'/>{finalAmount.toFixed(2)}</span>
                                 </p>
                             </div>
 

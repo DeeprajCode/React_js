@@ -146,7 +146,7 @@ const Register = () => {
           </div>
       ) : (
         <>
-          <div className="w-full max-w-md bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
+          <div className="w-full max-w-md bg-white rounded-lg border-l-4 border-blue-500 shadow-md dark:bg-gray-800 dark:border dark:border-gray-700">
             <div className="flex flex-col items-center p-6">
               <img className="w-18 h-20 mr-2" src={Logo} alt="Shopping logo" />
               <h1 className="text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-400 mb-6">
@@ -164,8 +164,8 @@ const Register = () => {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="First name..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.firstName
-                      ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 placeholder-gray-500 border-2 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.firstName
+                      ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                       : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                       } text-gray-900`}
                 />
@@ -179,8 +179,8 @@ const Register = () => {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Last name..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.lastName 
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.lastName 
+                    ? 'border-red-500 dark:border-red-500 placeholder-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   } text-gray-900`}
                 />
@@ -194,8 +194,8 @@ const Register = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email 
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email 
+                    ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   } text-gray-900`}
                 />
@@ -209,8 +209,8 @@ const Register = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
+                    ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   } text-gray-900`}
                 />
@@ -224,8 +224,8 @@ const Register = () => {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Address..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.address
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.address
+                    ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   }`}
                 />
@@ -239,8 +239,8 @@ const Register = () => {
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   placeholder="City..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.city
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.city
+                    ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   }`}
                 />
@@ -254,8 +254,8 @@ const Register = () => {
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   placeholder="State..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.state
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.state
+                    ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   }`}
                 />
@@ -269,8 +269,8 @@ const Register = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Mobile number..."
-                  className={`bg-gray-50 border rounded-lg block w-full p-2.5 dark:text-white ${errors.phone
-                    ? 'border-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                  className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.phone
+                    ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                     : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   }`}
                 />

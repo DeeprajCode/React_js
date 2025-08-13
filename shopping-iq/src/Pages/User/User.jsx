@@ -1,10 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Phone,
-  AtSign,
-  MapPinHouse,
-} from 'lucide-react';
+import {Phone, AtSign, MapPinHouse} from 'lucide-react';
 import userPrImage from '../User/userProfile.png'
 
 const UserProfile = () => {
@@ -62,12 +58,12 @@ const UserProfile = () => {
           </div>
           {!userData.image ? (
             <div className="flex-1 flex justify-center animate-float">
-            <img src={userPrImage} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />
-          </div>
+              <img src={userPrImage} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />
+            </div>
           ) : (
             <div className="flex-1 flex justify-center animate-float">
-            <img src={userData.image} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />
-          </div>
+              <img src={userData.image} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />
+            </div>
           )}
         </div>
       </section>
