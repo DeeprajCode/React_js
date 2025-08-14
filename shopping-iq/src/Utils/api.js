@@ -48,7 +48,7 @@ export const removeFromCartApi = (productId) => {
   localStorage.setItem('cart', JSON.stringify(cart));
 };
 
-// Update quantity the quantity of specific product
+// Update quantity item from cart
 export const updateCartQuantity = (productId, quantity) => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];   
   const item = cart.find(item => item.productId === productId);
