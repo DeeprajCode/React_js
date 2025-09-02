@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import React from 'react';
 import techLOGO from '../Aboutus/technology-image.png';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TbCurrencyDollar } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { CgMathMinus } from "react-icons/cg";
 import { CgMathPlus } from "react-icons/cg";
 import {getCartItems,removeFromCartApi,updateCartQuantity} from '../../Utils/api';

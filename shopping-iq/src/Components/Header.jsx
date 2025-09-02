@@ -1,23 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+'use client';
+import { useState, useEffect } from 'react';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import { MdOutlinePendingActions } from "react-icons/md";
+import { useRouter } from 'next/router';
 
-
-const Header = ({ sidebar }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
+export default function Header ({ sidebar }) {
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  const router = useRouter();
   const [userData, setUserData] = useState(null);
 
+
+  // useEffect(() => {
+  //   const data = localStorage.getItem('userData');
+  //   console.log("🚀 ~ Header ~ data:", data)
+  //   setUserData(data ? JSON.parse(data) : null);
+  // }, [location]);
+
   useEffect(() => {
-    const data = localStorage.getItem('userData');
-    console.log("🚀 ~ Header ~ data:", data)
-    setUserData(data ? JSON.parse(data) : null);
-  }, [location]);
+    if(typeof window !== 'undefiend');{
+      localStorage.getItem('userData', JSON.stringify(data))
+    }
+  }, [data])
 
   const logout = () => {
     localStorage.removeItem('userData');
     setUserData(null);
-    navigate('/Login');
+    router.push('/Login');
   };
 
   const IconButton = ({ onClick, children }) => (
@@ -40,7 +49,7 @@ const Header = ({ sidebar }) => {
       <div className="flex items-center space-x-4">
         {!userData ? (
           <>
-            <button onClick={() => navigate('/Login')} class="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+            <button onClick={() => router.push('/Login')} class="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
               <div class="relative overflow-hidden">
                 <p class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                   Login
@@ -51,32 +60,32 @@ const Header = ({ sidebar }) => {
               </div>
             </button>
 
-            <IconButton onClick={() => navigate('/Cart')}>
+            <IconButton onClick={() => router.push('/Cart')}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.186 1.705.707 1.705H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </IconButton>
 
-            <button onClick={() => navigate('/bill')} className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 w-8' >
+            <button onClick={() => router.push('/bill')} className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 w-8' >
               <MdOutlinePendingActions className='w-10 h-8'/>
             </button>
 
           </>
         ) : (
           <>
-            <IconButton onClick={() => navigate('/cart')}>
+            <IconButton onClick={() => router.push('/cart')}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.186 1.705.707 1.705H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </IconButton>
 
-            <button onClick={() => navigate('/bill')} className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 w-8'>
+            <button onClick={() => router.push('/bill')} className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 w-8'>
               <MdOutlinePendingActions  className='w-10 h-8' />
             </button>
             
 
             <div className="group relative">
-              <IconButton onClick={() => navigate('/User')}>
+              <IconButton onClick={() => router.push('/User')}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
@@ -102,5 +111,3 @@ const Header = ({ sidebar }) => {
     </header>
   );
 };
-
-export default Header;

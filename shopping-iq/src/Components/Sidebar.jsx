@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../Sidebar/laptop.png';
-import { products } from '../../Utils/api';
+import { products } from '../Utils/api';
 import { Home, Info, Phone, ShoppingBag } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const router = useRouter();
 
   useEffect(() => {
     products()
@@ -38,7 +41,7 @@ const Sidebar = () => {
           {menuItems.map(({ label, route, icon }) => (
             <li key={label}>
               <button
-                onClick={() => route && navigate(route)}
+                onClick={() => route && router.push(route)}
                 className="flex items-center gap-3 w-full text-left px-4 py-3 text-base hover:text-indigo-600 font-semibold text-gray-900 dark:text-white bg-gradient-to-r from-white via-gray-100 to-white dark:from-gray-700 dark:via-gray-800 dark:to-gray-700 rounded-xl shadow hover:bg-blue-900 hover:dark:bg-indigo-00 transition-all duration-300 transform hover:scale-105 shadow transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-indigo-600/100 transition-shadow duration-500  hover:shadow-lg transition-shadow duration-300 hover:scale-105 transition duration-500 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow duration-600 ">
                 {icon}
                 {label}

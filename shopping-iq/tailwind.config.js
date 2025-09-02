@@ -1,12 +1,12 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   content: [
-    "./src/**/*.{html,js,jsx,ts,tsx}", // adjust paths to your project files
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}", // if you're using the app directory
   ],
   theme: {
-    extend: {
-      // customizations here
-    },
+    extend: {},
   },
   plugins: [],
 }
