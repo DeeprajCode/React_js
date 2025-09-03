@@ -5,15 +5,16 @@ import userPrImage from '@/public/images/userProfile.png'
 import Image from 'next/image';
 
 const UserProfile = () => {
+
   const router = useRouter();
-  const data = localStorage.getItem('userData')
-  const userData = JSON.parse(data);
+  const data = typeof window !== 'undefined' ? localStorage.getItem('userData') : null
+  const userData = data ? JSON.parse(data) : null;
   console.log("🚀 ~ UserProfile ~ userData:", userData)
 
   return (
     <>
       <button onClick={() => router.push('/')}
-        className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
+        className="ml-[2.5%] bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
         type="button"
       >
         <div

@@ -16,10 +16,9 @@ export const loginuser = async () => {
   return await response.json();
 };
 
-
 // Add item to cart
 export const addcartapi = async (productId, quantity = 1) => {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(typeof window !== 'undefined' ? localStorage.getItem('cart') : null) || [];
   const existingItem = cart.find(item => item.productId === productId);
   
   if (existingItem) {
@@ -43,14 +42,14 @@ export const addcartapi = async (productId, quantity = 1) => {
 
 // Remove item from cart
 export const removeFromCartApi = (productId) => {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(typeof window !== 'undefined' ? localStorage.getItem('cart') : null) || [];
   cart = cart.filter(item => item.productId !== productId);
   localStorage.setItem('cart', JSON.stringify(cart));
 };
 
 // Update quantity item from cart
 export const updateCartQuantity = (productId, quantity) => {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];   
+  let cart = JSON.parse(typeof window !== 'undefined' ? localStorage.getItem('cart') : null) || [];   
   const item = cart.find(item => item.productId === productId);
   if (item) {
     item.quantity = quantity;
@@ -60,12 +59,12 @@ export const updateCartQuantity = (productId, quantity) => {
 
 // Get all cart items
 export const getCartItems = () => {
-  return JSON.parse(localStorage.getItem('cart')) || [];
+  return JSON.parse(typeof window !== 'undefined' ? localStorage.getItem('cart') : null) || [];
 };
 
 //Add payment order to localstorage
 export const addtopayment = (orderData) => {
-  let payments = JSON.parse(localStorage.getItem('payments')) || [];
+  let payments = JSON.parse(typeof window !== 'undefined' ? localStorage.getItem('payments') : null) || [];
   payments.push(orderData);
   localStorage.setItem('payments', JSON.stringify(payments));
 }

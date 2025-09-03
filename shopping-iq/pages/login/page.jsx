@@ -52,7 +52,7 @@ const Login = () => {
         const apiuser = await loginuser();
         const apiUsers = apiuser?.users || [];
 
-        const localUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const localUsers = JSON.parse(typeof window !== 'undefined' ? localStorage.getItem("registeredUsers") : null) || [];
 
         const normalizedEmail = email.trim().toLowerCase();
         const normalizedPassword = password.trim();

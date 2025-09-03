@@ -16,7 +16,7 @@ const Header = ({ sidebar }) => {
         const storedData = localStorage.getItem('userData');
         setUserData(storedData ? JSON.parse(storedData) : null);
       }catch(error){
-        console.error("Error parsing user data from localStorage:", error);
+        console.error("Error for get user from localStorage", error);
         setUserData(null)
       }
     }
@@ -109,7 +109,7 @@ const Header = ({ sidebar }) => {
                     </svg>
                   </IconButton>
                 </Link>
-                <span className="text-red-700 absolute -bottom-7 left-[200%] -translate-x-[90%] z-10 origin-left scale-0 px-4 rounded-lg py-2 text-sm font-bold transition-all duration-400 ease-in-out group-hover:scale-100 whitespace-nowrap">
+                <span className="text-blue-600/90 absolute -bottom-7 left-[200%] -translate-x-[90%] z-10 origin-left scale-0 px-4 rounded-lg py-2 text-sm font-bold transition-all duration-400 ease-in-out group-hover:scale-100 whitespace-nowrap">
                   {userData.firstName} {userData.lastName}
                 </span>
               </div>

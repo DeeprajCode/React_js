@@ -94,7 +94,7 @@ const Register = () => {
         }
       };
       console.log("🚀 ~ register ~ newUser:", newUser)
-      const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+      const existingUsers = JSON.parse(typeof window !== 'undefined' ? localStorage.getItem("registeredUsers") : null) || []
 
       const userExists = existingUsers.some(user => user.email === newUser.email);
       if (userExists) {

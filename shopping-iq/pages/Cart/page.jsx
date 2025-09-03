@@ -15,7 +15,7 @@ const Cart = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem('userData');
+    const data = typeof window !== localStorage.getItem('userData');
     console.log("🚀 ~ Cart ~ data:", data)
     setUserData(data ? JSON.parse(data) : null);
   }, [])

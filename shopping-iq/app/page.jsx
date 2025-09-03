@@ -5,11 +5,8 @@ import { useState, useEffect } from "react";
 import bgimage from "../app/shoppingbg.png";
 import LaptopLogo from '../app/laptop.png';
 import { FaShoppingBag } from "react-icons/fa";
-import { usePathname } from 'next/navigation';
-
 
 const Dashboard = () => {
-  const pathname = usePathname();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,9 +38,9 @@ const Dashboard = () => {
           )}
 
           <div className="bg-blue shadow-md rounded-xl p-6 mb-10 my-16 border-l-4 border-b-4 border-blue-500">
-            <h2 className="flex items-center justify-center text-2xl font-bold text-gray-800 mb-2">
-              <Image src={LaptopLogo} alt="" height={20} width={40} /> Welcome {userData ? userData.firstName + " " + userData.lastName : " "} in Shopping-IQ
-            </h2>
+            <p className="flex items-center justify-center text-2xl gap-2 font-bold text-gray-800 mb-2">
+              <Image src={LaptopLogo} alt="" height={20} width={40} /> Welcome <strong>{userData ? userData.firstName + " " + userData.lastName : " "}</strong> in Shopping-IQ
+            </p>
             <h1 className="flex items-center justify-center text-2xl font-bold text-gray-800 mb-3">
               Shop the world from your home. <FaShoppingBag className="ml-2" />
             </h1>

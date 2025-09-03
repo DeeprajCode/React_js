@@ -60,7 +60,7 @@ const Bill = () => {
     }, []);
 
     useEffect(() => {
-        const methodData = localStorage.getItem('method');
+        const methodData = typeof window !== 'undefined' ? localStorage.getItem('method') : null
         setMethod(methodData ? JSON.parse(methodData) : null);
     }, []);
 
@@ -71,14 +71,13 @@ const Bill = () => {
             theme: 'colored'
         });
 
-        localStorage.removeItem('cart');
-        localStorage.removeItem('productBill');
+        typeof window !== 'undefined' ? localStorage.removeItem('cart', 'productBill') : null
 
         setTimeout(() => {
             router.push('/');
         }, 1500);
     };
-    console.log("🚀 ~ cartItems:", cartItems)
+    console.log("🚀 ~ cancelOrder ~ cancelOrder:", cancelOrder)
 
     const placeOrder = () => {
         toast.success('Thank you for your first purchase! We are so glad you found what you were looking for. We appreciate you choosing us and hope you love your new products.', {
