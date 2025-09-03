@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import Logo from '../components/laptop.png';
+import Logo from './laptop.png';
 import { products } from '../app/lib/api';
 import { Home, Info, Phone, ShoppingBag } from 'lucide-react';
 

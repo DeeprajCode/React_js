@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import Aboutus from "@/pages/Aboutus/page"
+import User from "@/pages/User/page"
 
 const page = () => {
   return (
     <>
         <div>
-            <Aboutus/>
+            <User/>
         </div>
     </>
   )

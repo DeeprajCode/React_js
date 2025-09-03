@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { products } from '/home/codezeros/React_js/shopping-iq/src/Utils/api.js';
+import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import { products } from '../../app/lib/api';
 import { UserStar } from 'lucide-react';
 import { TbCurrencyDollar } from "react-icons/tb";
 import { TbZoomReset } from "react-icons/tb";
@@ -9,7 +9,7 @@ import { FaStar } from "react-icons/fa";
 
 
 const Products = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -19,7 +19,6 @@ const Products = () => {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
   const [priceRange, setPriceRange] = useState('');
-
 
   useEffect(() => {
     products()
@@ -58,12 +57,12 @@ const Products = () => {
   return (
     <>
       <div className='h-10'>
-        <button onClick={() => navigate('/')}
-          class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
+        <button onClick={() => router.push('/')}
+          className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
           type="button"
         >
           <div
-            class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
+            className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,16 +80,14 @@ const Products = () => {
               ></path>
             </svg>
           </div>
-          <p class="translate-x-2">Go Back</p>
+          <p className="translate-x-2">Go Back</p>
         </button>
       </div>
 
       <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900">
         <div className="flex-1 flex flex-col mx-5">
           <main className="p-6 sm:p-8 overflow-y-auto">
-
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5 ">
-
               <input
                 type="text"
                 placeholder="Search Products..."
@@ -144,60 +141,66 @@ const Products = () => {
             </div>
 
             {loading ? (
-              <div className="flex-col gap-4 w-full flex items-center justify-center">
-                <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
-                  <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
+              <>
+                <div className="flex-col gap-4 w-full flex items-center justify-center">
+                  <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+                    <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full"></div>
+                  </div>
                 </div>
-              </div>
+              </>
             ) : error ? (
-              <div className="text-center text-red-600 dark:text-red-400">
-                {error}
-              </div>
+              <>
+                <div className="text-center text-red-600 dark:text-red-400">
+                  {error}
+                </div>
+              </>
             ) : (
-              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 border-3 border-gray-500 xl:grid-cols-2">
-                {filteredData.map((item) => {
-                  const discount = (item.price * 0.1).toFixed(1);
-                  const finalPrice = (item.price - discount).toFixed(1);
+              <>
+                <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 border-3 border-gray-500 xl:grid-cols-2">
+                  {filteredData.map((item) => {
+                    const discount = (item.price * 0.1).toFixed(1);
+                    const finalPrice = (item.price - discount).toFixed(1);
 
-                  return (
-                    <div key={item.id} className=" hover:shadow-lg my-5 border-l-4 border-blue-600 hover:shadow-indigo-600  transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
-                      <Link to={`/products/${item.id}`}>
-                        <div className="aspect-w-10 aspect-h-10">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="h-56 px-3 w-full mt-5 object-scale-down"
-                          />
-                        </div>
-                        <div className="p-5 flex flex-col flex-1">
-                          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
-                            {item.title}
-                          </h2>
-                          <div className="flex text-sm gap-1 text-gray-600 dark:text-gray-400 mb-2">
-                            Category :<p>{item.category}</p>
+                    return (
+                      <div key={item.id} className=" hover:shadow-lg my-5 border-l-4 border-blue-600 hover:shadow-indigo-600  transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
+                        <Link href={`/Products/${item.id}`}>
+                          <div className="aspect-w-10 aspect-h-10">
+                            <img 
+                              src={item.image}
+                              alt={item.title}
+                              className="h-56 px-3 w-full mt-5 object-scale-down"
+                            />
                           </div>
-
-                          <div className="grid grid-flow">
-                            <div className="flex gap-1 font-semibold text-red-700 dark:text-white">
-                              Price : <p className='line-through flex gap-1'><TbCurrencyDollar className="line-through mt-1" />{item.price}</p>
+                          <div className="p-5 flex flex-col flex-1">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">
+                              {item.title}
+                            </h2>
+                            <div className="flex text-sm gap-1 text-gray-600 dark:text-gray-400 mb-2">
+                              Category :<p>{item.category}</p>
                             </div>
 
-                            <div className="text-lg font-semibold text-green-700 my-1 flex  gap-1">
-                              Discount : <p className='flex gap-1'> <TbCurrencyDollar className="mt-1.5"/> {finalPrice} (10% off) </p>
-                            </div>
-                            <div className="flex text-md mb-2 gap-1 bg-yellow-150  mr-2 font-medium text-yellow-700/100">
-                              Rating : <p className='flex gap-2'><FaStar className='mt-1' />{item.rating?.rate ?? 'N/A'}</p>
-                            </div>
-                            <div className="flex text-md gap-1 mr-2 font-medium text-red-700 w-15 ">
-                              Reviews : <p className="flex gap-1"><UserStar className="mb-1" />{item.rating?.count}</p>
+                            <div className="grid grid-flow">
+                              <div className="flex gap-1 font-semibold text-red-700 dark:text-white">
+                                Price : <p className='line-through flex gap-1'><TbCurrencyDollar className="line-through mt-1" />{item.price}</p>
+                              </div>
+
+                              <div className="text-lg font-semibold text-green-700 my-1 flex  gap-1">
+                                Discount : <p className='flex gap-1'> <TbCurrencyDollar className="mt-1.5" /> {finalPrice} (10% off) </p>
+                              </div>
+                              <div className="flex text-md mb-2 gap-1 bg-yellow-150  mr-2 font-medium text-yellow-700/100">
+                                Rating : <p className='flex gap-2'><FaStar className='mt-1' />{item.rating?.rate ?? 'N/A'}</p>
+                              </div>
+                              <div className="flex text-md gap-1 mr-2 font-medium text-red-700 w-15 ">
+                                Reviews : <p className="flex gap-1"><UserStar className="mb-1" />{item.rating?.count}</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
                         </Link>
-                    </div>
-                  );
-                })}
-              </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
             )}
           </main>
         </div>

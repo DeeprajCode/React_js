@@ -5,8 +5,11 @@ import { useState, useEffect } from "react";
 import bgimage from "../app/shoppingbg.png";
 import LaptopLogo from '../app/laptop.png';
 import { FaShoppingBag } from "react-icons/fa";
+import { usePathname } from 'next/navigation';
+
 
 const Dashboard = () => {
+  const pathname = usePathname();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,25 +20,16 @@ const Dashboard = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const udata = localStorage.getItem('userData');
-  console.log("🚀 ~ Dashboard ~ udata:", udata)
+  const udata = typeof window !== 'undefined' ? localStorage.getItem('userData') : null;
   const userData = udata ? JSON.parse(udata) : null;
-  console.log("🚀 ~ Dashboard ~ userData:", userData)
 
   return (
   <>
     <div className="flex">
       <div className="flex-1 bg-gray-100 min-h-screen relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center size-full"
-          style={{
-            backgroundImage: `url(${bgimage})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            opacity: 0.6,
-            zIndex: 0,
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-cover bg-center size-full">
+          <Image src={bgimage} width={700} height={700} alt="Background image" className="ml-[20%]"/>
+        </div>
 
         <div className="relative z-10 p-10">
           {loading && (

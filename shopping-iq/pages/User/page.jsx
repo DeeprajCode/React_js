@@ -1,22 +1,23 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import {Phone, AtSign, MapPinHouse} from 'lucide-react';
-import userPrImage from '../User/userProfile.png'
+import userPrImage from '@/public/images/userProfile.png'
+import Image from 'next/image';
 
 const UserProfile = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const data = localStorage.getItem('userData')
   const userData = JSON.parse(data);
   console.log("🚀 ~ UserProfile ~ userData:", userData)
 
   return (
     <>
-      <button onClick={() => navigate('/')}
-        class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
+      <button onClick={() => router.push('/')}
+        className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
         type="button"
       >
         <div
-          class="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
+          className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +35,7 @@ const UserProfile = () => {
             ></path>
           </svg>
         </div>
-        <p class="translate-x-2">Go Back</p>
+        <p className="translate-x-2">Go Back</p>
       </button>
 
       <section className="min-h-50 flex items-center justify-center bg-white dark:bg-gray-900 px-6 py-10 transition-colors duration-300">
@@ -58,7 +59,7 @@ const UserProfile = () => {
           </div>
           {!userData.image ? (
             <div className="flex-1 flex justify-center animate-float">
-              <img src={userPrImage} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />
+              <Image src={userPrImage} alt="Sai Bende" className="w-64 h-64 rounded-full border-4 border-indigo-500 dark:border-indigo-400 shadow-xl object-cover hover:scale-105 transition duration-500" />
             </div>
           ) : (
             <div className="flex-1 flex justify-center animate-float">

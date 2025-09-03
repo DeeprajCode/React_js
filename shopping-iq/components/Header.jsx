@@ -10,15 +10,23 @@ const Header = ({ sidebar }) => {
   const pathname = usePathname();
   const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    const data = localStorage.getItem('userData');
-    console.log("🚀 ~ Header ~ data:", data)
-    setUserData(data ? JSON.parse(data) : null);
-  }, [pathname]);
+   useEffect(() => {
+    if(typeof window !== 'undefined'){
+      try{
+        const storedData = localStorage.getItem('userData');
+        setUserData(storedData ? JSON.parse(storedData) : null);
+      }catch(error){
+        console.error("Error parsing user data from localStorage:", error);
+        setUserData(null)
+      }
+    }
+  }, [])
 
   const logout = () => {
-    localStorage.removeItem('userData');
-    setUserData(null);
+    if(typeof window !== 'undefined'){
+      localStorage.removeItem('userData');
+      setUserData(null);
+    }
     router.push('/Login')
   };
 
@@ -54,6 +62,17 @@ const Header = ({ sidebar }) => {
                 </div>
               </Link>
 
+              <Link href='/Register' className="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                <div className="relative overflow-hidden">
+                  <p className="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                    Register
+                  </p>
+                  <p className="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                    Register
+                  </p>
+                </div>
+              </Link>
+
               <Link href='/Cart'>
                 <IconButton>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -62,7 +81,7 @@ const Header = ({ sidebar }) => {
                 </IconButton>
               </Link>
 
-              <Link href='/bill' className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 w-8' >
+              <Link href='/Bill' className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500 w-8' >
                 <MdOutlinePendingActions className='w-10 h-8' />
               </Link>
 

@@ -1,12 +1,12 @@
 'use client';
 
-import Aboutus from "@/pages/Aboutus/page"
+import Contact from "@/pages/Contact/page";
 
 const page = () => {
   return (
     <>
         <div>
-            <Aboutus/>
+            <Contact/>
         </div>
     </>
   )

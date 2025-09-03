@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Phone, AtSign, MapPinHouse, Instagram, Facebook, Linkedin, Chrome } from 'lucide-react';
 import { BsTwitterX } from "react-icons/bs";
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
 import { FiSend } from "react-icons/fi";
 import { FcBusinessContact } from "react-icons/fc";
-
+import { useRouter } from 'next/navigation';
 
 const Contact = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [loading, setloading] = useState(true);
   const [fullname, setFullName] = useState('');
@@ -98,7 +96,7 @@ const Contact = () => {
       ) : (
         <>
           <div className='my-2'>
-            <button onClick={() => navigate('/')} className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button" >
+            <button onClick={() => router.push('/')} className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button" >
               <div className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

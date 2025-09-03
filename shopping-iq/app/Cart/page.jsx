@@ -1,12 +1,12 @@
 'use client';
 
-import Aboutus from "@/pages/Aboutus/page"
+import Cart from "@/pages/Cart/page"
 
 const page = () => {
   return (
     <>
         <div>
-            <Aboutus/>
+            <Cart/>
         </div>
     </>
   )

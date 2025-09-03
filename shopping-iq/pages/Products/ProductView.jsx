@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { products } from '../../Utils/api';
-import { addcartapi } from '../../Utils/api'
+import { useEffect, useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { products } from '../../app/lib/api';
+import { addcartapi } from '../../app/lib/api'
 import { UserStar } from 'lucide-react';
 import { TbCurrencyDollar } from "react-icons/tb";
 import { toast } from 'react-toastify';
@@ -9,7 +9,7 @@ import { FaStar } from "react-icons/fa";
 
 const ProductView = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +38,7 @@ const ProductView = () => {
         closeOnClick: false,
         autoClose: 1000,
       });
-      navigate('/Cart');
+      router.push('/Cart');
     } catch {
       toast.error("Error adding product to cart.", {
         position: "top-right",
@@ -68,7 +68,7 @@ const ProductView = () => {
   return (
     <>
       <div className="p-10 min-h-screen bg-gray-100 dark:bg-gray-900">
-        <button onClick={() => navigate('/Products')}
+        <button onClick={() => router.push('/Products')}
           className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
           type="button"
         >

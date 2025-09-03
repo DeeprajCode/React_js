@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { CircleUser, Phone, AtSign, Wallet, MapPinHouse } from 'lucide-react';
 import { TbCurrencyDollar } from "react-icons/tb";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getCartItems } from '../../Utils/api';
+import { useRouter } from 'next/navigation';
+import { getCartItems } from '@/app/lib/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MdCancel } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 
 const Bill = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [userData, setUserData] = useState(null);
     const [method, setMethod] = useState('');
@@ -44,12 +45,11 @@ const Bill = () => {
             total: totalPrice,
             discount: discountAmount,
             finalAmount: final,
-            user: JSON.parse(localStorage.getItem('userData')),
-            method: JSON.parse(localStorage.getItem('method')),
+            user: JSON.parse(typeof window !== localStorage.getItem('userData')),
+            method: JSON.parse(typeof window !== localStorage.getItem('method')),
         };
         console.log("🚀 ~ Bill ~ billData:", billData)
         console.log("🚀 ~ Bill ~ billData.method:", billData.method)
-
 
         localStorage.setItem('productBill', JSON.stringify(billData));
     }, []);
@@ -57,12 +57,12 @@ const Bill = () => {
     useEffect(() => {
         const data = localStorage.getItem('userData');
         setUserData(data ? JSON.parse(data) : null);
-    }, [location]);
+    }, []);
 
     useEffect(() => {
         const methodData = localStorage.getItem('method');
         setMethod(methodData ? JSON.parse(methodData) : null);
-    }, [location]);
+    }, []);
 
     const cancelOrder = () => {
         toast.error('Order has been cancelled!', {
@@ -75,7 +75,7 @@ const Bill = () => {
         localStorage.removeItem('productBill');
 
         setTimeout(() => {
-            navigate('/');
+            router.push('/');
         }, 1500);
     };
     console.log("🚀 ~ cartItems:", cartItems)
@@ -91,7 +91,6 @@ const Bill = () => {
 
     return (
         <>
-
             {loading ? (
                 <div className="flex-col gap-4 w-full flex items-center justify-center">
                     <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
@@ -101,7 +100,7 @@ const Bill = () => {
             ) : (
                 <>
                     <div className="h-10">
-                        <button onClick={() => navigate('/payment')} className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button">
+                        <button onClick={() => router.push('/Payment')} className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button">
                             <div className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px">
                                     <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" fill="#000000"></path>
@@ -120,7 +119,7 @@ const Bill = () => {
                                 </span>
                             </div>
                             <div className='ml-[45%] mt-5'>
-                                <button onClick={() => navigate('/Login')} className="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-none text-white font-medium group">
+                                <button onClick={() => router.push('/Login')} className="cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-none text-white font-medium group">
                                     <div className="relative overflow-hidden">
                                         <p className="group-hover:-translate-y-7 flex gap-1 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                                             Login
