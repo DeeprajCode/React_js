@@ -39,7 +39,7 @@ const Bill = () => {
         setTotal(totalPrice);
         setDiscount(discountAmount);
         setFinalAmount(final);
-
+        
         const billData = {
             items,
             total: totalPrice,
