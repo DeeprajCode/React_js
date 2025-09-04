@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+'use client';
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { products } from '../../app/lib/api';
@@ -6,7 +8,6 @@ import { UserStar } from 'lucide-react';
 import { TbCurrencyDollar } from "react-icons/tb";
 import { TbZoomReset } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
-
 
 const Products = () => {
   const router = useRouter();
@@ -56,7 +57,7 @@ const Products = () => {
 
   return (
     <>
-      <div className='h-10'>
+      <div className='h-10 mt-[2%] ml-[10px]'>
         <button onClick={() => router.push('/')}
           className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
           type="button"
@@ -125,7 +126,7 @@ const Products = () => {
                   setCategory('');
                   setPriceRange('');
                 }}
-                className="bg-red-500 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 cursor-pointer bg-gradient-to-b from-red-500 to red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
+                className="bg-red-600 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 cursor-pointer bg-gradient-to-b from-red-600 to red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
               >
                 <div className="relative overflow-hidden">
                   <p className="flex gap-1 group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
@@ -151,7 +152,7 @@ const Products = () => {
             ) : error ? (
               <>
                 <div className="text-center text-red-600 dark:text-red-400">
-                  {error}
+                  <p>Products is not available</p>
                 </div>
               </>
             ) : (
@@ -180,18 +181,17 @@ const Products = () => {
                             </div>
 
                             <div className="grid grid-flow">
-                              <div className="flex gap-1 font-semibold text-red-700 dark:text-white">
-                                Price : <p className='line-through flex gap-1'><TbCurrencyDollar className="line-through mt-1" />{item.price}</p>
+                              <div className="flex font-bold text-red-700 dark:text-white">
+                                Price : <p className='line-through flex'><TbCurrencyDollar className="line-through mt-1" />{item.price}</p>
                               </div>
-
-                              <div className="text-lg font-semibold text-green-700 my-1 flex  gap-1">
-                                Discount : <p className='flex gap-1'> <TbCurrencyDollar className="mt-1.5" /> {finalPrice} (10% off) </p>
+                              <div className="text-lg font-bold text-green-700 my-1 flex">
+                                Discount : <p className='flex'> <TbCurrencyDollar className="mt-1.5" /> {finalPrice} (10% off) </p>
                               </div>
-                              <div className="flex text-md mb-2 gap-1 bg-yellow-150  mr-2 font-medium text-yellow-700/100">
-                                Rating : <p className='flex gap-2'><FaStar className='mt-1' />{item.rating?.rate ?? 'N/A'}</p>
+                              <div className="flex text-md mb-2 gap-1 mr-2 font-bold text-yellow-600/100">
+                                Rating : <p className='flex gap-0.5'><FaStar className='mt-1' />{item.rating?.rate ?? 'N/A'}</p>
                               </div>
-                              <div className="flex text-md gap-1 mr-2 font-medium text-red-700 w-15 ">
-                                Reviews : <p className="flex gap-1"><UserStar className="mb-1" />{item.rating?.count}</p>
+                              <div className="flex text-md gap-1 mr-2 font-bold text-red-700 w-15 ">
+                                Reviews : <p className="flex gap-1"><UserStar className="mb-1" />{item.rating?.count ?? 'N/A'}</p>
                               </div>
                             </div>
                           </div>

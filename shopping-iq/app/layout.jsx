@@ -1,20 +1,28 @@
-'use client';
-
-import { useState } from "react";
 import "./globals.css";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 
+export const metadata = {
+  title: {
+    template : '%s | Shopping-IQ',
+    default : 'Shopping-IQ',
+  },
+  description: 'Shop the world from your home.',
+  icons : {
+    icon : '/images/laptop.png',
+    sizes : '180x180'
+  },
+};
+
 const RootLayout = ({ children }) => {
-  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <html lang="en">
       <body className='antialiased'>
         <div className="flex min-h-screen">
-          {showSidebar && <Sidebar />}
+          <Sidebar />
           <div className="flex-1">
-            <Header sidebar={() => setShowSidebar(!showSidebar)} />
+            <Header />
             {children}
           </div>
         </div>

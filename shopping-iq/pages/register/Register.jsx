@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import Logo from '@/public/images/laptop.png';
 import { useRouter } from 'next/navigation';

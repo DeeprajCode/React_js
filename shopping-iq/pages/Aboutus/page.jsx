@@ -27,7 +27,7 @@ const Aboutus = () => {
                 </div >
             ) : (
                 <>
-                    <div className='my-2'>
+                    <div className='my-4 ml-[10px]'>
                         <div className="mb-6">
                             <button
                                 onClick={() => router.push('/')}
@@ -46,7 +46,7 @@ const Aboutus = () => {
 
                     <div>
                         <div className="grid grid-cols-2 content-start gap-4 ...  ">
-                            <Image src={techLOGO} alt="About us Logo" width={500} height={500} />
+                            <Image src={techLOGO} alt="About us Logo" width={500} height={500} className='ml-[3%]' />
                             <div className="bg-white shadow-md rounded-xl p-1 mb- border-l-4 border-blue-500">
                                 <h2 className="text-2xl font-bold text-gray-800 mb-2 mx-2">🛍️ About to Shopping-IQ!</h2>
                                 <p className="text-gray-600 mx-2">

@@ -1,14 +1,16 @@
-'use client';
-
 import Bill from '@/pages/bill/page';
 
-const Page = () => {
+export const metadata = {
+  title: "Bill"
+}
+
+const page = () => {
   return (
     <>
-        <div>
-            <Bill/>
-        </div>
+      <div>
+        <Bill />
+      </div>
     </>
   )
 }
-export default Page;
+export default page;

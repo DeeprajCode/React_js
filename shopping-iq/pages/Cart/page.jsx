@@ -74,7 +74,7 @@ const Cart = () => {
           <>
             <div className="max-w-4xl mx-auto space-y-6">
               {cartItems.map((item) => (
-                <div key={item.productId} className="bg-white hover:scale-105 hover:shadow-indigo-600  dark:bg-gray-800 rounded-lg shadow-md p-4 flex items-center border-l-4 border-blue-600">
+                <div key={item.productId} className="bg-white hover:border-none hover:scale-105 hover:shadow-indigo-600  dark:bg-gray-800 rounded-lg shadow-md p-4 flex items-center border-l-4 border-blue-600">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -82,7 +82,7 @@ const Cart = () => {
                   />
                   <div className="ml-4 flex-1">
                     <h2 className="text-lg font-semibold">{item.title}</h2>
-                    <p className='flex gap-0.5 font-bold text-red-700'> Price: <span className='flex line-through'><TbCurrencyDollar className='mt-1' /> {item.price.toFixed(2)}</span></p>
+                    <p className='flex gap-0.5 font-bold text-red-700'> Price : <span className='flex line-through'><TbCurrencyDollar className='mt-1' /> {item.price.toFixed(2)}</span></p>
                     <p className='flex gap-0.5 font-bold text-green-800'>Discount price : <TbCurrencyDollar className='mt-1' /> {((item.price - item.price * 0.1) * item.quantity).toFixed(2)} (10% off) </p>
                     <div className="flex items-center mt-2">
                       <button onClick={() => QuantityChange(item.productId, item.quantity - 1)}
@@ -148,14 +148,14 @@ const Cart = () => {
                 </div>
               ))}
               <div className="pt-4">
-                <p className="text-lg font-medium text-red-700 dark:text-red-800 flex gap-1">
-                  Price: <span className='flex gap-1 line-through'> <TbCurrencyDollar className='mt-1.5' /> {total.toFixed(2)} </span>
+                <p className="text-lg font-bold text-red-700 flex gap-1">
+                  Price : <span className='flex line-through'> <TbCurrencyDollar className='mt-1.5' /> {total.toFixed(2)} </span>
                 </p>
-                <p className="flex text-lg font-medium text-yellow-700 flex gap-1">
-                  Discount price: <span className='flex'><TbCurrencyDollar className='mt-1.5'/>{totaldiscount.toFixed(2)}</span>
+                <p className="flex text-lg font-bold text-yellow-600/100 flex gap-1">
+                  Discount price : <span className='flex'><TbCurrencyDollar className='mt-1.5'/>{totaldiscount.toFixed(2)}</span>
                 </p>
-                <p className="text-2xl font-bold text-green-600 flex gap-1">
-                  Total price: <span className='flex'><TbCurrencyDollar className='mt-1'/>{finalAmount.toFixed(2)}</span>
+                <p className="text-2xl font-bold text-green-800 flex gap-1">
+                  Total price : <span className='flex'><TbCurrencyDollar className='mt-1'/>{finalAmount.toFixed(2)}</span>
                 </p>
               </div>
               {!userData ? (

@@ -6,8 +6,7 @@ import { getCartItems, addtopayment } from '@/app/lib/api';
 import { TbCurrencyDollar } from "react-icons/tb";
 import { FaGooglePay, FaApplePay, FaCreditCard } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Payment = () => {
   const router = useRouter();
@@ -38,16 +37,16 @@ const Payment = () => {
         theme: 'colored',
         autoClose: 1500,
       });
-      return;
     } else {
-      toast.success('successfully selected a payment method', {
-        position: 'top-right',
-        theme: 'colored',
-        autoClose: 1000,
-      });
+      toast.success('Successfully select payment method', {
+        position : 'top-right',
+        autoClose: 1500,
+        theme : 'colored',
+      })
       localStorage.setItem('method', JSON.stringify(selectedMethod));
       console.log("🚀 ~ cconfirmpayment ~ selectedMethod:", selectedMethod)
       router.push('/Bill');
+      return;
     }
 
     const orderData = {
@@ -64,6 +63,7 @@ const Payment = () => {
 
   return (
     <>
+    <ToastContainer/>
       {loading ? (
         <div className="flex-col gap-4 w-full flex items-center justify-center">
           <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
@@ -89,7 +89,7 @@ const Payment = () => {
 
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="flex-1 p-4 rounded-lg shadow bg-slate-50">
-              <p className="capitalize font-semibold mb-4">Payment method</p>
+              <p className="font-semibold mb-4">Select your payment method</p>
               <div className="flex flex-col gap-3">
                 {[
                   { label: 'Google Pay', value: 'Google pay', icon: <FaGooglePay className="w-10 h-10" /> },
@@ -117,15 +117,15 @@ const Payment = () => {
               </div>
             </div>
 
-            <div className="flex-1 p-4 rounded-lg shadow bg-slate-50 border-l-4 border-blue-700">
-              <p className="text-lg font-medium text-gray-700 flex gap-1 mb-2 text-red-700">
-                Price: <span className='flex gap-0.5 line-through'><TbCurrencyDollar className='mt-1.5' /> {total.toFixed(2)}</span>
+            <div className="flex-1 p-4 rounded-lg shadow bg-slate-50 border-l-4 border-blue-600">
+              <p className="text-lg font-bold text-gray-700 flex gap-1 mb-2 text-red-700">
+                Price : <span className='flex line-through'><TbCurrencyDollar className='mt-1.5' /> {total.toFixed(2)}</span>
               </p>
-              <p className="text-lg font-medium text-yellow-700 flex gap-1 mb-2">
-                Discount price: <span className='flex gap-0.5'><TbCurrencyDollar className='mt-1.5' /> {discount.toFixed(2)}</span>
+              <p className="text-lg font-bold text-yellow-600/100 flex gap-1 mb-2">
+                Discount : <span className='flex'><TbCurrencyDollar className='mt-1.5' /> {discount.toFixed(2)} (10% off) </span>
               </p>
-              <p className="text-2xl font-bold text-green-700 flex gap-1 mb-4">
-                Total price: <span className='flex gap-0.5'><TbCurrencyDollar className='mt-1' />{finalAmount.toFixed(2)}</span>
+              <p className="text-2xl font-bold text-green-800 flex gap-1 mb-4">
+                Total price : <span className='flex'><TbCurrencyDollar className='mt-1' />{finalAmount.toFixed(2)}</span>
               </p>
 
               <button onClick={cconfirmpayment} type='submit' className='cursor-pointer bg-gradient-to-b from-green-600 to-green-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group'>

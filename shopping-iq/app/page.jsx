@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import bgimage from "../app/shoppingbg.png";
-import LaptopLogo from '../app/laptop.png';
+import bgimage from "../public/images/shoppingbg.png";
+import LaptopLogo from '../public/images/laptop.png';
 import { FaShoppingBag } from "react-icons/fa";
 
 const Dashboard = () => {

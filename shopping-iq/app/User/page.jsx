@@ -1,13 +1,15 @@
-'use client'
-
 import User from "@/pages/User/page"
+
+export const metadata = {
+  title: 'User profile'
+}
 
 const page = () => {
   return (
     <>
-        <div>
-            <User/>
-        </div>
+      <div>
+        <User />
+      </div>
     </>
   )
 }

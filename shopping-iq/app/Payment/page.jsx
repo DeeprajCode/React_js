@@ -1,13 +1,15 @@
-'use client';
-
 import Payment from "@/pages/payment/Page"
+
+export const metadata = {
+  title: 'Payment'
+}
 
 const Page = () => {
   return (
     <>
-        <div>
-            <Payment/>
-        </div>
+      <div>
+        <Payment />
+      </div>
     </>
   )
 }

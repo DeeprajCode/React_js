@@ -5,7 +5,7 @@ import { CircleUser, Phone, AtSign, Wallet, MapPinHouse } from 'lucide-react';
 import { TbCurrencyDollar } from "react-icons/tb";
 import { useRouter } from 'next/navigation';
 import { getCartItems } from '@/app/lib/api';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MdCancel } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -45,8 +45,8 @@ const Bill = () => {
             total: totalPrice,
             discount: discountAmount,
             finalAmount: final,
-            user: JSON.parse(typeof window !== localStorage.getItem('userData')),
-            method: JSON.parse(typeof window !== localStorage.getItem('method')),
+            user: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('userData')) : null,
+            method: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('method')) : null
         };
         console.log("🚀 ~ Bill ~ billData:", billData)
         console.log("🚀 ~ Bill ~ billData.method:", billData.method)
@@ -55,7 +55,7 @@ const Bill = () => {
     }, []);
 
     useEffect(() => {
-        const data = localStorage.getItem('userData');
+        const data = typeof window !== 'undefined' ? localStorage.getItem('userData') : null
         setUserData(data ? JSON.parse(data) : null);
     }, []);
 
@@ -90,6 +90,7 @@ const Bill = () => {
 
     return (
         <>
+            <ToastContainer />
             {loading ? (
                 <div className="flex-col gap-4 w-full flex items-center justify-center">
                     <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
@@ -98,7 +99,7 @@ const Bill = () => {
                 </div>
             ) : (
                 <>
-                    <div className="h-10">
+                    <div className="h-10 mt-[2%] ml-[2%]">
                         <button onClick={() => router.push('/Payment')} className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group" type="button">
                             <div className="bg-red-600 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px">
@@ -135,33 +136,37 @@ const Bill = () => {
                             <div className="grid mt-6 w-full gap-10 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                                 <div>
                                     <div className="w-full">
-                                        <thead>
-                                            <tr>
-                                                <th className="px-2 py-1">Product</th>
-                                                <th className="px-2 py-1">Quantity</th>
-                                                <th className="px-2 py-1">Price</th>
-                                                <th className='px-2 py-1'>Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="w-full">
-                                            {cartItems.map((item, idx) => (
-                                                <tr key={idx}>
-                                                    <td className="flex px-4 py-3">
-                                                        <span className='flex px-4 py-2 w-22 h-[150px] border-l-4 border-blue-500 rounded-xl'>
-                                                            <img src={item.image} alt={item.title} className="w-15 h-[100px]  mt-2  object-contain" />
-                                                            <p className="text-xs mt-3 ml-2 grid ">{item.title}</p>
-                                                        </span>
-                                                    </td>
-                                                    <td className="px-5 py-3 text-center">{item.quantity}</td>
-                                                    <td className="font-bold px-3  py-10 text-red-600 line-through "> <span className='flex'><TbCurrencyDollar className='mt-1' /> {item.price.toFixed(2)}</span></td>
-                                                    <td className='font-bold px-5 py-10 text-green-700'><span className='flex'><TbCurrencyDollar className='mt-1' />{((item.price - item.price * 0.1) * item.quantity).toFixed(2)}</span></td>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th className="px-2 py-1 ml-[10%]">Product</th>
+                                                    <th className="px-2 py-1">Quantity</th>
+                                                    <th className="px-2 py-1">Price</th>
+                                                    <th className='px-2 py-1'>Total</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
+                                            </thead>
+                                            <tbody className="w-full">
+                                                {cartItems.map((item, idx) => (
+                                                    <tr key={idx}>
+                                                        <td className="flex px-4 py-3">
+                                                            <div className='flex px-4 py-3 w-44 h-[120px] border-l-4 border-blue-500 rounded-xl'>
+                                                                <img src={item.image} alt={item.title} className="w-[100px] h-[100px] object-contain" />
+                                                            </div>
+                                                            <div className='mt-[10px]'>
+                                                                <p className="text-sm m-2 grid ">{item.title}</p>
+                                                            </div>
+                                                        </td>
+                                                        <td className="px-5 py-3 text-center">{item.quantity}</td>
+                                                        <td className="font-bold px-3  py-10 text-red-600 line-through "> <span className='flex'><TbCurrencyDollar className='mt-1' /> {item.price.toFixed(2)}</span></td>
+                                                        <td className='font-bold px-5 py-10 text-green-700'><span className='flex'><TbCurrencyDollar className='mt-1' />{((item.price - item.price * 0.1) * item.quantity).toFixed(2)}</span></td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
-                                <div className="ml-35 border-l-4 border-blue-500 px-10 py-2 rounded-xl">
+                                <div className="ml-35 h-[100%] border-l-4 border-blue-500 px-10 py-2 rounded-xl">
                                     <h2 className='flex gap-1 text-2xl font-semibold'> Shipping Details</h2>
                                     <div className="mb-5 mt-5">
                                         <p className='flex gap-1 mb-3'><strong className='flex gap-1'><CircleUser /> :</strong> <span>{userData.firstName + " " + userData.lastName}</span></p>

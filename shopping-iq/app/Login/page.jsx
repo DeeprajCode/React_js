@@ -1,11 +1,15 @@
 import Login from "@/pages/login/page"
 
- const page = () => {
+export const metadata = {
+  title: 'Login'
+}
+
+const page = () => {
   return (
     <>
-        <div>
-            <Login/>
-        </div>
+      <div>
+        <Login />
+      </div>
     </>
   )
 }
