@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import React from 'react';
-import techLOGO from './technology-image.png';
+import techLOGO from '@/public/images/technology-image.png';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -64,7 +64,6 @@ const Aboutus = () => {
                 </>
             )}
         </>
-
     )
 }
 

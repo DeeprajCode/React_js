@@ -166,7 +166,7 @@ const Register = () => {
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder="First name..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 placeholder-gray-500 border-2 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.firstName
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 placeholder-gray-500 border-2 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.firstName
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -181,7 +181,7 @@ const Register = () => {
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       placeholder="Last name..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.lastName
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.lastName
                         ? 'border-red-500 dark:border-red-500 placeholder-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -196,7 +196,7 @@ const Register = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -211,7 +211,7 @@ const Register = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -226,7 +226,7 @@ const Register = () => {
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       placeholder="Address..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.address
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:text-white ${errors.address
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         }`}
@@ -241,7 +241,7 @@ const Register = () => {
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
                       placeholder="City..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.city
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:text-white ${errors.city
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         }`}
@@ -256,7 +256,7 @@ const Register = () => {
                       value={state}
                       onChange={(e) => setState(e.target.value)}
                       placeholder="State..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.state
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:text-white ${errors.state
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         }`}
@@ -271,7 +271,7 @@ const Register = () => {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="Mobile number..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:text-white ${errors.phone
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:text-white ${errors.phone
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         }`}
@@ -279,7 +279,7 @@ const Register = () => {
                     {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
                   </div>
 
-                  <button type='submit' className='w-full cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group'>
+                  <button type='submit' className='w-full cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl text-white font-medium group'>
                     <div className='relative overflow-hidden'>
                       <p className='group-hover:-translate-y-7 duration-[1.125s] ease-[cubin-bezier(0.19,1,0.22,1)]'>
                         Register
@@ -290,9 +290,9 @@ const Register = () => {
                     </div>
                   </button>
 
-                  <p className="text-sm text-red-500 dark:text-gray-400">
+                  <p className="text-sm text-red-600 dark:text-gray-400">
                     Already have an account?{'  '}
-                    <span onClick={() => router.push("/Login")} className="text-blue-700 cursor-pointer underline">Login</span>
+                    <span onClick={() => router.push("/Login")} className="text-blue-700 font-bold cursor-pointer underline">Login</span>
                   </p>
                 </form>
               </div>

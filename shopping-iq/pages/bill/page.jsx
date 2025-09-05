@@ -80,7 +80,7 @@ const Bill = () => {
     console.log("🚀 ~ cancelOrder ~ cancelOrder:", cancelOrder)
 
     const placeOrder = () => {
-        toast.success('Thank you for your first purchase! We are so glad you found what you were looking for. We appreciate you choosing us and hope you love your new products.', {
+        toast.success('Thank you for your purchase! We appreciate your support.', {
             position: 'top-right',
             autoClose: 2000,
             theme: 'colored'
@@ -177,14 +177,14 @@ const Bill = () => {
                                     </div>
 
                                     <div className="mt-6 bg-gray-50 border p-4 rounded-lg shadow-md">
-                                        <p className="text-red-600 flex gap-1">Price: <span className="font-medium flex line-through gap-0.5"><TbCurrencyDollar className='mt-1' /> {total.toFixed(2)}</span></p>
-                                        <p className="text-yellow-600/100 gap-1 flex">Discount price : <span className="font-medium flex"><TbCurrencyDollar className='mt-1' /> {discount.toFixed(2)} (10%) </span></p>
-                                        <p className="text-green-700 flex gap-1 text-lg font-bold">
+                                        <p className="text-red-700 font-bold flex gap-1">Price: <span className="font-medium flex line-through gap-0.5"><TbCurrencyDollar className='mt-1' /> {total.toFixed(2)}</span></p>
+                                        <p className="text-yellow-600/95 font-bold gap-1 flex">Discount price : <span className="font-medium flex"><TbCurrencyDollar className='mt-1' /> {discount.toFixed(2)} (10%) </span></p>
+                                        <p className="text-green-800 flex gap-1 text-lg font-bold">
                                             Total price : <span className='flex gap-1'><TbCurrencyDollar className='mt-1.5' />{finalAmount.toFixed(2)}</span>
                                         </p>
                                     </div>
 
-                                    <button onClick={cancelOrder} className="cursor-pointer bg-gradient-to-b from-red-500 to-red-600 px-6 py-3 rounded-xl border-none text-white font-medium group">
+                                    <button onClick={cancelOrder} className="cursor-pointer bg-gradient-to-b from-red-700 to-red-600 px-6 py-3 rounded-xl border-none text-white font-medium group">
                                         <div className="relative overflow-hidden">
                                             <p className="group-hover:-translate-y-7 flex gap-1 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                                                 <MdCancel className='mt-1 gap-2' />Cancel order
@@ -195,7 +195,7 @@ const Bill = () => {
                                         </div>
                                     </button>
 
-                                    <button type='button' onClick={placeOrder} className="cursor-pointer ml-5 bg-gradient-to-b from-green-600 to-green-700 px-6 py-3 rounded-xl border-none text-white font-medium group">
+                                    <button type='button' onClick={placeOrder} className="cursor-pointer ml-5 bg-gradient-to-b from-green-700 to-green-700 px-6 py-3 rounded-xl border-none text-white font-medium group">
                                         <div className="relative overflow-hidden">
                                             <p className="group-hover:-translate-y-7 flex gap-1 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                                                 <TbTruckDelivery className='mt-1 gap-2' />Place order

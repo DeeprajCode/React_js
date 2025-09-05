@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Logo from '../public/images/laptop.png';
 import { Home, Info, Phone, ShoppingBag } from 'lucide-react';
 
-
 const Sidebar = () => {
   const router = useRouter();
 
@@ -17,8 +16,8 @@ const Sidebar = () => {
   ];
 
   return (
+    <>
     <aside className="dark:border-gray-700 shadow-xl rounded-2xl px-8 py-8 w-66 min-h-screen transition-all duration-300">
-
       <div className="mb-[15%] flex items-center">
         <Image
           src={Logo}
@@ -46,8 +45,8 @@ const Sidebar = () => {
           ))}
         </ul>
       </nav>
-
     </aside>
+    </>
   );
 };
 

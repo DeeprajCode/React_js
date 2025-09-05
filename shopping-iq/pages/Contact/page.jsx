@@ -25,7 +25,7 @@ const Contact = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setloading(false);
-    }, 1000);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -134,25 +134,25 @@ const Contact = () => {
                   Have something to say? We are here to help. Fill up the form or send an email or call.
                 </p>
                 <div className="mb-4 flex items-center mt-8 space-x-2 text-dark-600 dark:text-gray-400">
-                  <button className="flex focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
+                  <div className="flex focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500">
                     <MapPinHouse />
-                  </button>
+                  </div>
                   <span className='gap-1'>
                     : 14th Avenue, Glory Road
                   </span>
                 </div>
                 <div className="mb-4 flex items-center mt-2 space-x-2 text-dark-600 dark:text-gray-400">
-                  <button className='flex focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500'>
+                  <div className='flex focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500'>
                     <AtSign />
-                  </button>
+                  </div>
                   <span className='gap-1'>
                     : privacy.grievance@shoppingiq.com
                   </span>
                 </div>
                 <div className="flex mb-10 items-center mt-2 space-x-2 text-dark-600 dark:text-gray-400">
-                  <button className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500'>
+                  <div className='focus:outline-none transform transition-transform duration-300 hover:scale-125 hover:text-blue-500'>
                     <Phone />
-                  </button>
+                  </div>
                   <span className='gap-1'>
                     : +91-8141396867
                   </span>
@@ -160,45 +160,45 @@ const Contact = () => {
 
                 <div className='flex item-center  gap-6' >
                   <div className="group relative inline-block mb-8">
-                    <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
+                    <div className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
                       <Instagram className='mt-2' />
-                    </button>
+                    </div>
                     <span className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100">
                       Instagram
                     </span>
                   </div>
 
                   <div className="group relative inline-block ">
-                    <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
+                    <div className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
                       <BsTwitterX className='h-10 w-6 ' />
-                    </button>
+                    </div>
                     <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100">
                       Twitter
                     </span>
                   </div>
 
                   <div className="group relative inline-block mb-8">
-                    <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
+                    <div className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
                       <Facebook className='mt-2' />
-                    </button>
+                    </div>
                     <span className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100">
                       Facebook
                     </span>
                   </div>
 
                   <div className="group relative inline-block mb-8">
-                    <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
+                    <div className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
                       <Linkedin className='mt-2' />
-                    </button>
+                    </div>
                     <span className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100">
                       Linkedin
                     </span>
                   </div>
 
                   <div className="group relative inline-block mb-8 h-10 w-10">
-                    <button className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
+                    <div className="focus:outline-none bi bi-instagram transform transition-transform duration-300 hover:scale-125 hover:text-red-700">
                       <Chrome className='mt-2' />
-                    </button>
+                    </div>
                     <span className="absolute -bottom-10 left-1/3 transform -translate-x-1/2 z-20 px-4 py-2 text-sm font-bold text-black rounded-lg shadow-lg transition-transform duration-300 ease-in-out scale-0 group-hover:scale-100">
                       Google
                     </span>
@@ -216,7 +216,7 @@ const Contact = () => {
                       name="fullname"
                       value={fullname}
                       onChange={(e) => setFullName(e.target.value)}
-                      className={`bg-gray-50 placeholder-gray-500 border-2 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.fullname
+                      className={`bg-gray-50 placeholder-gray-500 border-2 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.fullname
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -232,8 +232,8 @@ const Contact = () => {
                       name="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`bg-gray-50 placeholder-gray-500 border-2 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
-                        ? 'border-red-500 placeholder-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                      className={`bg-gray-50 placeholder-gray-500 border-2 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
+                        ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
                     />
@@ -248,8 +248,8 @@ const Contact = () => {
                       name='phone'
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className={`bg-gray-50 placeholder-gray-500 border-2 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.phone
-                        ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+                      className={`bg-gray-50 placeholder-gray-500 border-2 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.phone
+                        ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500' 
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gary-900 `}
                     />
@@ -263,7 +263,7 @@ const Contact = () => {
                       name="message"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className={`bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.message
+                      className={`bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.message
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -271,9 +271,9 @@ const Contact = () => {
                     {errors.message && <p className="mt-1 text-red-600 text-sm">{errors.message}</p>}
                   </div>
 
-                  <button type='submit' className="w-[96%] ml-5 cursor-pointer bg-gradient-to-b from-blue-700 to-blue-700 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                  <button type='submit' className="w-[96%] ml-5 cursor-pointer bg-gradient-to-b from-blue-700 to-blue-700 px-6 py-3 rounded-xl text-white font-bold group">
                     <div className="relative overflow-hidden flex justify-center">
-                      <p className="group-hover:-translate-y-7 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                      <p className="group-hover:-translate-y-7 gap-1 flex duration-[1.130s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                         <FiSend className='mt-1' />  Send message
                       </p>
                       <p className="absolute top-7 group-hover:top-0 gap-1 flex duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]" >

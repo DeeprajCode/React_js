@@ -117,13 +117,13 @@ const ProductView = () => {
                       Price :<span className='flex gap-1 line-through'><TbCurrencyDollar className='mt-1'/>{product.price}</span>
                     </p>
                     <p className="text-xl font-bold text-green-700 flex gap-1">
-                      Discount Price: <TbCurrencyDollar className='mt-1'/>{finalPrice} (10%   off)
+                      Discount Price : <TbCurrencyDollar className='mt-1'/>{finalPrice} (10% off)
                     </p>
-                    <p className="flex text-md gap-1 bg-yellow-100 my-2 pl-1 mr-2 font-medium text-yellow-500 text-yellow-800 h-15 w-28 ">
-                      Rating: <FaStar className='mt-1' /> {product.rating?.rate}
+                    <p className="flex text-md gap-1 my-2 pl-1 mr-2 font-bold text-yellow-500 text-yellow-600/100 h-15 w-28 ">
+                      Rating : <FaStar className='mt-1' /> {product.rating?.rate}
                     </p>
-                    <p className='flex text-md gap-1  my-2 pl-1 mr-2 font-medium text-red-500 text-red-700 '>
-                      Reviews: <UserStar /> {product.rating?.count}
+                    <p className='flex text-md gap-1 my-2 pl-1 mr-2 font-bold text-red-500 text-red-700 '>
+                      Reviews : <UserStar /> {product.rating?.count}
                     </p>
                   </div>
                   <div className="mt-6 flex gap-4">

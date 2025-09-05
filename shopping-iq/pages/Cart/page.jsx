@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { CgMathMinus } from "react-icons/cg";
 import { CgMathPlus } from "react-icons/cg";
 import { getCartItems, removeFromCartApi, updateCartQuantity } from '../../app/lib/api';
+import { ToastContainer, toast } from 'react-toastify';
+import { IoCartOutline } from "react-icons/io5";
 
 const Cart = () => {
 
@@ -32,6 +34,12 @@ const Cart = () => {
     removeFromCartApi(id);
     setCartItems(getCartItems());
     router.push('/Cart');
+
+    toast.error('Remove your product!', {
+      position : 'top-right',
+      theme : 'colored',
+      autoClose : 1500
+    })
   };
 
   const QuantityChange = (id, quantity) => {
@@ -41,7 +49,6 @@ const Cart = () => {
   };
   console.log("🚀 ~ QuantityChange ~ QuantityChange:", QuantityChange)
 
-
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const totaldiscount = total * 0.1;
   const finalAmount = total - totaldiscount.toFixed(2);
@@ -49,6 +56,7 @@ const Cart = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className="p-10 min-h-screen bg-gray-100 dark:bg-gray-900">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">Your Cart</h1>
 
@@ -69,7 +77,7 @@ const Cart = () => {
             </div>
           </div>
         ) : cartItems.length === 0 ? (
-          <p className="text-center text-gray-600 dark:text-gray-300">Your cart is empty, pleace add your product! </p>
+            <p className="flex justify-center gap-1 font-bold text-red-600 dark:text-red-800">Your <IoCartOutline className='mt-1.5'/> cart is currently empty!</p>
         ) : (
           <>
             <div className="max-w-4xl mx-auto space-y-6">
@@ -108,7 +116,7 @@ const Cart = () => {
                     </div>
                   </div>
                   <div className="ml-4 text-right">
-                    <button onClick={() => remove(item.productId)} className="group relative flex h-14 w-14 flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-red-800 bg-red-400 hover:bg-red-600">
+                    <button onClick={() => remove(item.productId)} className="group relative flex h-14 w-14 flex-col items-center justify-center overflow-hidden rounded-xl bg-red-400 hover:bg-red-600">
                       <svg
                         viewBox="0 0 1.625 1.625"
                         className="absolute -top-7 fill-white delay-100 group-hover:top-6 group-hover:animate-[spin_1.4s] group-hover:duration-1000"
@@ -152,10 +160,10 @@ const Cart = () => {
                   Price : <span className='flex line-through'> <TbCurrencyDollar className='mt-1.5' /> {total.toFixed(2)} </span>
                 </p>
                 <p className="flex text-lg font-bold text-yellow-600/100 flex gap-1">
-                  Discount price : <span className='flex'><TbCurrencyDollar className='mt-1.5'/>{totaldiscount.toFixed(2)}</span>
+                  Discount price : <span className='flex'><TbCurrencyDollar className='mt-1.5' />{totaldiscount.toFixed(2)}</span>
                 </p>
                 <p className="text-2xl font-bold text-green-800 flex gap-1">
-                  Total price : <span className='flex'><TbCurrencyDollar className='mt-1'/>{finalAmount.toFixed(2)}</span>
+                  Total price : <span className='flex'><TbCurrencyDollar className='mt-1' />{finalAmount.toFixed(2)}</span>
                 </p>
               </div>
               {!userData ? (

@@ -38,17 +38,17 @@ const Payment = () => {
         autoClose: 1500,
       });
     } else {
-      toast.success('Successfully select payment method', {
-        position : 'top-right',
-        autoClose: 1500,
-        theme : 'colored',
+      toast.success('Successfully selected payment method!',{
+        position:'top-right',
+        theme:'colored',
+        autoClose:1500,
       })
       localStorage.setItem('method', JSON.stringify(selectedMethod));
       console.log("🚀 ~ cconfirmpayment ~ selectedMethod:", selectedMethod)
       router.push('/Bill');
       return;
     }
-
+    
     const orderData = {
       cartItems,
       selectedMethod,
@@ -118,7 +118,7 @@ const Payment = () => {
             </div>
 
             <div className="flex-1 p-4 rounded-lg shadow bg-slate-50 border-l-4 border-blue-600">
-              <p className="text-lg font-bold text-gray-700 flex gap-1 mb-2 text-red-700">
+              <p className="text-lg font-bold flex gap-1 mb-2 text-red-600">
                 Price : <span className='flex line-through'><TbCurrencyDollar className='mt-1.5' /> {total.toFixed(2)}</span>
               </p>
               <p className="text-lg font-bold text-yellow-600/100 flex gap-1 mb-2">
@@ -133,7 +133,7 @@ const Payment = () => {
                   <p className='group-hover:-translate-y-7 duration-[1.125s] ease-[cubin-bezier(0.19,1,0.22,1)]'>
                     Confirm Payment
                   </p>
-                  <p className='absolute top-7  group-hover:top-0 duration-[1.25s] ease-[cubic-bezier(0.19,1,0.22,1)]'>
+                  <p className='absolute top-7 group-hover:top-0 duration-[1.25s] ease-[cubic-bezier(0.19,1,0.22,1)]'>
                     Confirm payment
                   </p>
                 </div>

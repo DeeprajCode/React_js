@@ -8,23 +8,30 @@ import { FaShoppingBag } from "react-icons/fa";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
 
+    const udata = localStorage.getItem('userData');
+    if(udata){
+      try{
+        setUserData(JSON.parse(udata))
+      }catch(err){
+      console.error("🚀 ~ Dashboard ~ err:", err)
+      }
+    }
+    
     return () => clearTimeout(timer);
   }, []);
-
-  const udata = typeof window !== 'undefined' ? localStorage.getItem('userData') : null;
-  const userData = udata ? JSON.parse(udata) : null;
-
+  
   return (
   <>
     <div className="flex">
       <div className="flex-1 bg-gray-100 min-h-screen relative overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center size-full">
+        <div className="absolute inset-0 bg-cover bg-center size-full opecity-0.5">
           <Image src={bgimage} width={700} height={700} alt="Background image" className="ml-[20%]"/>
         </div>
 
@@ -39,14 +46,14 @@ const Dashboard = () => {
 
           <div className="bg-blue shadow-md rounded-xl p-6 mb-10 my-16 border-l-4 border-b-4 border-blue-500">
             <p className="flex items-center justify-center text-2xl gap-2 font-bold text-gray-800 mb-2">
-              <Image src={LaptopLogo} alt="" height={20} width={40} /> Welcome <strong>{userData ? userData.firstName + " " + userData.lastName : " "}</strong> in Shopping-IQ
+              <Image src={LaptopLogo} alt="" height={20} width={40} /> Welcome {userData ? userData.firstName + " " + userData.lastName : ""} in Shopping-IQ
             </p>
             <h1 className="flex items-center justify-center text-2xl font-bold text-gray-800 mb-3">
               Shop the world from your home. <FaShoppingBag className="ml-2" />
             </h1>
-            <p className="text-gray-900">
+            <p className="text-gray-900 text-md">
               Discover the best deals, explore new arrivals, and track your orders in real time.
-              Our platform is designed to give you a seamless shopping experience—from browsing products to checking out safely.
+              Our platform is designed to give you a seamless shopping experience from browsing products to checking out safely.
               Enjoy exclusive discounts, fast delivery, and 24/7 customer support.
             </p>
           </div>

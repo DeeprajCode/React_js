@@ -27,11 +27,6 @@ const Header = () => {
       localStorage.removeItem('userData');
       setUserData(null);
     }
-    toast.error('Logout successfully', {
-      theme:'colored',
-      position:'top-right',
-      autoClose: 1500,
-    })
     router.push('/Login')
   };
 

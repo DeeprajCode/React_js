@@ -134,7 +134,7 @@ const Login = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email..."
-                      className={`focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
+                      className={`focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.email
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 placeholder-gray-500 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -149,7 +149,7 @@ const Login = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password..."
-                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
+                      className={`focus:outline-none focus:ring-0.5 focus:ring-blue-600 focus:border-transplate ... bg-gray-50 border-2 placeholder-gray-500 rounded-xl block w-full p-2.5 dark:bg-gray-700 dark:text-white ${errors.password
                         ? 'border-red-500 placeholder-red-500 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
                         : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         } text-gray-900`}
@@ -157,7 +157,7 @@ const Login = () => {
                     {errors.password && <p className="text-sm text-red-600">{errors.password}</p>}
                   </div>
 
-                  <button type='submit' className="w-full cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group">
+                  <button type='submit' className="w-full cursor-pointer bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 rounded-xl text-white font-medium group">
                     <div className="relative overflow-hidden">
                       <p className="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                         Login
@@ -170,7 +170,7 @@ const Login = () => {
 
                   <p className="flex text-sm text-red-700 dark:text-red-700">
                     Don’t have an account?
-                    <span onClick={() => router.push('/Register')} className="text-blue-500 underline cursor-pointer ml-1">
+                    <span onClick={() => router.push('/Register')} className="text-blue-600 font-bold underline cursor-pointer ml-1">
                       Register
                     </span>
                   </p>

@@ -17,6 +17,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
 
   return (
+    <>
     <html lang="en">
       <body className='antialiased'>
         <div className="flex min-h-screen">
@@ -28,6 +29,7 @@ const RootLayout = ({ children }) => {
         </div>
       </body>
     </html>
+    </>
   );
 }
 

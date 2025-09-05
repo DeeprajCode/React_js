@@ -94,13 +94,13 @@ const Products = () => {
                 placeholder="Search Products..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-9 00 text-white rounded-md shadow text-sm"
+                className="px-4 py-2 rounded-xl text-sm bg-zinc-800 text-white rounded-md shadow text-sm"
               />
-
+    
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
+                className="px-4 py-2 rounded-xl font-bold text-sm bg-zinc-800 text-white rounded-xl shadow text-sm"
               >
                 <option value="">All Categories</option>
                 <option value="men's clothing"> Men's Clothing</option>
@@ -112,7 +112,7 @@ const Products = () => {
               <select
                 value={priceRange}
                 onChange={(e) => setPriceRange(e.target.value)}
-                className="px-4 py-2 border rounded-md text-sm bg-zinc-800 border border-zinc-700 text-white rounded-md shadow text-sm"
+                className="px-4 py-2 rounded-xl font-bold text-sm bg-zinc-800 text-white rounded-xl text-sm"
               >
                 <option value="">All Prices</option>
                 <option value="0-50">$0 - $50</option>
@@ -126,10 +126,10 @@ const Products = () => {
                   setCategory('');
                   setPriceRange('');
                 }}
-                className="bg-red-600 flex justify-center gap-3 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600 cursor-pointer bg-gradient-to-b from-red-600 to red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
+                className="bg-red-600 flex justify-center gap-3 text-white px-4 py-2 rounded-full text-sm hover:bg-red-600 cursor-pointer bg-gradient-to-b from-red-600 to red-600 px-6 py-3 rounded-xl border-[1px] border-none text-white font-medium group"
               >
                 <div className="relative overflow-hidden">
-                  <p className="flex gap-1 group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                  <p className="flex gap-1 font-bold group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
                     <TbZoomReset className="mt-1" />
                     Reset Products
                   </p>
@@ -157,12 +157,13 @@ const Products = () => {
               </>
             ) : (
               <>
-                <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 border-3 border-gray-500 xl:grid-cols-2">
+                <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2 border-gray-500 xl:grid-cols-2">
                   {filteredData.map((item) => {
                     const discount = (item.price * 0.1).toFixed(1);
                     const finalPrice = (item.price - discount).toFixed(1);
 
                     return (
+                      <>
                       <div key={item.id} className=" hover:shadow-lg my-5 border-l-4 border-blue-600 hover:shadow-indigo-600  transition-shadow duration-900 hover:scale-105 bg-gray-100 dark:bg-gray-800 rounded-xl shadow flex flex-col overflow-hidden">
                         <Link href={`/Products/${item.id}`}>
                           <div className="aspect-w-10 aspect-h-10">
@@ -197,6 +198,7 @@ const Products = () => {
                           </div>
                         </Link>
                       </div>
+                      </>
                     );
                   })}
                 </div>
